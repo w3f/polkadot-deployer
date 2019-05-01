@@ -4,8 +4,9 @@
   "description": "Tool for deploying Polkadot nodes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "mocha --reporter spec --recursive"
   },
   "bin": {
     "polkadot-deployer": "./index.js"
@@ -15,7 +16,7 @@
     "url": "git+https://github.com/w3f/polkadot-deployer.git"
   },
   "author": "Federico Gimenez <federico@web3.foundation>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/w3f/polkadot-deployer/issues"
   },
@@ -30,6 +31,7 @@
     "progress": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4"
   }
 }
