@@ -20,11 +20,11 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
-    "clui": "^0.3.6",
     "configstore": "^4.0.0",
     "figlet": "^1.2.1",
     "inquirer": "^6.3.1",
-    "minimist": "^1.2.0"
+    "optionator": "^0.8.2",
+    "progress": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^5.16.0"
