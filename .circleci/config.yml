@@ -18,6 +18,8 @@ jobs:
     docker:
       - image: node:10.15-alpine
     steps:
+      - checkout
+
       - run:
           name: Publish package
           command: npm publish --userconfig=.npmrc-auth
