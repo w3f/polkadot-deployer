@@ -1,0 +1,19 @@
+{
+  "name": "polkadot-deployer",
+  "version": "0.1.0",
+  "description": "Tool for deploying Polkadot nodes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3f/polkadot-deployer.git"
+  },
+  "author": "Federico Gimenez <federico@web3.foundation>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/w3f/polkadot-deployer/issues"
+  },
+  "homepage": "https://github.com/w3f/polkadot-deployer#readme"
+}
