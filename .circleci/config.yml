@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:10.15-alpine
+      - image: node:10.15-alpine
     steps:
       - checkout
 
@@ -16,7 +16,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:10.15-alpine
+      - image: node:10.15-alpine
     steps:
       - run:
           name: Publish package
