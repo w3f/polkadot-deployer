@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "mocha --reporter spec --recursive"
+    "test": "mocha --reporter spec --recursive",
+    "start": "node index.js"
   },
   "bin": {
     "polkadot-deployer": "./index.js"
@@ -28,6 +29,7 @@
     "figlet": "^1.2.1",
     "inquirer": "^6.3.1",
     "optionator": "^0.8.2",
+    "ospath": "^1.2.2",
     "progress": "^2.0.3"
   },
   "devDependencies": {
