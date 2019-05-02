@@ -3,9 +3,8 @@
 const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
-const ProgressBar = require('progress');
-const https = require('https');
 const inquirer = require('./lib/inquirer');
+const process = require('process');
 
 clear();
 console.log(
