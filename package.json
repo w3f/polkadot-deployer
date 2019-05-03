@@ -24,6 +24,7 @@
   "homepage": "https://github.com/w3f/polkadot-deployer#readme",
   "dependencies": {
     "chalk": "^2.4.2",
+    "cli-table3": "^0.5.1",
     "commander": "^2.20.0",
     "inquirer": "^6.3.1",
     "ospath": "^1.2.2",
