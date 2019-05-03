@@ -7,7 +7,6 @@ const init = require('./lib/actions/init');
 const list = require('./lib/actions/list');
 const create = require('./lib/actions/create');
 const destroy = require('./lib/actions/destroy');
-//const inquirer = require('./lib/inquirer');
 
 program
   .version(version.show());
@@ -42,14 +41,3 @@ program
 
 program
   .parse(process.argv);
-
-/*
-const run = async () => {
-  const answers = await inquirer.main();
-  switch (answers.action) {
-
-  }
-};
-
-run();
-*/

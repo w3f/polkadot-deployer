@@ -6,7 +6,7 @@ General tool for deploying Polkadot nodes.
 
 ## Environment variables
 
-In order to be able to deploy to production, these environment variables must be
+In order to be able to release new versions, these environment variables must be
 available:
 
 * `$NPM_TOKEN`
