@@ -14,30 +14,27 @@ program
 program
   .command('init')
   .description('initialize the deployer tool')
-  .action(() => {
-    init.do();
-  });
+  .action(init.do);
 
 program
   .command('list')
   .description('show the clusters already deployed')
-  .action(() => {
-    list.do();
-  });
+  .action(list.do);
 
 program
   .command('create')
   .description('deploys a new cluster')
-  .action(() => {
-    create.do();
-  });
+  .action(create.do);
 
 program
   .command('destroy')
   .description('deletes a deployed cluster')
-  .action(() => {
-    destroy.do();
-  });
+  .action(destroy.do);
 
-program
-  .parse(process.argv);
+
+program.allowUnknownOption(false);
+
+const parsed = program.parse(process.argv);
+if (!(parsed.args && parsed.args.length > 0 && (typeof (parsed.args[0] === 'object')))) {
+  program.outputHelp();
+}
