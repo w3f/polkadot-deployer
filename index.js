@@ -1,22 +1,18 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk');
-const clear = require('clear');
-const figlet = require('figlet');
 const inquirer = require('./lib/inquirer');
 const process = require('process');
+const program = require('commander');
+const version = require('./lib/version');
 
-clear();
-console.log(
-  chalk.green(
-    figlet.textSync('Polkadot Deployer', { horizontalLayout: 'full' })
-  )
-);
+program.version(version.show())
+  .parse(process.argv);
 
 const run = async () => {
   const answers = await inquirer.main();
-  console.log(`Selected: ${answers.action}`);
-  process.exit(0);
+  switch (answers.action) {
+
+  }
 };
 
-run();
+//run();
