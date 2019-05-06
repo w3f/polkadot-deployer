@@ -18,6 +18,7 @@ program
 program
   .command('create')
   .description('deploys a new cluster')
+  .option('-c, --config [path]', 'path to config file')
   .action(create.do);
 
 program
