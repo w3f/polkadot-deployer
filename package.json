@@ -12,6 +12,11 @@
   "bin": {
     "polkadot-deployer": "./index.js"
   },
+  "files": [
+    "index.js",
+    "/config",
+    "/lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/w3f/polkadot-deployer.git"
