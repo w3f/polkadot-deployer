@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "name": "kubectl",
+      "url": ""
+    },
+    {
+      "name": "helm",
+      "url": ""
+    },
+    {
+      "name": "terraform",
+      "url": ""
+    }
+  ]
+}
