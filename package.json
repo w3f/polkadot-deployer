@@ -32,6 +32,7 @@
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
     "commander": "^2.20.0",
+    "fs-extra": "^7.0.1",
     "inquirer": "^6.3.1",
     "ospath": "^1.2.2",
     "wait-on": "^3.2.0"
