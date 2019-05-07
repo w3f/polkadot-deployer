@@ -22,8 +22,8 @@ program
   .action(create.do);
 
 program
-  .command('destroy')
-  .description('deletes a deployed cluster')
+  .command('destroy [name]')
+  .description('deletes a deployment')
   .action(destroy.do);
 
 
