@@ -2,15 +2,15 @@
   "items": [
     {
       "name": "kubectl",
-      "url": "https://w3f.github.io/polkadot-deployer/kubectl"
+      "url": "https://w3f.github.io/polkadot-deployer/%platform%/kubectl"
     },
     {
       "name": "helm",
-      "url": "https://w3f.github.io/polkadot-deployer/helm"
+      "url": "https://w3f.github.io/polkadot-deployer/%platform%/helm"
     },
     {
       "name": "terraform",
-      "url": "https://w3f.github.io/polkadot-deployer/terraform"
+      "url": "https://w3f.github.io/polkadot-deployer/%platform%/terraform"
     }
   ]
 }
