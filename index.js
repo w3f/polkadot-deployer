@@ -2,10 +2,13 @@
 
 const process = require('process');
 const program = require('commander');
+
 const version = require('./lib/version');
 const list = require('./lib/actions/list');
 const create = require('./lib/actions/create');
 const destroy = require('./lib/actions/destroy');
+const redeploy = require('./lib/actions/redeploy');
+
 
 program
   .version(version.show());
@@ -25,6 +28,11 @@ program
   .command('destroy [name]')
   .description('deletes a deployment')
   .action(destroy.do);
+
+program
+  .command('redeploy [name]')
+  .description('recreates a deployment on an existing cluster')
+  .action(redeploy.do);
 
 
 program.allowUnknownOption(false);
