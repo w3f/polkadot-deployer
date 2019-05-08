@@ -2,7 +2,7 @@ image:
   repo: parity/polkadot
   tag: v0.4.4
 
-chain: staging
+chain: local
 
 name: poolkadot-deployer-node-0
 
