@@ -1,6 +1,6 @@
 image:
   repo: parity/polkadot
-  tag: v0.4.3
+  tag: v0.4.4
 
 chain: staging
 
