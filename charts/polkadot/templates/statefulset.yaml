@@ -12,7 +12,6 @@ spec:
   selector:
     matchLabels:
       app: {{ .Release.Name }}
-  serviceName: {{ .Release.Name }}
   template:
     metadata:
       labels:
