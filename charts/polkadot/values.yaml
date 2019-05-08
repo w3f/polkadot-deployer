@@ -1,8 +1,8 @@
 image:
-  repo: paritytech/polkadot
+  repo: parity/polkadot
   tag: v0.4.3
 
-chain: local
+chain: staging
 
 name: poolkadot-deployer-node-0
 
@@ -18,4 +18,8 @@ resources: {}
 #    memory: "5Gi"
 #    cpu: "1.5"
 
-environment: development
+persistence:
+  enabled: false
+  size: 32Gi
+  storageClassName: standard
+  accessModes: [ "ReadWriteOnce" ]
