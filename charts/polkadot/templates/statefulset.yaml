@@ -28,8 +28,10 @@ spec:
         - --validator
         {{- end }}
         - --key={{ .Values.key }}
-        {{- if not .Values.mainNode }}
-        - --bootnodes={{ include "polkadot-deployer.bootnodes" . | quote }}
+        {{- if .Values.mainNode }}
+        - --node-key={{ .Values.nodeKey }}
+        {{- else }}
+        - --bootnodes={{ include "polkadot-deployer.bootnodes" . }}
         {{- end }}
         - -d=/data
         - --rpc-external
