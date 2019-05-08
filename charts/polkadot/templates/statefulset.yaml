@@ -31,7 +31,9 @@ spec:
         {{- if not .Values.mainNode }}
         - --bootnodes={{ include "polkadot-deployer.bootnodes" . | quote }}
         {{- end }}
-        - -d /data
+        - -d=/data
+        - --rpc-external
+        - --ws-external
         ports:
         - containerPort: 30333
           name: p2p
@@ -54,9 +56,13 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /data
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          fsGroup: 1000
         resources:
 {{- toYaml .Values.resources | indent 10 }}
-      {{- if eq .Values.environment "ci" }}
+      {{- if not .Values.persistence.enabled }}
       volumes:
       - name: data
         emptyDir: {}
@@ -65,8 +71,9 @@ spec:
   - metadata:
       name: data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes: {{ .Values.persistence.accessModes }}
+      storageClassName: {{ .Values.persistence.storageClassName }}
       resources:
         requests:
-          storage: 1Gi
+          storage: {{ .Values.persistence.size }}
       {{ end }}
