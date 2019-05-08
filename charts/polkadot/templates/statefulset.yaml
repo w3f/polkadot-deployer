@@ -24,18 +24,18 @@ spec:
         args:
         - --chain={{ .Values.chain }}
         - --name={{ .Values.name }}
+        - -d=/data
+        - --rpc-external
+        - --ws-external
+        - --key={{ .Values.key }}
         {{- if .Values.validator }}
         - --validator
         {{- end }}
-        - --key={{ .Values.key }}
         {{- if .Values.mainNode }}
         - --node-key={{ .Values.nodeKey }}
         {{- else }}
         - --bootnodes={{ include "polkadot-deployer.bootnodes" . }}
         {{- end }}
-        - -d=/data
-        - --rpc-external
-        - --ws-external
         ports:
         - containerPort: 30333
           name: p2p
