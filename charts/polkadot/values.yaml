@@ -1,0 +1,21 @@
+image:
+  repo: paritytech/polkadot
+  tag: v0.4.3
+
+chain: local
+
+name: poolkadot-deployer-node-0
+
+key: //Alice
+
+mainNode: true
+mainNodeID: QmafAoaE7wSnLo6DKdV4jYmAyRkGB5Hms2c6HyPDmpJ36a
+
+validator: true
+
+resources: {}
+#  requests:
+#    memory: "5Gi"
+#    cpu: "1.5"
+
+environment: development

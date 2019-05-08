@@ -1,0 +1,3 @@
+{{- define "polkadot-deployer.bootnodes" -}}
+/ip4/poolkadot-deployer-node-0/tcp/30333/p2p/{{ .Values.mainNodeID }}
+{{- end }}

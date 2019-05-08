@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  serviceName: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.repo }}:{{ .Values.image.tag }}
+        imagePullPolicy: IfNotPresent
+        args:
+        - --chain={{ .Values.chain }}
+        - --name={{ .Values.name }}
+        {{- if .Values.validator }}
+        - --validator
+        {{- end }}
+        - --key={{ .Values.key }}
+        {{- if not .Values.mainNode }}
+        - --bootnodes={{ include "polkadot-deployer.bootnodes" . | quote }}
+        {{- end }}
+        - -d /data
+        ports:
+        - containerPort: 30333
+          name: p2p
+        - containerPort: 9933
+          name: http-rpc
+        - containerPort: 9944
+          name: websocket-rpc
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http-rpc
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http-rpc
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        resources:
+{{- toYaml .Values.resources | indent 10 }}
+      {{- if eq .Values.environment "ci" }}
+      volumes:
+      - name: data
+        emptyDir: {}
+      {{- else }}
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+      {{ end }}
