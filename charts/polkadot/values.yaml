@@ -9,7 +9,9 @@ name: poolkadot-deployer-node-0
 key: //Alice
 
 mainNode: true
-mainNodeID: QmafAoaE7wSnLo6DKdV4jYmAyRkGB5Hms2c6HyPDmpJ36a
+mainNodeID: QmQZ8TjTqeDj3ciwr93EJ95hxfDsb9pEYDizUAbWpigtQN
+
+nodeKey: "0000000000000000000000000000000000000000000000000000000000000001"
 
 validator: true
 
