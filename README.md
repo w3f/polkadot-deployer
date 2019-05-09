@@ -72,7 +72,7 @@ create` call:
  Websockets endpoint available at ws://127.0.0.1:11000
 *********************************************************
 ```
-You can use that url to access the network from https://polkadot.js.org/apps
+You can use that url to access the network from [PolkadotJS -> Settings](https://polkadot.js.org/apps/#/settings)
 
 ![UI Settings](/images/ui-settings.png)
 
