@@ -69,7 +69,7 @@ create` call:
 
 ```
 *********************************************************
- Websockets endpoint available at ws://localhost:11000
+ Websockets endpoint available at ws://127.0.0.1:11000
 *********************************************************
 ```
 You can use that url to access the network from https://polkadot.js.org/apps
@@ -84,7 +84,7 @@ Shows details of all the created deployments:
 ┌──────────────┬─────────────────┬──────────────────────┬──────────┬─────────┬────────────────┐
 │ Network name │ Deployment type │ WebSockets endpoint  │ Provider │ Workers │ Polkadot nodes │
 ├──────────────┼─────────────────┼──────────────────────┼──────────┼─────────┼────────────────┤
-│ testnet1     │ local           │ ws://localhost:11000 │ kind     │ 1       │ 4              │
+│ testnet1     │ local           │ ws://127.0.0.1:11000 │ kind     │ 1       │ 4              │
 └──────────────┴─────────────────┴──────────────────────┴──────────┴─────────┴────────────────┘
 ```
 
