@@ -74,6 +74,8 @@ create` call:
 ```
 You can use that url to access the network from https://polkadot.js.org/apps
 
+![UI Settings](/images/ui-settings.png)
+
 ### `list`
 
 Shows details of all the created deployments:
