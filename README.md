@@ -109,13 +109,3 @@ linting and unit tests.
 After the PR is merged into master, when a semantic version tag (`vX.Y.Z`) is
 pushed the tests are run again and, if all is ok, the package is published to
 npm registry
-
-### Environment variables
-
-In order to be able to release new versions, these environment variables must be
-available:
-
-* `$NPM_TOKEN`
-
-These values are already set on CI, and are available on 1Password, under the
-Infrastructure vault, the npm token in an item called `npm token`.
