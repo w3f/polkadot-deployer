@@ -7,10 +7,6 @@
     {
       "name": "helm",
       "url": "https://w3f.github.io/polkadot-deployer/%platform%/helm"
-    },
-    {
-      "name": "terraform",
-      "url": "https://w3f.github.io/polkadot-deployer/%platform%/terraform"
     }
   ]
 }
