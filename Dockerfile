@@ -15,3 +15,14 @@ COPY --from=polkadot /usr/local/bin/polkadot .
 
 RUN ./polkadot build-spec --chain local > ./custom-chainspec.json && \
   rm ./polkadot
+
+RUN jq '.genesis.runtime.session.validators = []' ./custom-chainspec.json > ./custom-chainspec-new.json && \
+  cp ./custom-chainspec-new.json ./custom-chainspec.json && \
+  jq '.genesis.runtime.session.keys = []' ./custom-chainspec.json > ./custom-chainspec-new.json && \
+  cp ./custom-chainspec-new.json ./custom-chainspec.json && \
+  jq '.genesis.runtime.staking.validatorCount = 0' ./custom-chainspec.json > ./custom-chainspec-new.json && \
+  cp ./custom-chainspec-new.json ./custom-chainspec.json && \
+  jq '.genesis.runtime.staking.invulnerables = []' ./custom-chainspec.json > ./custom-chainspec-new.json && \
+  cp ./custom-chainspec-new.json ./custom-chainspec.json && \
+  jq '.genesis.runtime.staking.stakers = []' ./custom-chainspec.json > ./custom-chainspec-new.json && \
+  cp ./custom-chainspec-new.json ./custom-chainspec.json
