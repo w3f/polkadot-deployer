@@ -24,6 +24,16 @@ jobs:
           name: Publish package
           command: npm publish --userconfig=.npmrc-auth
 
+  buildImage:
+    docker:
+      - image: web3f/ci-commons:v0.1.8
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          command: |
+            /scripts/build-image.sh web3f/polkadot-deployer .
+
 workflows:
   version: 2
   test-deploy:
@@ -32,6 +42,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - buildImage:
+          filters:
+            branches:
+              only: /master/
       - deploy:
           requires:
             - test
