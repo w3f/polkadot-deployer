@@ -1,0 +1,96 @@
+{{ if .Values.chainspec.create }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+data:
+  custom_chainspec.json: |-
+    {{- $totalItems := len .Values.keys.stash }}
+    {
+      "genesis": {
+        "runtime": {
+          "consensus:" {
+            "authorities": [
+              {{- range $index, $value := .Values.keys.session }}
+              {{ $value | quote }}{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ]
+          },
+          "indices": {
+            "ids": [
+            {{- range $index, $value := .Values.keys.stash }}
+            {{ $value | quote }}{{- if ne (plus1 $index) $totalItems }},{{- end }}
+            {{- end }}
+            ]
+          },
+          "balances": {
+            "balances": [
+              {{- range $index, $value := .Values.keys.stash }}
+              [
+                {{ $value | quote }},
+                1048576
+              ]{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ]
+          },
+          "session": {
+            "validators": [
+              {{- range $index, $value := .Values.keys.controller }}
+              {{ $value | quote }}{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ],
+            "keys": [
+              {{- $authority := .Values.consensus.authority }}
+              {{- range $index, $value := .Values.keys.controller }}
+              [
+                {{ $value | quote }},
+                {{ $authority | quote }}
+              ]{{- if ne (plus1 $index) $totalItems }},{{- end }}
+            ]
+          },
+          "staking": {
+            "validatorCount": {{ $totalItems }},
+            "invulnerables": [
+              {{- range $index, $value := .Values.keys.controller }}
+              {{ $value | quote }}{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ],
+            "stakers": [
+              {{- $controllers := .Values.keys.controller }}
+              {{- range $index, $value := .Values.keys.stash }}
+              [
+                {{ $value | quote }},
+                {{ index $controllers $index | quote }},
+                5000,
+                "Validator"
+              ]{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ]
+          },
+          "grandpa": {
+            "authorities": [
+              {{- range $index, $value := .Values.keys.session }}
+              [
+                {{ $value | quote }},
+                1
+              ]{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ]
+          },
+          "councilSeats": {
+            "activeCouncil": [
+              {{- range $index, $value := .Values.keys.stash }}
+              [
+                {{ $value | quote }},
+                1000000
+              ]{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
+            ]
+          },
+          "sudo": {
+            "key": " {{ index .Values.keys.controller 0 }}"
+          }
+        }
+      }
+    }
+{{ end }}
