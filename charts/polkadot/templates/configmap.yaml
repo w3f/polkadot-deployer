@@ -40,11 +40,11 @@ data:
               {{- end }}
             ],
             "keys": [
-              {{- $authority := .Values.consensus.authority }}
+              {{- $sessionKeys := .Values.keys.session }}
               {{- range $index, $value := .Values.keys.controller }}
               [
                 {{ $value | quote }},
-                {{ $authority | quote }}
+                {{ index $sessionKeys $index | quote }}
               ]{{- if ne (plus1 $index) $totalItems }},{{- end }}
             ]
           },
