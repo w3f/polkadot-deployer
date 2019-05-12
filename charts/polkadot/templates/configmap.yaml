@@ -18,9 +18,9 @@ data:
           },
           "indices": {
             "ids": [
-            {{- range $index, $value := .Values.keys.stash }}
-            {{ $value | quote }}{{- if ne (plus1 $index) $totalItems }},{{- end }}
-            {{- end }}
+              {{- range $index, $value := .Values.keys.stash }}
+              {{ $value | quote }}{{- if ne (plus1 $index) $totalItems }},{{- end }}
+              {{- end }}
             ]
           },
           "balances": {
