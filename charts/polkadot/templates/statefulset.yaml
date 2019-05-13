@@ -17,12 +17,27 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      {{- if .Values.chainspec.custom }}
+      initContainers:
+      - name: {{ .Release.Name }}-init
+        image: {{ .Values.initImage.repo }}:{{ .Values.initImage.tag }}
+        command:
+        - /app/merge_chainspec.sh
+        - /app/custom_chainspec.json
+        - {{ .Values.chainspec.path }}
+        volumeMounts:
+        - name: chainspec
+          mountPath: /chainspec
+        - name: custom-chainspec
+          mountPath: /app/custom_chainspec.json
+          subPath: custom_chainspec.json
+      {{- end }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ .Values.image.repo }}:{{ .Values.image.tag }}
         imagePullPolicy: IfNotPresent
         args:
-        - --chain={{ .Values.chain }}
+        - --chain={{ .Values.chainspec.path }}
         - --name={{ .Values.name }}
         - -d=/data
         - --rpc-external
@@ -58,15 +73,22 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /data
+        - name: chainspec
+          mountPath: /chainspec
         securityContext:
           runAsNonRoot: true
           runAsUser: 1000
           fsGroup: 1000
         resources:
 {{- toYaml .Values.resources | indent 10 }}
-      {{- if not .Values.persistence.enabled }}
       volumes:
+      - name: custom-chainspec
+        configMap:
+          name: {{ include "polkadot-deployer.custom-chainspec-configmap" . }}
+      {{- if not .Values.persistence.enabled }}
       - name: data
+        emptyDir: {}
+      - name: chainspec
         emptyDir: {}
       {{- else }}
   volumeClaimTemplates:
@@ -77,5 +99,13 @@ spec:
       storageClassName: {{ .Values.persistence.storageClassName }}
       resources:
         requests:
-          storage: {{ .Values.persistence.size }}
+          storage: {{ .Values.persistence.dataSize }}
+  - metadata:
+      name: chainspec
+    spec:
+      accessModes: {{ .Values.persistence.accessModes }}
+      storageClassName: {{ .Values.persistence.storageClassName }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.chainspecSize }}
       {{ end }}
