@@ -2,15 +2,18 @@ image:
   repo: parity/polkadot
   tag: v0.4.4
 
-chain: local
+initImage:
+  repo: web3f/polkadot-deployer
+  tag: latest
 
-name: poolkadot-deployer-node-0
+chainspec:
+  custom: true
+  createConfigmap: false
+  path: "/chainspec/chainspec.json"
 
-key: //Alice
+mainNode: false
 
-mainNode: true
 mainNodeID: QmQZ8TjTqeDj3ciwr93EJ95hxfDsb9pEYDizUAbWpigtQN
-
 nodeKey: "0000000000000000000000000000000000000000000000000000000000000001"
 
 validator: true
@@ -22,6 +25,7 @@ resources: {}
 
 persistence:
   enabled: false
-  size: 32Gi
+  dataSize: 32Gi
+  chainspecSize: 10Mi
   storageClassName: standard
   accessModes: [ "ReadWriteOnce" ]
