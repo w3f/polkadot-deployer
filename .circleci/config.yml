@@ -26,7 +26,7 @@ jobs:
 
   buildImage:
     docker:
-      - image: web3f/ci-commons:v0.1.8
+      - image: web3f/ci-commons:v0.1.9
     steps:
       - checkout
       - setup_remote_docker
