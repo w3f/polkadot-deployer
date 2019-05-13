@@ -2,15 +2,17 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "polkadot-deployer.custom-chainspec-configmap" . }}
 data:
   custom_chainspec.json: |-
     {{- $totalItems := len .Values.chainspec.keys.stash }}
     {{- $lastIndex := sub $totalItems 1 }}
     {
+      "name": {{ .Values.name | quote }},
+      "id": {{ .Values.name | quote }},
       "genesis": {
         "runtime": {
-          "consensus:" {
+          "consensus": {
             "authorities": [
               {{- range $index, $value := .Values.chainspec.keys.session }}
               {{ $value | quote }}{{- if ne $index $lastIndex }},{{- end }}
