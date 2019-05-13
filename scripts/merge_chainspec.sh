@@ -8,4 +8,6 @@ if [ -z "${CUSTOM_CHAINSPEC}" ] || [ -z "${DESTINATION_CHAINSPEC}" ]; then
     exit 1
 fi
 
-jq -s '.[0] * .[1]' /app/base_chainspec.json "${CUSTOM_CHAINSPEC}" > "${DESTINATION_CHAINSPEC}"
+jq -s '.[0] * .[1]' /app/base_chainspec.json "${CUSTOM_CHAINSPEC}" > /app/tmp.json
+
+/app/polkadot build-spec --chain /app/tmp.json --raw > "${DESTINATION_CHAINSPEC}"
