@@ -13,7 +13,7 @@ chainspec:
 
 mainNode: false
 
-mainNodeID: QmQZ8TjTqeDj3ciwr93EJ95hxfDsb9pEYDizUAbWpigtQN
+mainNodeID: QmRpheLN4JWdAnY7HGJfWFNbfkQCb6tFf4vvA6hgjMZKrR
 nodeKey: "0000000000000000000000000000000000000000000000000000000000000001"
 
 validator: true
