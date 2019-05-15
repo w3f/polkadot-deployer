@@ -10,6 +10,7 @@ data:
     {
       "name": {{ .Values.name | quote }},
       "id": {{ .Values.name | quote }},
+      "protocolId": "dot",
       "genesis": {
         "runtime": {
           "consensus": {
@@ -92,7 +93,7 @@ data:
             ]
           },
           "sudo": {
-            "key": " {{ index .Values.chainspec.keys.controller 0 }}"
+            "key": "{{ index .Values.chainspec.keys.controller 0 }}"
           }
         }
       }
