@@ -1,4 +1,4 @@
-FROM parity/polkadot:v0.4.4 AS polkadot
+FROM parity/substrate:2.0.0-f05cd69a0 AS substrate
 
 
 FROM ubuntu:18.04
@@ -11,9 +11,9 @@ RUN apt update && \
 
 WORKDIR /app
 
-COPY --from=polkadot /usr/local/bin/polkadot .
+COPY --from=substrate /usr/local/bin/substrate .
 
-RUN ./polkadot build-spec --chain local > ./base_chainspec.json && \
-  rm ./polkadot
+RUN ./substrate build-spec --chain local > ./base_chainspec.json && \
+  rm ./substrate
 
 COPY scripts/ .
