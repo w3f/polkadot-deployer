@@ -14,16 +14,6 @@ jobs:
           command: |
             npm run test
 
-  deploy:
-    docker:
-      - image: node:10.15-alpine
-    steps:
-      - checkout
-
-      - run:
-          name: Publish package
-          command: npm publish --userconfig=.npmrc-auth
-
   buildImage:
     docker:
       - image: web3f/ci-commons:v0.1.9
@@ -33,6 +23,25 @@ jobs:
       - run:
           command: |
             /scripts/build-image.sh web3f/polkadot-deployer .
+
+  publishChart:
+    docker:
+      - image: web3f/ci-commons:v0.1.9
+    steps:
+      - checkout
+      - run:
+          command: |
+            /scripts/publish-chart.sh
+
+  publishPackage:
+    docker:
+      - image: node:10.15-alpine
+    steps:
+      - checkout
+
+      - run:
+          name: Publish package
+          command: npm publish --userconfig=.npmrc-auth
 
 workflows:
   version: 2
@@ -46,7 +55,17 @@ workflows:
           filters:
             branches:
               only: /master/
-      - deploy:
+          requires:
+            - test
+      - publishChart:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - buildImage
+      - publishPackage:
           requires:
             - test
           filters:
