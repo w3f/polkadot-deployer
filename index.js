@@ -36,7 +36,7 @@ program
   .action(redeploy.do);
 
 program
-  .command('benchmark <type>')
+  .command('benchmark')
   .description('Creates deployments and runs benchmarks on them.')
   .option('-c, --config [path]', 'path to config file')
   .option('-o, --output [path]', 'path to output data file')
