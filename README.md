@@ -103,6 +103,30 @@ Destroy a deployment including cluster, network and portforwarding process.
 You can either pass the name of the deployment to destroy or let the wizard
 show a list of existing deployments.
 
+### `benchmark <type>`
+
+Creates deployments and runs benchmarks on them. These are the type of
+benchmarks curretly supported:
+
+* *finality*: measures the mean time to finality on several networks with
+different number of validators. It accepts a `--config` option with the path
+of a json file containing the definition of the benchmark, like this:
+
+```
+{
+  "name": "benchmark1",
+  "type": "local",
+  "benchmark": "finality",
+  "startNodes": 2,
+  "endNodes": 16,
+  "blocks": 10
+}
+```
+With this definition, the test will spin up deployments of 2 nodes through 10,
+measuring for each of them the mean time to finality of 10 consecutive blocks.
+You can pass also the destination of the results as a path in the `--output`
+parameter (`./finality-benchmark.json` by default).
+
 ## CI/CD Workflow
 
 When a PR is proposed to this repo, the `npm test` task is run, this includes

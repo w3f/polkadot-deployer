@@ -1,0 +1,8 @@
+{
+  "name": "bm1",
+  "type": "local",
+  "benchmark": "finality",
+  "startNodes": 2,
+  "endNodes": 16,
+  "blocks": 10
+}

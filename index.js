@@ -8,6 +8,7 @@ const list = require('./lib/actions/list');
 const create = require('./lib/actions/create');
 const destroy = require('./lib/actions/destroy');
 const redeploy = require('./lib/actions/redeploy');
+const benchmark = require('./lib/actions/benchmark');
 
 
 program
@@ -15,24 +16,31 @@ program
 
 program
   .command('list')
-  .description('show the clusters already deployed')
+  .description('Shows the clusters already deployed.')
   .action(list.do);
 
 program
   .command('create')
-  .description('deploys a new cluster')
+  .description('Deploys a new cluster.')
   .option('-c, --config [path]', 'path to config file')
   .action(create.do);
 
 program
   .command('destroy [name]')
-  .description('deletes a deployment')
+  .description('Deletes a deployment.')
   .action(destroy.do);
 
 program
   .command('redeploy [name]')
-  .description('recreates a deployment on an existing cluster')
+  .description('Recreates a deployment on an existing cluster.')
   .action(redeploy.do);
+
+program
+  .command('benchmark')
+  .description('Creates deployments and runs benchmarks on them.')
+  .option('-c, --config [path]', 'path to config file')
+  .option('-o, --output [path]', 'path to output data file')
+  .action(benchmark.do);
 
 
 program.allowUnknownOption(false);
