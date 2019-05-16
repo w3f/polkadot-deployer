@@ -1,4 +1,4 @@
-const subject = require('../../lib/files');
+const subject = require('../../lib/local/files');
 
 const fs = require('fs');
 const ospath = require('ospath');
