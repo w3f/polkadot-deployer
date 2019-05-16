@@ -103,7 +103,7 @@ Destroy a deployment including cluster, network and portforwarding process.
 You can either pass the name of the deployment to destroy or let the wizard
 show a list of existing deployments.
 
-### `benchmark <type>`
+### `benchmark`
 
 Creates deployments and runs benchmarks on them. These are the type of
 benchmarks curretly supported:
