@@ -135,21 +135,21 @@ parameter (`./finality-benchmark.json` by default).
 
 * In some cases the installation process can produce errors from the secp256k1
 dependency with messages related to the required python version, like:
-```
-gyp ERR! configure error
-gyp ERR! stack Error: Python executable "/usr/local/opt/python/libexec/bin/python" is v3.7.3, which is not supported by gyp.
-```
-To solve this problem you can either define some alias from the command line
-before installing:
-```
-alias python=python2
-alias pip=pip2
-```
-or call the install command with an additional option:
-```
-npm i -g --python=python2.7 polkadot-deployer
-```
-See [this issue](https://github.com/w3f/polkadot-deployer/issues/2) for details.
+  ```
+  gyp ERR! configure error
+  gyp ERR! stack Error: Python executable "/usr/local/opt/python/libexec/bin/python" is v3.7.3, which is not supported by gyp.
+  ```
+  To solve this problem you can either define some alias from the command line
+  before installing:
+  ```
+  alias python=python2
+  alias pip=pip2
+  ```
+  or call the install command with an additional option:
+  ```
+  npm i -g --python=python2.7 polkadot-deployer
+  ```
+  See [this issue](https://github.com/w3f/polkadot-deployer/issues/2) for details.
 
 * For local deployments, if after issuing a create command you find the deployer
 stuck with a message like:
