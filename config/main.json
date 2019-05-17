@@ -1,5 +1,5 @@
 {
-  "items": [
+  "components": [
     {
       "name": "kubectl",
       "url": "https://w3f.github.io/polkadot-deployer/%platform%/kubectl"
