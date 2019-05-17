@@ -59,8 +59,9 @@ Each deployment consists of two components, a cluster and a network.
 is currently based on kubernetes v1.13.
 
 * The network is composed of a set of polkadot nodes connected together, each of
-them created from the Helm chart at [./charts/polkadot](). Helm charts are
-application packages for kubernetes, more about them [here](https://helm.sh/).
+them created from this [polkadot Helm chart](https://github.com/w3f/polkadot-chart).
+Helm charts are application packages for kubernetes, more about them
+[here](https://helm.sh/).
 
 Once the deployment is created, the tool sets up a port forwarding process, so
 that one of the network nodes' websockets endpoint is available on your local
