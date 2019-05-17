@@ -153,21 +153,23 @@ See [this issue](https://github.com/w3f/polkadot-deployer/issues/2) for details.
 
 * For local deployments, if after issuing a create command you find the deployer
 stuck with a message like:
-```
-wait-on(537) waiting for: http://127.0.0.1:10080/kubernetes-ready
-```
-then it is possible that the cluster is not able to be created using your local
-docker installation. Make sure that:
 
-  * The system has enough free disk space (at least 10Gb).
+  ```
+  wait-on(537) waiting for: http://127.0.0.1:10080/kubernetes-ready
+  ```
+  
+  then it is possible that the cluster is not able to be created using your local
+  docker installation. Make sure that:
 
-  * There are no leftovers on your docker installation. You can clean up with:
+  - The system has enough free disk space (at least 10Gb).
+  
+  - There are no leftovers on your docker installation. You can clean up with:
+  
+    ```
+    docker system prune -a --volumes
+    ```
 
-```
-docker system prune -a --volumes
-```
-
-In case you are experimenting problems and any of the above solution works for
+In case you are experiencing problems and any of the above solution works for
 you don't hesitate to [open an issue](https://github.com/w3f/polkadot-deployer/issues/new).
 
 ## CI/CD Workflow
