@@ -131,7 +131,7 @@ measuring for each of them the mean time to finality of 10 consecutive blocks.
 You can pass also the destination of the results as a path in the `--output`
 parameter (`./finality-benchmark.json` by default).
 
-## Throubleshooting
+## Troubleshooting
 
 * In some cases the installation process can produce errors from the secp256k1
 dependency with messages related to the required python version, like:
