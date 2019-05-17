@@ -3,6 +3,7 @@
   "type": "local",
   "benchmark": "finality",
   "startNodes": 2,
-  "endNodes": 16,
-  "blocks": 10
+  "endNodes": 3,
+  "blocks": 10,
+  "reuseCluster": true
 }
