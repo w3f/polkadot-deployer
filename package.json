@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/w3f/polkadot-deployer#readme",
   "dependencies": {
+    "@polkadot/api": "^0.78.1",
     "@polkadot/keyring": "^0.90.1",
     "@polkadot/util": "^0.90.1",
     "@polkadot/wasm-crypto": "^0.10.1",
