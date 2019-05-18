@@ -2,8 +2,11 @@
   "name": "bm1",
   "type": "local",
   "benchmark": "finality",
-  "startNodes": 19,
-  "endNodes": 20,
-  "blocks": 10,
+  "startNodes": 2,
+  "endNodes": 10,
+  "blocks": {
+    "warm": 10,
+    "measure": 10
+  },
   "reuseCluster": true
 }
