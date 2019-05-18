@@ -118,18 +118,44 @@ of a json file containing the definition of the benchmark, like this:
 
 ```
 {
-  "name": "benchmark1",
+  "name": "bm1",
   "type": "local",
   "benchmark": "finality",
   "startNodes": 2,
-  "endNodes": 16,
-  "blocks": 10
+  "endNodes": 10,
+  "blocks": {
+    "warm": 10,
+    "measure": 10
+  },
+  "reuseCluster": true
 }
 ```
 With this definition, the test will spin up deployments of 2 nodes through 10,
 measuring for each of them the mean time to finality of 10 consecutive blocks.
+This are all the fields you can use:
+
+* `name`: how to call the deployment used for the benchmarks.
+
+* `type`: either local or remote, currently only `local` accepted.
+
+* `benchmark`: which tests to run, currently only `finality` implemented.
+
+* `startNodes`: how many validators will be used in the first run.
+
+* `endNodes`: how many validators will be used in the last run, the process will
+increment the number of nodes in 1 on each run.
+
+* `blocks.warm`: number of blocks to wait before starting to the measurements.
+
+* `blocks.measure`: number of blocks on which the metrics will be recorded.
+
+* `reuseCluster`: if true the cluster will be cleaned but not deleted after the
+benchmark is finished and can be used in subsequent runs, this can speed up the
+execution.
+
 You can pass also the destination of the results as a path in the `--output`
-parameter (`./finality-benchmark.json` by default).
+parameter (`./polkadot-deployer-benchmark-<benchmark_type>-<timestamp>.json` by
+default).
 
 ## Troubleshooting
 
@@ -157,14 +183,14 @@ stuck with a message like:
   ```
   wait-on(537) waiting for: http://127.0.0.1:10080/kubernetes-ready
   ```
-  
+
   then it is possible that the cluster is not able to be created using your local
   docker installation. Make sure that:
 
   - The system has enough free disk space (at least 10Gb).
-  
+
   - There are no leftovers on your docker installation. You can clean up with:
-  
+
     ```
     docker system prune -a --volumes
     ```
