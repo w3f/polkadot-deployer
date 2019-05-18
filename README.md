@@ -153,9 +153,8 @@ increment the number of nodes in 1 on each run.
 benchmark is finished and can be used in subsequent runs, this can speed up the
 execution.
 
-You can pass also the destination of the results as a path in the `--output`
-parameter (`./polkadot-deployer-benchmark-<benchmark_type>-<timestamp>.json` by
-default).
+You can pass also the destination directory of the result files in the `--output`
+parameter (current directory by default).
 
 ## Troubleshooting
 
