@@ -38,8 +38,8 @@ program
 program
   .command('benchmark')
   .description('Creates deployments and runs benchmarks on them.')
-  .option('-c, --config [path]', 'path to config file')
-  .option('-o, --output [path]', 'path to output data file')
+  .option('-c, --config [filePath]', 'path to config file')
+  .option('-o, --output [directoryPath]', 'path to output data directory')
   .action(benchmark.do);
 
 
