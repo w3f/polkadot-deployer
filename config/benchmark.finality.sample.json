@@ -5,7 +5,7 @@
   "startNodes": 20,
   "endNodes": 20,
   "blocks": {
-    "warm": 20,
+    "offset": 20,
     "measure": 10
   },
   "reuseCluster": true

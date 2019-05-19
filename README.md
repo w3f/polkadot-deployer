@@ -133,7 +133,7 @@ of a json file containing the definition of the benchmark, like this:
     "startNodes": 2,
     "endNodes": 10,
     "blocks": {
-      "warm": 10,
+      "offset": 10,
       "measure": 10
     },
     "reuseCluster": true
@@ -151,7 +151,7 @@ of a json file containing the definition of the benchmark, like this:
   * `endNodes`: how many validators will be used in the last run, the process will
   increment the number of nodes in 1 on each run.
 
-  * `blocks.warm`: number of blocks to wait before starting to the measurements.
+  * `blocks.offset`: number of blocks to wait before starting to the measurements.
 
   * `blocks.measure`: number of blocks on which the metrics will be recorded.
 
