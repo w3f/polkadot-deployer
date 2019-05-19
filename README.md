@@ -54,6 +54,14 @@ file containing the definition of the deployment, like this:
 }
 ```
 
+These are the fields you can use:
+
+* `name`: unique string to distinguish your deployment in subsequent commands.
+
+* `type`: either local or remote, currently only `local` implemented.
+
+* `nodes`: number of validators of the network, an integer between 2 and 20.
+
 You can also omit the `--config` option the tool will launch a wizard utility to
 get the deployment details.
 
