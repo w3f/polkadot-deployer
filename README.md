@@ -3,7 +3,8 @@
 # polkadot-deployer
 
 General tool for deploying Polkadot nodes, aiming to make it easy to deploy a
-local or remote network of nodes.
+local or remote network of nodes. To learn more about Polkadot explore [the wiki](https://wiki.polkadot.network)
+or [join the conversation at Riot](https://riot.im/app/#/room/#polkadot-watercooler:matrix.org).
 
 It is at a early stage of development, currently only supports local deployments
 with a limited number of nodes.
@@ -116,45 +117,42 @@ benchmarks curretly supported:
 different number of validators. It accepts a `--config` option with the path
 of a json file containing the definition of the benchmark, like this:
 
-```
-{
-  "name": "bm1",
-  "type": "local",
-  "benchmark": "finality",
-  "startNodes": 2,
-  "endNodes": 10,
-  "blocks": {
-    "warm": 10,
-    "measure": 10
-  },
-  "reuseCluster": true
-}
-```
-With this definition, the test will spin up deployments of 2 nodes through 10,
-measuring for each of them the mean time to finality of 10 consecutive blocks.
-This are all the fields you can use:
+  ```
+  {
+    "name": "bm1",
+    "type": "local",
+    "benchmark": "finality",
+    "startNodes": 2,
+    "endNodes": 10,
+    "blocks": {
+      "warm": 10,
+      "measure": 10
+    },
+    "reuseCluster": true
+  }
+  ```
 
-* `name`: how to call the deployment used for the benchmarks.
+  With this definition, the test will spin up deployments of 2 nodes through 10,
+  measuring for each of them the mean time to finality of 10 consecutive blocks.
+  These are the fields specific to this benchmark that you can use:
 
-* `type`: either local or remote, currently only `local` accepted.
+  * `benchmark`: which tests to run, currently only `finality` implemented.
 
-* `benchmark`: which tests to run, currently only `finality` implemented.
+  * `startNodes`: how many validators will be used in the first run.
 
-* `startNodes`: how many validators will be used in the first run.
+  * `endNodes`: how many validators will be used in the last run, the process will
+  increment the number of nodes in 1 on each run.
 
-* `endNodes`: how many validators will be used in the last run, the process will
-increment the number of nodes in 1 on each run.
+  * `blocks.warm`: number of blocks to wait before starting to the measurements.
 
-* `blocks.warm`: number of blocks to wait before starting to the measurements.
+  * `blocks.measure`: number of blocks on which the metrics will be recorded.
 
-* `blocks.measure`: number of blocks on which the metrics will be recorded.
+  * `reuseCluster`: if true the cluster will be cleaned but not deleted after the
+  benchmark is finished and can be used in subsequent runs, this can speed up the
+  execution.
 
-* `reuseCluster`: if true the cluster will be cleaned but not deleted after the
-benchmark is finished and can be used in subsequent runs, this can speed up the
-execution.
-
-You can pass also the destination directory of the result files in the `--output`
-parameter (current directory by default).
+  You can pass also the destination directory of the result files in the `--output`
+  parameter (current directory by default).
 
 ## Troubleshooting
 
