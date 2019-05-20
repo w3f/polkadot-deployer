@@ -162,6 +162,36 @@ of a json file containing the definition of the benchmark, like this:
   You can pass also the destination directory of the result files in the `--output`
   parameter (current directory by default).
 
+  After the benchmarks are done the results are written to a json file, which
+  includes all the metrics and the details of the execution, and to a file compatible
+  with gnuplot, that can generate a png file with a plot of the results:
+
+  ```
+  $ polkadot-deployer benchmark -c ./config/benchmark.finality.sample.json
+  Initializing nodes...
+  Done
+  Waiting for nodes ready...
+  Done
+  ***************************************
+   Starting benchmarks with 2 nodes
+  ***************************************
+  New produced block: 1, timestamp: 1558369995883
+  Last finalized block: 1, finalized at: 1558370001258
+
+  ...
+
+  ***************************************
+   Finished benchmarks with 6 nodes
+  ***************************************
+  Done
+  Results writen to ./polkadot-deployer.benchmark.finality.20190520-063948.json
+  gnuplot writen to ./polkadot-deployer.benchmark.finality.20190520-063948.gnuplot
+
+  $ gnuplot /polkadot-deployer.benchmark.finality.20190520-063948.gnuplot
+  ```
+  The previous gnuplot command will generate a `benchmark.png` file with the
+  benchmark plot on the current directory.
+
 ## Troubleshooting
 
 * In some cases the installation process can produce errors from the secp256k1
