@@ -3,9 +3,9 @@
   "type": "local",
   "benchmark": "finality",
   "startNodes": 2,
-  "endNodes": 20,
+  "endNodes": 3,
   "blocks": {
-    "offset": 0,
+    "offset": 3,
     "measure": 10
   },
   "reuseCluster": true
