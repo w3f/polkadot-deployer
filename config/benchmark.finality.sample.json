@@ -5,8 +5,8 @@
   "startNodes": 2,
   "endNodes": 14,
   "blocks": {
-    "offset": 5,
-    "measure": 20
+    "offset": 10,
+    "measure": 25
   },
   "reuseCluster": true
 }
