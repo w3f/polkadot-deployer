@@ -6,7 +6,7 @@
   "endNodes": 14,
   "blocks": {
     "offset": 10,
-    "measure": 25
+    "measure": 50
   },
   "reuseCluster": true
 }
