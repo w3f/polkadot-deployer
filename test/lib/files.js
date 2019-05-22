@@ -65,6 +65,51 @@ describe('files', () => {
     });
   });
 
+  describe('deploymentsPath', () => {
+    it('should return the deployments path', () => {
+      const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments');
+
+      subject.deploymentsPath().should.equal(expected);
+    });
+  });
+
+  describe('deploymentsDBPath', () => {
+    it('should return the deployments DB file path', () => {
+      const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments.db');
+
+      subject.deploymentsDBPath().should.equal(expected);
+    });
+  });
+
+  describe('functions that depend on deployment', () => {
+    const deploymentName = 'myDeployment';
+
+    describe('deploymentPath', () => {
+      it('should return a deployment path by name', () => {
+
+        const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName);
+
+        subject.deploymentPath(deploymentName).should.equal(expected);
+      });
+    });
+
+    describe('kubeconfigPath', () => {
+      it('should return the kubeconfig path for the given deployment', () => {
+        const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig');
+
+        subject.kubeconfigPath(deploymentName).should.equal(expected);
+      });
+    });
+
+    describe('keysPath', () => {
+      it('should return the keys directory path for the given deployment', () => {
+        const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'keys');
+
+        subject.keysPath(deploymentName).should.equal(expected);
+      });
+    });
+  });
+
   describe('readJSON', () => {
     it('should return a JSON from existing JSON files', () => {
       let tmpobj = tmp.fileSync();
