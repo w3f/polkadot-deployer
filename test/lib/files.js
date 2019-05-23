@@ -149,6 +149,34 @@ describe('files', () => {
 
           content.should.eq(JSON.stringify(JSONData));
         });
+        describe('the key file', () => {
+          const tmpobj = tmp.dirSync();
+          const dataPath = tmpobj.name;
+          const JSONData = {key: 'value'};
+          let filePath;
+
+          beforeEach(() => {
+            const st = sandbox.stub(ospath, 'data');
+            st.returns(dataPath);
+
+            filePath = subject.keyPath(deploymentName, index, type);
+            subject.writeKeyFile(deploymentName, index, type, JSONData);
+          });
+
+          it('should be written with the right content', () => {
+            const content = JSON.stringify(subject.readJSON(filePath));
+
+            content.should.eq(JSON.stringify(JSONData));
+          });
+
+          it('should be written with the right permissions', () => {
+            const stats = fs.statSync(filePath);
+
+            const unixFilePermissions = '0' + (stats.mode & parseInt('777', 8)).toString(8);
+
+            unixFilePermissions.should.eq('0600');
+          });
+        });
       });
     });
   });
