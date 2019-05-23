@@ -4,7 +4,7 @@ const path = require('path');
 const sinon = require('sinon');
 const tmp = require('tmp');
 
-const subject = require('../../lib/core/files');
+const subject = require('../../../lib/core/files');
 
 require('chai').should()
 
@@ -125,11 +125,12 @@ describe('files', () => {
 
       describe('writeKeyFile', () => {
         let sandbox;
-        beforeEach(function () {
+
+        beforeEach(() => {
           sandbox = sinon.createSandbox();
         });
 
-        afterEach(function () {
+        afterEach(() => {
           sandbox.restore();
         });
 
