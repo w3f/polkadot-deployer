@@ -36,9 +36,14 @@ describe('keys', () => {
     it('should return the created keys', async () => {
       const output = await subject.createAndSave(input);
 
-      output.stash.length.should.eq(nodes);
-      output.controller.length.should.eq(nodes);
-      output.session.length.should.eq(nodes);
+      ['stash', 'controller', 'session'].forEach((type) => {
+        output[type].length.should.eq(nodes);
+
+        output[type].forEach((keyItem) => {
+          keyItem.address.should.not.be.null;
+          keyItem.seed.should.not.be.null;
+        });
+      });
     });
   });
 });
