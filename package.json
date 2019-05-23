@@ -31,6 +31,7 @@
     "@polkadot/api": "^0.78.1",
     "@polkadot/keyring": "^0.90.1",
     "@polkadot/util": "^0.90.1",
+    "@polkadot/util-crypto": "^0.91.1",
     "@polkadot/wasm-crypto": "^0.10.1",
     "axios": "^0.18.0",
     "chalk": "^2.4.2",

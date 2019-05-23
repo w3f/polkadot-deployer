@@ -42,6 +42,7 @@ describe('keys', () => {
         output[type].forEach((keyItem) => {
           keyItem.address.should.not.be.null;
           keyItem.seed.should.not.be.null;
+          keyItem.mnemonic.should.not.be.null;
         });
       });
     });
