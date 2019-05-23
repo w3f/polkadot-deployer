@@ -1,9 +1,10 @@
-const subject = require('../../lib/core/files');
-
 const fs = require('fs');
 const ospath = require('ospath');
 const path = require('path');
+const sinon = require('sinon');
 const tmp = require('tmp');
+
+const subject = require('../../lib/core/files');
 
 require('chai').should()
 
@@ -106,6 +107,48 @@ describe('files', () => {
         const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'keys');
 
         subject.keysPath(deploymentName).should.equal(expected);
+      });
+    });
+
+    describe('functions that depend on node', () => {
+      const index = 2;
+      const type = 'my_key_type';
+
+      describe('keyPath', () => {
+        it('should return the key file path for the given deployment, node index and key type', () => {
+          const expectedFileName = `node-${index}-${type}.json`;
+          const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'keys', expectedFileName);
+
+          subject.keyPath(deploymentName, index, type).should.equal(expected);
+        });
+      });
+
+      describe('writeKeyFile', () => {
+        let sandbox;
+        beforeEach(function () {
+          sandbox = sinon.createSandbox();
+        });
+
+        afterEach(function () {
+          sandbox.restore();
+        });
+
+        it('should write the key file', () => {
+          const tmpobj = tmp.dirSync();
+          const dataPath = tmpobj.name;
+          const JSONData = {key: 'value'};
+
+          const st = sandbox.stub(ospath, 'data');
+          st.returns(dataPath);
+
+          const filePath = subject.keyPath(deploymentName, index, type);
+
+          subject.writeKeyFile(deploymentName, index, type, JSONData);
+
+          const content = JSON.stringify(subject.readJSON(filePath));
+
+          content.should.eq(JSON.stringify(JSONData));
+        });
       });
     });
   });
