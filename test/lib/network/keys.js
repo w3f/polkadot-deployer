@@ -32,9 +32,9 @@ describe('keys', () => {
     sandbox.restore();
   });
 
-  describe('createAndSave', () => {
+  describe('create', () => {
     it('should return the created keys', async () => {
-      const output = await subject.createAndSave(input);
+      const output = await subject.create(input);
 
       ['stash', 'controller', 'session'].forEach((type) => {
         output[type].length.should.eq(nodes);
