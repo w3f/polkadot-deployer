@@ -1,7 +1,6 @@
 const fs = require('fs');
 const ospath = require('ospath');
 const path = require('path');
-const sinon = require('sinon');
 const tmp = require('tmp');
 
 const subject = require('../../../lib/core/files');
@@ -99,85 +98,6 @@ describe('files', () => {
         const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig');
 
         subject.kubeconfigPath(deploymentName).should.equal(expected);
-      });
-    });
-
-    describe('keysPath', () => {
-      it('should return the keys directory path for the given deployment', () => {
-        const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'keys');
-
-        subject.keysPath(deploymentName).should.equal(expected);
-      });
-    });
-
-    describe('functions that depend on node', () => {
-      const index = 2;
-      const type = 'my_key_type';
-
-      describe('keyPath', () => {
-        it('should return the key file path for the given deployment, node index and key type', () => {
-          const expectedFileName = `node-${index}-${type}.json`;
-          const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'keys', expectedFileName);
-
-          subject.keyPath(deploymentName, index, type).should.equal(expected);
-        });
-      });
-
-      describe('writeKeyFile', () => {
-        let sandbox;
-
-        beforeEach(() => {
-          sandbox = sinon.createSandbox();
-        });
-
-        afterEach(() => {
-          sandbox.restore();
-        });
-
-        it('should write the key file', () => {
-          const tmpobj = tmp.dirSync();
-          const dataPath = tmpobj.name;
-          const JSONData = {key: 'value'};
-
-          const st = sandbox.stub(ospath, 'data');
-          st.returns(dataPath);
-
-          const filePath = subject.keyPath(deploymentName, index, type);
-
-          subject.writeKeyFile(deploymentName, index, type, JSONData);
-
-          const content = JSON.stringify(subject.readJSON(filePath));
-
-          content.should.eq(JSON.stringify(JSONData));
-        });
-        describe('the key file', () => {
-          const tmpobj = tmp.dirSync();
-          const dataPath = tmpobj.name;
-          const JSONData = {key: 'value'};
-          let filePath;
-
-          beforeEach(() => {
-            const st = sandbox.stub(ospath, 'data');
-            st.returns(dataPath);
-
-            filePath = subject.keyPath(deploymentName, index, type);
-            subject.writeKeyFile(deploymentName, index, type, JSONData);
-          });
-
-          it('should be written with the right content', () => {
-            const content = JSON.stringify(subject.readJSON(filePath));
-
-            content.should.eq(JSON.stringify(JSONData));
-          });
-
-          it('should be written with the right permissions', () => {
-            const stats = fs.statSync(filePath);
-
-            const unixFilePermissions = '0' + (stats.mode & parseInt('777', 8)).toString(8);
-
-            unixFilePermissions.should.eq('0600');
-          });
-        });
       });
     });
   });
