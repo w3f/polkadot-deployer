@@ -1,5 +1,5 @@
 {
-  "chartVersion": "v0.2.1",
+  "chartVersion": "v0.2.2",
   "components": [
     {
       "name": "kubectl",
