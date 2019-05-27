@@ -1,6 +1,7 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const ospath = require('ospath');
 const path = require('path');
+const sinon = require('sinon');
 const tmp = require('tmp');
 
 const subject = require('../../../lib/core/files');
@@ -84,6 +85,16 @@ describe('files', () => {
   describe('functions that depend on deployment', () => {
     const deploymentName = 'myDeployment';
 
+    let sandbox;
+
+    beforeEach(() => {
+      sandbox = sinon.createSandbox();
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+
     describe('deploymentPath', () => {
       it('should return a deployment path by name', () => {
 
@@ -98,6 +109,25 @@ describe('files', () => {
         const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig');
 
         subject.kubeconfigPath(deploymentName).should.equal(expected);
+      });
+    });
+
+    describe('deleteKubeconfig', () => {
+      it('should delete kubeconfig file', () => {
+        const tmpobj = tmp.dirSync();
+        const dataPath = tmpobj.name;
+        const st = sandbox.stub(ospath, 'data');
+        st.returns(dataPath);
+
+        const kubeconfigPath = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig');
+        const content = 'test';
+
+        fs.mkdirSync(path.dirname(kubeconfigPath), { recursive: true });
+        fs.writeFileSync(kubeconfigPath, content);
+
+        subject.deleteKubeconfig(deploymentName);
+
+        fs.existsSync(kubeconfigPath).should.throw;
       });
     });
   });
