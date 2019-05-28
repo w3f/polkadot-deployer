@@ -3,10 +3,10 @@
   "type": "local",
   "benchmark": "finality",
   "startNodes": 2,
-  "endNodes": 14,
+  "endNodes": 3,
   "blocks": {
-    "offset": 10,
-    "measure": 50
+    "offset": 0,
+    "measure": 10
   },
   "reuseCluster": true
 }
