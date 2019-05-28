@@ -6,27 +6,33 @@ require('chai')
 
 describe('libp2p', () => {
   describe('createNodeKeys', () => {
-    const config = { nodes: 3 };
+    const nodes = 3;
+    const config = { nodes };
     let result;
 
     beforeEach(async () => {
       result = await subject.createNodeKeys(config);
     });
 
-    it('should return only one element', () => {
-      result.length.should.eq(1);
+    it('should return one element per node', () => {
+      result.length.should.eq(nodes);
     });
 
     it('each element should have a nodeKey and peerId', () => {
-      result[0].nodeKey.should.not.be.null;
-      result[0].peerId.should.not.be.null;
+      result.forEach((item) => {
+        item.nodeKey.should.not.be.null;
+        item.nodeKey.length.should.eq(64);
+        item.peerId.should.not.be.null;
+      })
     });
 
     it('two consecutive calls should return different values', async () => {
       const result2 = await subject.createNodeKeys(config);
 
-      (result[0].nodeKey === result2[0].nodeKey).should.not.be.true;
-      (result[0].peerId === result2[0].peerId).should.not.be.true;
+      for (const n of Array(nodes).keys()) {
+        (result[n].nodeKey === result2[n].nodeKey).should.not.be.true;
+        (result[n].peerId === result2[n].peerId).should.not.be.true;
+      }
     });
   });
 });
