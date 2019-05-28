@@ -50,6 +50,23 @@ with log aggregation and monitoring for getting all the required information abo
 the system state, and the appropriate automation for reacting after degraded
 conditions are detected.
 
+### Exposure of other services
+
+### Description
+
+A malicious actor can gain access to the worker nodes/containers by connecting
+to open ports on which other services not related to polkadot are up and
+listening.
+
+### Mitigation
+
+* Firewall: in the current development stage (testnet created for benchmarking)
+only the websockets-rpc port is accessible from outside the cluster.
+
+* There are no additional services running on the containers or the worker nodes,
+other than the polkadot/substrate on the containers and kubernetes related services
+on the worker nodes.
+
 ## Kubernetes resources security
 
 ### Other applications in the cluster cause keys leakage
