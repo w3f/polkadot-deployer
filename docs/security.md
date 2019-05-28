@@ -111,4 +111,5 @@ network.
 #### Mitigation
 
 The tool regenerates secret node keys (and associated peer ids) for each
-deployment.
+deployment. These are injected securely (with encrypted connection) in the nodes
+during creation.
