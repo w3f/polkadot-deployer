@@ -40,9 +40,11 @@
     "fs-extra": "^7.0.1",
     "inquirer": "^6.3.1",
     "js-yaml": "^3.13.1",
+    "libp2p-crypto-secp256k1": "^0.3.0",
     "moment": "^2.24.0",
     "nedb-promises": "^3.0.3",
     "ospath": "^1.2.2",
+    "peer-id": "^0.12.2",
     "portastic": "^1.0.1",
     "wait-on": "^3.2.0"
   },
