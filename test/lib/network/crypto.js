@@ -2,7 +2,7 @@ const ospath = require('ospath');
 const sinon = require('sinon');
 const tmp = require('tmp');
 
-const subject = require('../../../lib/network/keys');
+const subject = require('../../../lib/network/crypto');
 
 require('chai')
   .should()
