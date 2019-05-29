@@ -1,4 +1,11 @@
+const fs = require('fs-extra');
+const ospath = require('ospath');
+const path = require('path');
+const sinon = require('sinon');
+const tmp = require('tmp');
+
 const { Cluster } = require('../../../lib/cluster');
+const files = require('../../../lib/core/files');
 const { LocalCluster } = require('../../../lib/cluster/strategies/local');
 const { RemoteCluster } = require('../../../lib/cluster/strategies/remote');
 
@@ -46,10 +53,21 @@ describe('Cluster', () => {
     });
 
     it('should instantiate remote strategy', () =>{
+      const sandbox = sinon.createSandbox();
+      const tmpobj = tmp.dirSync();
+      const dataPath = tmpobj.name;
+      const st = sandbox.stub(ospath, 'data');
+      st.returns(dataPath);
+
+      const terraformBinPath = files.terraformBinPath();
+      files.createDirectory(path.dirname(terraformBinPath));
+      fs.closeSync(fs.openSync(terraformBinPath, 'w'));
+
       const config = { name, type: 'gcp' };
 
       const cluster = new Cluster(config);
 
+      sandbox.restore();
       (cluster.runner instanceof RemoteCluster).should.be.true;
     });
   });
