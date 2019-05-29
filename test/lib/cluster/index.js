@@ -8,7 +8,20 @@ require('chai')
 
 describe('Cluster', () => {
   describe('#new', () => {
-    const config = { field: 'value' };
+    const name = 'myname';
+    const type = 'local';
+    const config = { name, type };
+
+    it('should require a type', () =>{
+      const config = { name };
+
+      (() => new Cluster(config)).should.throw;
+    });
+    it('should require a name', () =>{
+      const config = { type };
+
+      (() => new Cluster(config)).should.throw;
+    });
 
     it('should create a new instance', () => {
       const cluster = new Cluster(config);
@@ -19,13 +32,13 @@ describe('Cluster', () => {
     it('should clone the received config', () => {
       const cluster = new Cluster(config);
 
-      cluster.config.field.should.eq('value');
+      cluster.config.name.should.eq(name);
 
       (cluster.config === config).should.be.false;
     });
 
     it('should instantiate local strategy', () =>{
-      const config = { type: 'local' };
+      const config = { name, type: 'local' };
 
       const cluster = new Cluster(config);
 
@@ -33,20 +46,11 @@ describe('Cluster', () => {
     });
 
     it('should instantiate remote strategy', () =>{
-      const config = { type: 'gcp' };
+      const config = { name, type: 'gcp' };
 
       const cluster = new Cluster(config);
 
       (cluster.runner instanceof RemoteCluster).should.be.true;
     });
-
-    it('should instantiate remote strategy by default', () =>{
-      const config = { };
-
-      const cluster = new Cluster(config);
-
-      (cluster.runner instanceof RemoteCluster).should.be.true;
-    });
-
   });
 });
