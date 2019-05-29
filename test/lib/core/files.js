@@ -130,6 +130,29 @@ describe('files', () => {
         fs.existsSync(kubeconfigPath).should.throw;
       });
     });
+
+    describe('copyTerraformFiles', () => {
+      it('should throw for unknown remote types', () => {
+        (() => subject.copyTerraformFiles(deploymentName, 'not-a-known-type')).should.throw;
+      });
+
+      it('should copy the files', () => {
+        const tmpobj = tmp.dirSync();
+        const dataPath = tmpobj.name;
+        const st = sandbox.stub(ospath, 'data');
+        st.returns(dataPath);
+
+        const terraformPath = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'terraform');
+
+        subject.copyTerraformFiles(deploymentName, 'gcp');
+
+        fs.existsSync(terraformPath).should.be.true;
+
+        const mainTfPath = path.join(terraformPath, 'main.tf');
+
+        fs.existsSync(mainTfPath).should.be.true;
+      });
+    });
   });
 
   describe('readJSON', () => {
