@@ -97,7 +97,6 @@ describe('files', () => {
 
     describe('deploymentPath', () => {
       it('should return a deployment path by name', () => {
-
         const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName);
 
         subject.deploymentPath(deploymentName).should.equal(expected);
@@ -142,6 +141,10 @@ describe('files', () => {
         const st = sandbox.stub(ospath, 'data');
         st.returns(dataPath);
 
+        const terraformBinSourcePath = subject.terraformBinPath();
+        subject.createDirectory(path.dirname(terraformBinSourcePath));
+        fs.closeSync(fs.openSync(terraformBinSourcePath, 'w'));
+
         const terraformPath = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'terraform');
 
         subject.copyTerraformFiles(deploymentName, 'gcp');
@@ -149,8 +152,10 @@ describe('files', () => {
         fs.existsSync(terraformPath).should.be.true;
 
         const mainTfPath = path.join(terraformPath, 'main.tf');
-
         fs.existsSync(mainTfPath).should.be.true;
+
+        const terraformBinTargetPath = path.join(terraformPath, 'terraform');
+        fs.existsSync(terraformBinTargetPath).should.be.true;
       });
     });
   });
