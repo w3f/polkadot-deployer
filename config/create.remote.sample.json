@@ -1,6 +1,6 @@
 {
   "name": "testnet1",
-  "type": "gpc",
+  "type": "gcp",
   "nodes": 2,
   "remote": {
     "region": "europe-west1",
