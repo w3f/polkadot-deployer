@@ -1,0 +1,9 @@
+{
+  "name": "testnet1",
+  "type": "gpc",
+  "nodes": 2,
+  "remote": {
+    "region": "europe-west1",
+    "projectID": "polkadot-benchmarks"
+  }
+}
