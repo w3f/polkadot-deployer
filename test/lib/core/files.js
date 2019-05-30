@@ -162,7 +162,7 @@ describe('files', () => {
 
   describe('readJSON', () => {
     it('should return a JSON from existing JSON files', () => {
-      let tmpobj = tmp.fileSync();
+      const tmpobj = tmp.fileSync();
 
       fs.writeFileSync(tmpobj.name, '{"field1": "value1", "field2": "value2"}');
 
@@ -170,6 +170,19 @@ describe('files', () => {
 
       result['field1'].should.equal('value1');
       result['field2'].should.equal('value2');
+    });
+  });
+
+  describe('write', () => {
+    it('should write the contents', () => {
+      const tmpobj = tmp.fileSync();
+      const content = 'mycontent';
+
+      subject.write(tmpobj.name, content)
+
+      const actual = fs.readFileSync(tmpobj.name).toString();
+
+      actual.should.eq(content);
     });
   });
 });
