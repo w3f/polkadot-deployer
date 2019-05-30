@@ -3,7 +3,7 @@ variable "cluster_name" {
 }
 
 variable "region" {
-  default = "europe-west1"
+  default = "{{ region }}"
 }
 
 variable "node_count" {
