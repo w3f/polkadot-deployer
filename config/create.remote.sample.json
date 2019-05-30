@@ -3,7 +3,7 @@
   "type": "gcp",
   "nodes": 2,
   "remote": {
-    "region": "europe-west1",
+    "location": "europe-west1-b",
     "projectID": "polkadot-benchmarks"
   }
 }
