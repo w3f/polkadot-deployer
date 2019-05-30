@@ -2,8 +2,8 @@ variable "cluster_name" {
   default = "polkadot-deployer"
 }
 
-variable "region" {
-  default = "{{ region }}"
+variable "location" {
+  default = "{{ location }}"
 }
 
 variable "node_count" {
@@ -12,4 +12,8 @@ variable "node_count" {
 
 variable "machine_type" {
   default = "n1-standard-2"
+}
+
+variable "k8s_version" {
+  default = "1.11.9-gke.13"
 }
