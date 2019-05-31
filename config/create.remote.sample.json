@@ -4,6 +4,7 @@
   "nodes": 2,
   "remote": {
     "location": "europe-west1-b",
-    "projectID": "polkadot-benchmarks"
+    "projectID": "polkadot-benchmarks",
+    "domain": "polkadot.w3f.tech"
   }
 }
