@@ -15,6 +15,14 @@ resource "google_container_cluster" "primary" {
   master_auth {
     username = "${random_id.username.hex}"
     password = "${random_id.password.hex}"
+
+    client_certificate_config {
+      issue_client_certificate = false
+    }
+  }
+
+  lifecycle {
+    ignore_changes = ["master_auth"]
   }
 
   node_config {
