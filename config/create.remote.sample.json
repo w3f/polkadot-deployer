@@ -1,7 +1,7 @@
 {
-  "name": "testnet5",
+  "name": "testnet6",
   "type": "gcp",
-  "nodes": 30,
+  "nodes": 45,
   "remote": {
     "location": "europe-west1-b",
     "projectID": "polkadot-benchmarks",
