@@ -1,5 +1,10 @@
 {
-  "chartVersion": "v0.2.8",
+  "chartVersions": {
+    "polkadot": "v0.2.8",
+    "cert-manager": "v0.8.0",
+    "nginx-ingress": "1.6.16",
+    "external-dns": "1.7.8"
+  },
   "components": [
     {
       "name": "kubectl",
