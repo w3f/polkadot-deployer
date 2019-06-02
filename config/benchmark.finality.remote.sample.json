@@ -1,0 +1,17 @@
+{
+  "name": "bm1",
+  "type": "gcp",
+  "benchmark": "finality",
+  "startNodes": 2,
+  "endNodes": 3,
+  "blocks": {
+    "offset": 0,
+    "measure": 10
+  },
+  "reuseCluster": true,
+  "remote": {
+    "location": "europe-west1-b",
+    "projectID": "polkadot-benchmarks",
+    "domain": "w3f.tech"
+  }
+}
