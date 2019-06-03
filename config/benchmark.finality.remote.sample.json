@@ -1,12 +1,12 @@
 {
-  "name": "bm1",
+  "name": "bm2",
   "type": "gcp",
   "benchmark": "finality",
   "startNodes": 2,
-  "endNodes": 3,
+  "endNodes": 45,
   "blocks": {
-    "offset": 0,
-    "measure": 10
+    "offset": 20,
+    "measure": 100
   },
   "reuseCluster": true,
   "remote": {
