@@ -2,11 +2,10 @@
   "name": "bm2",
   "type": "gcp",
   "benchmark": "finality",
-  "startNodes": 2,
-  "endNodes": 45,
+  "sets": [10, 20, 30, 40, 50],
   "blocks": {
-    "offset": 20,
-    "measure": 100
+    "offset": 10,
+    "measure": 200
   },
   "reuseCluster": true,
   "remote": {
