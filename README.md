@@ -6,9 +6,6 @@ General tool for deploying Polkadot nodes, aiming to make it easy to deploy a
 local or remote network of nodes. To learn more about Polkadot explore [the wiki](https://wiki.polkadot.network)
 or [join the conversation at Riot](https://riot.im/app/#/room/#polkadot-watercooler:matrix.org).
 
-It is at a early stage of development, currently only supports local deployments
-with a limited number of nodes.
-
 ## Requirements
 
 The tool is meant to work on Linux and MacOS machines. In order to be able to
@@ -35,6 +32,27 @@ $ polkadot-deployer --help
 ```
 Check the [Troubleshooting section](#troubleshooting) if something goes wrong with the installation.
 
+## Remote deployments
+
+polkadot-deployer allows you to create remote cloud deployments, currently it
+supports Google Cloud Platform for the infrastructure and Cloudflare for the
+DNS settings that make your network accessible through websockets RPC.
+
+In order to be able to deploy remotely you will need:
+
+* A project on GCP
+
+* GCP service account and credentials in the form of an environment variable
+`GOOGLE_CLOUD_KEYFILE_JSON` with the path of the json credentials file for
+your service account (see [here](https://cloud.google.com/iam/docs/service-accounts) for details).
+
+* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and
+`CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)
+for details about the API key, the email hould be the one used for registration).
+
+* Enough quota on GCP to create the required resources (terraform will show the
+exact errors if this condition is not met).
+
 ## Usage
 
 `polkadot-deployer` allows you to create, list, update and delete Polkadot
@@ -44,7 +62,7 @@ with the command line tool is done through the following subcommands:
 ### `create [options]`
 
 Creates a deployment. It accepts a `--config` option with the path of a json
-file containing the definition of the deployment, like this:
+file containing the definition of the deployment, like this for local deployments:
 
 ```
 {
@@ -53,14 +71,33 @@ file containing the definition of the deployment, like this:
   "nodes": 4
 }
 ```
+or this for remote deployments:
+```
+{
+  "name": "testnet6",
+  "type": "gcp",
+  "nodes": 45,
+  "remote": {
+    "location": "europe-west1-b",
+    "projectID": "polkadot-benchmarks",
+    "domain": "w3f.tech"
+  }
+}
+```
 
 These are the fields you can use:
 
 * `name`: unique string to distinguish your deployment in subsequent commands.
 
-* `type`: either local or remote, currently only `local` implemented.
+* `type`: either local or remote, `local` or `gcp` allowed.
 
 * `nodes`: number of validators of the network, an integer between 2 and 20.
+
+* `remote.location`: region or zone to use for the deployment.
+
+* `remote.projectID`: id of the GCP project.
+
+* `remote.domain`: under which domain the tool will create the websockets endpoint.
 
 You can also omit the `--config` option the tool will launch a wizard utility to
 get the deployment details.
