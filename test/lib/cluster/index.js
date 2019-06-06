@@ -63,7 +63,7 @@ describe('Cluster', () => {
       files.createDirectory(path.dirname(terraformBinPath));
       fs.closeSync(fs.openSync(terraformBinPath, 'w'));
 
-      const config = { name, type: 'gcp' };
+      const config = { name, type: 'gcp', remote: { clusters: []} };
 
       const cluster = new Cluster(config);
 
