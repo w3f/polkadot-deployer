@@ -17,7 +17,7 @@ describe('nodes', () => {
   });
 
   describe('partition', () => {
-    it('should and array with as many elements as clusters', () => {
+    it('should return an array with as many elements as clusters', () => {
       const clusterFixtures = [
         [],
         [
@@ -49,6 +49,17 @@ describe('nodes', () => {
 
     it('should return the number of nodes per cluster with no remainder', () => {
       const expected = [5, 5];
+      const actual = subject.partition(config);
+
+      actual.length.should.eq(expected.length);
+      actual[0].should.eq(expected[0]);
+      actual[1].should.eq(expected[1]);
+    });
+
+    it('should return the number of nodes per cluster with remainder', () => {
+      config.nodes = 11;
+
+      const expected = [5, 6];
       const actual = subject.partition(config);
 
       actual.length.should.eq(expected.length);
