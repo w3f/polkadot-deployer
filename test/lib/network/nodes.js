@@ -57,9 +57,14 @@ describe('nodes', () => {
     });
 
     it('should return the number of nodes per cluster with remainder', () => {
-      config.nodes = 11;
+      config.nodes = 17;
+      config.remote.clusters = [
+        {location: 'location1'},
+        {location: 'location2'},
+        {location: 'location3'}
+      ]
 
-      const expected = [5, 6];
+      const expected = [5, 5, 7];
       const actual = subject.partition(config);
 
       actual.length.should.eq(expected.length);
