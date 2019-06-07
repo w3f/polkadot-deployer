@@ -11,8 +11,6 @@ require('chai')
 describe('keys', () => {
   let sandbox;
   const nodes = 3;
-  const name = 'deployment1';
-  const input = { nodes, name };
 
   before(() => {
     tmp.setGracefulCleanup();
@@ -34,7 +32,7 @@ describe('keys', () => {
 
   describe('create', () => {
     it('should return the created keys', async () => {
-      const output = await subject.create(input);
+      const output = await subject.create(nodes);
 
       ['stash', 'controller', 'session'].forEach((type) => {
         output[type].length.should.eq(nodes);
