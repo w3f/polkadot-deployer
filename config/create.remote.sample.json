@@ -1,10 +1,14 @@
 {
-  "name": "testnet6",
+  "name": "testnet9",
   "type": "gcp",
-  "nodes": 45,
+  "nodes": 2,
   "remote": {
-    "location": "europe-west1-b",
-    "projectID": "polkadot-benchmarks",
-    "domain": "w3f.tech"
+    "clusters": [
+      {
+        "location": "europe-west1-b",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      }
+    ]
   }
 }
