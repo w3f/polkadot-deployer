@@ -7,11 +7,10 @@ require('chai')
 describe('libp2p', () => {
   describe('createNodeKeys', () => {
     const nodes = 3;
-    const config = { nodes };
     let result;
 
     beforeEach(async () => {
-      result = await subject.createNodeKeys(config);
+      result = await subject.createNodeKeys(nodes);
     });
 
     it('should return one element per node', () => {
@@ -27,7 +26,7 @@ describe('libp2p', () => {
     });
 
     it('two consecutive calls should return different values', async () => {
-      const result2 = await subject.createNodeKeys(config);
+      const result2 = await subject.createNodeKeys(nodes);
 
       for (const n of Array(nodes).keys()) {
         (result[n].nodeKey === result2[n].nodeKey).should.not.be.true;
