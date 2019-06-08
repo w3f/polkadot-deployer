@@ -9,8 +9,17 @@
   },
   "reuseCluster": true,
   "remote": {
-    "location": "europe-west1-b",
-    "projectID": "polkadot-benchmarks",
-    "domain": "w3f.tech"
+    "clusters": [
+      {
+        "location": "europe-west1-b",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      },
+      {
+        "location": "europe-west1-c",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      }
+    ]
   }
 }
