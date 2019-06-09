@@ -26,7 +26,7 @@ resource "google_container_cluster" "primary" {
   }
 
   node_config {
-    preemptible  = true
+    preemptible  = false
     machine_type = var.machine_type
 
     oauth_scopes = [
