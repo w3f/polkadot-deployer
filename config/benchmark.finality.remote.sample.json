@@ -2,10 +2,10 @@
   "name": "bm2",
   "type": "gcp",
   "benchmark": "finality",
-  "sets": [10, 20, 30, 40, 50],
+  "sets": [10, 50, 100, 150, 200],
   "blocks": {
-    "offset": 10,
-    "measure": 200
+    "offset": 20,
+    "measure": 100
   },
   "reuseCluster": true,
   "remote": {
@@ -16,7 +16,17 @@
         "domain": "w3f.tech"
       },
       {
-        "location": "europe-west1-c",
+        "location": "us-east1-b",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      },
+      {
+        "location": "us-west1-a",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      },
+      {
+        "location": "asia-northeast1-a",
         "projectID": "polkadot-benchmarks",
         "domain": "w3f.tech"
       }
