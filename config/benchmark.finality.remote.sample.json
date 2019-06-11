@@ -2,12 +2,12 @@
   "name": "bm3",
   "type": "gcp",
   "benchmark": "finality",
-  "sets": [200],
+  "sets": [10, 50, 100, 150],
   "blocks": {
     "offset": 20,
     "measure": 100
   },
-  "reuseCluster": true,
+  "reuseCluster": false,
   "remote": {
     "clusters": [
       {
