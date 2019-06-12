@@ -1,13 +1,13 @@
 {
-  "name": "bm3",
+  "name": "bm4",
   "type": "gcp",
   "benchmark": "finality",
-  "sets": [10, 50, 100, 150],
+  "sets": [200],
   "blocks": {
     "offset": 20,
     "measure": 100
   },
-  "reuseCluster": false,
+  "reuseCluster": true,
   "remote": {
     "clusters": [
       {
