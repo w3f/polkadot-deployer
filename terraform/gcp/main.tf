@@ -52,7 +52,8 @@ resource "google_compute_subnetwork" "subnetwork" {
   name          = var.cluster_name
   ip_cidr_range = "10.2.0.0/16"
   network       = "${google_compute_network.network.self_link}"
-  region        = var.location
+  // get region from zone
+  region        = join("-", slice(split("-", var.location), 0, 2))
 }
 
 resource "google_compute_firewall" "polkadot" {
