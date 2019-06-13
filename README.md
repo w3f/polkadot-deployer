@@ -231,6 +231,11 @@ of a json file containing the definition of the benchmark, like this:
 
 ## Troubleshooting
 
+Below are some common problems found by users. If you have an issue and this
+suggestions don't help don't hesitate to [open an issue](https://github.com/w3f/polkadot-deployer/issues/new).
+You can get more information about what is the actual adding the `--verbose`
+option to any polkadot-deployer command.
+
 * In some cases the installation process can produce errors from the secp256k1
 dependency with messages related to the required python version, like:
   ```
