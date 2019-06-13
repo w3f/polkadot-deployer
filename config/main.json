@@ -1,6 +1,6 @@
 {
   "chartVersions": {
-    "polkadot": "v0.4.0",
+    "polkadot": "v0.5.0",
     "cert-manager": "v0.8.0",
     "nginx-ingress": "1.6.16",
     "external-dns": "1.7.8"
