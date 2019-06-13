@@ -38,11 +38,10 @@ resource "google_container_cluster" "primary" {
   min_master_version = var.k8s_version
   node_version = var.k8s_version
 
-  //network = "${google_compute_network.network.self_link}"
-  //subnetwork = "${google_compute_subnetwork.subnetwork.self_link}"
+  network = "${google_compute_network.network.self_link}"
+  subnetwork = "${google_compute_subnetwork.subnetwork.self_link}"
 }
 
-/*
 resource "google_compute_network" "network" {
   name                    = var.cluster_name
   auto_create_subnetworks = false
@@ -63,10 +62,9 @@ resource "google_compute_firewall" "polkadot" {
 
   allow {
     protocol = "tcp"
-    ports    = ["30333"]
+    ports    = ["30100", "30200"]
   }
 
   source_ranges = ["0.0.0.0/0"]
   target_tags = [ "polkadot" ]
 }
-*/
