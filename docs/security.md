@@ -61,7 +61,7 @@ listening.
 ### Mitigation
 
 * Firewall: in the current development stage (testnet created for benchmarking)
-only the websockets-rpc port is accessible from outside the cluster.
+only the websockets-rpc and the p2p ports are accessible from outside the cluster.
 
 * There are no additional services running on the containers or the worker nodes,
 other than the polkadot/substrate on the containers and kubernetes related services
