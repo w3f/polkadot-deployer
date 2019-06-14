@@ -17,6 +17,10 @@
     {
       "name": "terraform",
       "url": "https://w3f.github.io/polkadot-deployer/%platform%/terraform"
+    },
+    {
+      "name": "kind",
+      "url": "https://w3f.github.io/polkadot-deployer/%platform%/kind"
     }
   ]
 }
