@@ -11,7 +11,7 @@ variable "node_count" {
 }
 
 variable "machine_type" {
-  default = "n1-standard-2"
+  default = "n1-highmem-2"
 }
 
 variable "k8s_version" {

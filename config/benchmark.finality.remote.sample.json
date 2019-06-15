@@ -2,7 +2,7 @@
   "name": "bm7",
   "type": "gcp",
   "benchmark": "finality",
-  "sets": [150],
+  "sets": [200],
   "blocks": {
     "offset": 10,
     "measure": 50
