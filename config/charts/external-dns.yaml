@@ -1,0 +1,9 @@
+rbac:
+  create: true
+
+provider: cloudflare
+
+cloudflare:
+  apiKey: apiKey
+  email: email
+  proxied: false
