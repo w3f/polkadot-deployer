@@ -40,7 +40,7 @@ DNS settings that make your network accessible through websockets RPC.
 
 In order to be able to deploy remotely you will need:
 
-* A project on GCP
+* A project on GCP.
 
 * GCP service account and credentials in the form of an environment variable
 `GOOGLE_CLOUD_KEYFILE_JSON` with the path of the json credentials file for
@@ -78,9 +78,13 @@ or this for remote deployments:
   "type": "gcp",
   "nodes": 45,
   "remote": {
-    "location": "europe-west1-b",
-    "projectID": "polkadot-benchmarks",
-    "domain": "w3f.tech"
+    "clusters": [
+      {
+        "location": "europe-west1-b",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      }
+    ]
   }
 }
 ```
