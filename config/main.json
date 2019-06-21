@@ -1,9 +1,13 @@
 {
   "chartVersions": {
-    "polkadot": "v0.5.1",
+    "polkadot": "v0.6.0",
     "cert-manager": "v0.8.0",
     "nginx-ingress": "1.6.16",
-    "external-dns": "1.7.8"
+    "external-dns": "1.7.8",
+    "prometheus-operator": "5.12.3",
+    "prometheus-node-exporter": "0.18.0",
+    "grafana": "3.5.4",
+    "loki-stack": "0.11.1"
   },
   "components": [
     {
