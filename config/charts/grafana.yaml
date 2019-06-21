@@ -15,7 +15,7 @@ datasources:
       isDefault: true
     - name: Loki
       type: loki
-      url: http://loki:3100/
+      url: http://loki-stack:3100/
       access: proxy
       isDefault: false
       editable: false
