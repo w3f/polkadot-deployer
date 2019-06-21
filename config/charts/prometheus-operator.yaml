@@ -1,0 +1,83 @@
+defaultRules:
+  create: false
+kubeDns:
+  enabled: false
+coreDns:
+  enabled: true
+kubeApiServer:
+  enabled: false
+grafana:
+  enabled: false
+nodeExporter:
+  enabled: false
+prometheus:
+  prometheusSpec:
+    ruleSelector:
+      matchExpresions:
+      - key: app
+        operator: In
+        values:
+        - w3f
+        - prometheus-operator
+    serviceMonitorSelector:
+      group: w3f
+    resources:
+      requests:
+        cpu: 500m
+        memory: 2Gi
+      limits:
+        cpu: 700m
+        memory: 3Gi
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 20Gi
+alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['alertname']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'webhook'
+      routes: []
+    receivers:
+    - name: 'webhook'
+      webhook_configs:
+      - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
+  alertmanagerSpec:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 400Mi
+      requests:
+        cpu: 10m
+        memory: 400Mi
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+kubeStateMetrics:
+  resources:
+    limits:
+      cpu: 10m
+      memory: 16Mi
+    requests:
+      cpu: 10m
+      memory: 16Mi

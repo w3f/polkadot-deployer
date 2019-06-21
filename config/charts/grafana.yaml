@@ -1,0 +1,56 @@
+image:
+  tag: master
+env:
+  GF_EXPLORE_ENABLED: true
+admin:
+  existingSecret: grafanacred
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-operator-prometheus:9090/
+      access: proxy
+      isDefault: true
+    - name: Loki
+      type: loki
+      url: http://loki:3100/
+      access: proxy
+      isDefault: false
+      editable: false
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
+dashboards:
+  default:
+    kubernetes-cluster:
+      gnetId: 6417
+      datasource: Prometheus
+    kubernetes-all-nodes:
+      gnetId: 3131
+      datasource: Prometheus
+    kubernetes-pods:
+      gnetId: 6336
+      datasource: Prometheus
+    nginx-ingress:
+      gnetId: 6927
+      datasource: Prometheus
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+persistence:
+  enabled: true

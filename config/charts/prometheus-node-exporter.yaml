@@ -1,0 +1,13 @@
+service:
+  port: 31000
+  targetPort: 31000
+prometheus:
+  monitor:
+    enabled: true
+resources:
+  limits:
+    cpu: 200m
+    memory: 50Mi
+  requests:
+    cpu: 100m
+    memory: 30Mi
