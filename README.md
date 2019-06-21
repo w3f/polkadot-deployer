@@ -53,6 +53,8 @@ for details about the API key, the email hould be the one used for registration)
 * Enough quota on GCP to create the required resources (terraform will show the
 exact errors if this condition is not met).
 
+* Kubernetes Engine API and billing enabled for your project, see [here](https://cloud.google.com/kubernetes-engine/docs/quickstart).
+
 ## Usage
 
 `polkadot-deployer` allows you to create, list, update and delete Polkadot
