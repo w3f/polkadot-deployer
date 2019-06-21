@@ -99,11 +99,11 @@ These are the fields you can use:
 
 * `nodes`: number of validators of the network, an integer between 2 and 20.
 
-* `remote.location`: region or zone to use for the deployment.
+* `remote.clusters[i].location`: region or zone to use for the deployment.
 
-* `remote.projectID`: id of the GCP project.
+* `remote.clusters[i].projectID`: id of the GCP project.
 
-* `remote.domain`: under which domain the tool will create the websockets endpoint.
+* `remote.clusters[i].domain`: under which domain the tool will create the websockets endpoint.
 
 You can also omit the `--config` option the tool will launch a wizard utility to
 get the deployment details.
