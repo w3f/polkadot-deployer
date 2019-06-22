@@ -1,6 +1,6 @@
 {
   "name": "polkadot-deployer",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "Tool for deploying Polkadot nodes",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
   "files": [
     "index.js",
     "/config",
-    "/lib"
+    "/lib",
+    "/terraform"
   ],
   "repository": {
     "type": "git",
