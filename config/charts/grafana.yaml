@@ -33,17 +33,11 @@ dashboardProviders:
         path: /var/lib/grafana/dashboards/default
 dashboards:
   default:
-    kubernetes-cluster:
-      gnetId: 6417
-      datasource: Prometheus
-    kubernetes-all-nodes:
-      gnetId: 3131
-      datasource: Prometheus
     kubernetes-pods:
       gnetId: 6336
       datasource: Prometheus
-    nginx-ingress:
-      gnetId: 6927
+    node-exporter:
+      gnetId: 1860
       datasource: Prometheus
 resources:
   limits:

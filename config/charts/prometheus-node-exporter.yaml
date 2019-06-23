@@ -4,6 +4,8 @@ service:
 prometheus:
   monitor:
     enabled: true
+    additionalLabels:
+      app: polkadot
 resources:
   limits:
     cpu: 200m

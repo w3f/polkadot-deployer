@@ -3,7 +3,7 @@ defaultRules:
 kubeDns:
   enabled: false
 coreDns:
-  enabled: true
+  enabled: false
 kubeApiServer:
   enabled: false
 grafana:
@@ -12,15 +12,10 @@ nodeExporter:
   enabled: false
 prometheus:
   prometheusSpec:
-    ruleSelector:
-      matchExpresions:
-      - key: app
-        operator: In
-        values:
-        - w3f
-        - prometheus-operator
     serviceMonitorSelector:
-      group: w3f
+      matchLabels:
+        app: polkadot
+        release: prometheus-operator
     resources:
       requests:
         cpu: 500m
