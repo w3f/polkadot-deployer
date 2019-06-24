@@ -12,10 +12,12 @@ nodeExporter:
   enabled: false
 prometheus:
   prometheusSpec:
-    serviceMonitorSelector:
-      matchLabels:
-        app: polkadot
-        release: prometheus-operator
+    ruleSelector:
+      matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - polkadot
     resources:
       requests:
         cpu: 500m
