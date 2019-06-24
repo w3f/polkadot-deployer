@@ -35,9 +35,11 @@ dashboards:
   default:
     kubernetes-pods:
       gnetId: 6336
+      revision: 1
       datasource: Prometheus
     node-exporter:
       gnetId: 1860
+      revision: 14
       datasource: Prometheus
 resources:
   limits:
