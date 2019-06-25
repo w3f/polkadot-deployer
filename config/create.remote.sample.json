@@ -1,8 +1,9 @@
 {
   "name": "testnet20",
   "type": "gcp",
-  "nodes": 200,
+  "nodes": 8,
   "remote": {
+    "monitoring": true,
     "clusters": [
       {
         "location": "europe-west1-b",
