@@ -42,13 +42,15 @@ In order to be able to deploy remotely you will need:
 
 * A project on GCP.
 
+* You need to run this tool on Linux machine. (macOS may fail.)
+
 * GCP service account and credentials in the form of an environment variable
 `GOOGLE_CLOUD_KEYFILE_JSON` with the path of the json credentials file for
-your service account (see [here](https://cloud.google.com/iam/docs/service-accounts) for details).
+your service account (see [here](https://cloud.google.com/iam/docs/service-accounts) for details and make sure the service account has sufficient privileges for GKE).
 
 * Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and
 `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)
-for details about the API key, the email hould be the one used for registration).
+for details about the API key, the email hould be the one used for registration. Also, your domain name registra should be Cloudflare since this tool relies on Cloudflare for generating SSL certification).
 
 * Enough quota on GCP to create the required resources (terraform will show the
 exact errors if this condition is not met).
@@ -289,3 +291,4 @@ linting and unit tests.
 After the PR is merged into master, when a semantic version tag (`vX.Y.Z`) is
 pushed the tests are run again and, if all is ok, the package is published to
 npm registry
+
