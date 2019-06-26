@@ -1,5 +1,5 @@
 {
-  "name": "testnet25",
+  "name": "testnet26",
   "type": "gcp",
   "nodes": 8,
   "remote": {
