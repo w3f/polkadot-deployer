@@ -22,19 +22,22 @@ program
 program
   .command('create')
   .description('Deploys a new cluster.')
-  .option('-c, --config [path]', 'path to config file')
+  .option('-c, --config [path]', 'Path to config file.')
+  .option('-d, --data [path]', 'Path to data directory.')
   .option('--verbose', 'Output extra info.')
   .action(create.do);
 
 program
   .command('destroy [name]')
   .description('Deletes a deployment.')
+  .option('-d, --data [path]', 'Path to data directory.')
   .option('--verbose', 'Output extra info.')
   .action(destroy.do);
 
 program
   .command('redeploy [name]')
   .description('Recreates a deployment on an existing cluster.')
+  .option('-d, --data [path]', 'Path to data directory.')
   .option('--verbose', 'Output extra info.')
   .action(redeploy.do);
 

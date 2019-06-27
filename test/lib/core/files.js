@@ -4,12 +4,12 @@ const path = require('path');
 const sinon = require('sinon');
 const tmp = require('tmp');
 
-const subject = require('../../../lib/core/files');
+const { Files } = require('../../../lib/core/files')
 
 require('chai').should()
 
 
-describe('files', () => {
+describe('Files', () => {
   before(() => {
     tmp.setGracefulCleanup();
   });
@@ -18,16 +18,19 @@ describe('files', () => {
     it('returns true if the directory exists', () => {
       const tmpobj = tmp.dirSync();
 
+      const subject = new Files();
       subject.directoryExists(tmpobj.name).should.be.true;
     });
 
     it('returns false if the directory does not exist', () => {
+      const subject = new Files();
       subject.directoryExists('not_an_actual_directory').should.be.false;
     });
 
     it('returns false if the path is not a directory', () => {
       const tmpobj = tmp.fileSync();
 
+      const subject = new Files();
       subject.directoryExists(tmpobj.name).should.be.false;
     });
   });
@@ -36,16 +39,19 @@ describe('files', () => {
     it('returns true if the file exists', () => {
       const tmpobj = tmp.fileSync();
 
+      const subject = new Files();
       subject.fileExists(tmpobj.name).should.be.true;
     });
 
     it('returns false if the file does not exist', () => {
+      const subject = new Files();
       subject.fileExists('not_an_actual_file').should.be.false;
     });
 
     it('returns false if the path is not a file', () => {
       const tmpobj = tmp.dirSync();
 
+      const subject = new Files();
       subject.fileExists(tmpobj.name).should.be.false;
     });
   });
@@ -54,6 +60,7 @@ describe('files', () => {
     it('should return the data path', () => {
       const expected = path.join(ospath.data(), 'polkadot-deployer');
 
+      const subject = new Files();
       subject.dataPath().should.equal(expected);
     });
   });
@@ -62,6 +69,7 @@ describe('files', () => {
     it('should return the components path', () => {
       const expected = path.join(ospath.data(), 'polkadot-deployer', 'components');
 
+      const subject = new Files();
       subject.componentsPath().should.equal(expected);
     });
   });
@@ -70,6 +78,7 @@ describe('files', () => {
     it('should return the deployments path', () => {
       const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments');
 
+      const subject = new Files();
       subject.deploymentsPath().should.equal(expected);
     });
   });
@@ -78,6 +87,7 @@ describe('files', () => {
     it('should return the deployments DB file path', () => {
       const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments.db');
 
+      const subject = new Files();
       subject.deploymentsDBPath().should.equal(expected);
     });
   });
@@ -99,6 +109,7 @@ describe('files', () => {
       it('should return a deployment path by name', () => {
         const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName);
 
+        const subject = new Files();
         subject.deploymentPath(deploymentName).should.equal(expected);
       });
     });
@@ -107,6 +118,7 @@ describe('files', () => {
       it('should return the kubeconfig path for the given deployment', () => {
         const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig');
 
+        const subject = new Files();
         subject.kubeconfigPath(deploymentName).should.equal(expected);
       });
     });
@@ -124,6 +136,7 @@ describe('files', () => {
         fs.mkdirSync(path.dirname(kubeconfigPath), { recursive: true });
         fs.writeFileSync(kubeconfigPath, content);
 
+        const subject = new Files();
         subject.deleteKubeconfig(deploymentName);
 
         fs.existsSync(kubeconfigPath).should.throw;
@@ -132,6 +145,7 @@ describe('files', () => {
 
     describe('copyTerraformFiles', () => {
       it('should throw for unknown remote types', () => {
+        const subject = new Files();
         (() => subject.copyTerraformFiles(deploymentName, 'not-a-known-type')).should.throw;
       });
 
@@ -141,12 +155,13 @@ describe('files', () => {
         const st = sandbox.stub(ospath, 'data');
         st.returns(dataPath);
 
+        const subject = new Files();
+
         const terraformBinSourcePath = subject.terraformBinPath();
         subject.createDirectory(path.dirname(terraformBinSourcePath));
         fs.closeSync(fs.openSync(terraformBinSourcePath, 'w'));
 
         const terraformPath = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'terraform');
-
         subject.copyTerraformFiles(deploymentName, 'gcp');
 
         fs.existsSync(terraformPath).should.be.true;
@@ -166,6 +181,8 @@ describe('files', () => {
 
       fs.writeFileSync(tmpobj.name, '{"field1": "value1", "field2": "value2"}');
 
+      const subject = new Files();
+
       const result = subject.readJSON(tmpobj.name);
 
       result['field1'].should.equal('value1');
@@ -177,6 +194,8 @@ describe('files', () => {
     it('should write the contents', () => {
       const tmpobj = tmp.fileSync();
       const content = 'mycontent';
+
+      const subject = new Files();
 
       subject.write(tmpobj.name, content)
 

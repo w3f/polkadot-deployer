@@ -5,13 +5,14 @@ const sinon = require('sinon');
 const tmp = require('tmp');
 
 const { Cluster } = require('../../../lib/cluster');
-const files = require('../../../lib/core/files');
+const { Files } = require('../../../lib/core/files');
 const { LocalCluster } = require('../../../lib/cluster/strategies/local');
 const { RemoteCluster } = require('../../../lib/cluster/strategies/remote');
 
 require('chai')
   .should()
 
+const files = new Files();
 
 describe('Cluster', () => {
   describe('#new', () => {
