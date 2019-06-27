@@ -44,8 +44,8 @@ In order to be able to deploy remotely you will need:
 
 * You need to run this tool on Linux machine. (macOS may fail.)
 
-* GCP service account and credentials in the form of an environment variable
-`GOOGLE_CLOUD_KEYFILE_JSON` with the path of the json credentials file for
+* GCP service account and credentials in the form of the environment variables
+`GOOGLE_CLOUD_KEYFILE_JSON` and `GOOGLE_APPLICATION_CREDENTIALS` both with the path of the json credentials file for
 your service account (see [here](https://cloud.google.com/iam/docs/service-accounts) for details and make sure the service account has sufficient privileges for GKE).
 
 * Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and
@@ -291,4 +291,3 @@ linting and unit tests.
 After the PR is merged into master, when a semantic version tag (`vX.Y.Z`) is
 pushed the tests are run again and, if all is ok, the package is published to
 npm registry
-
