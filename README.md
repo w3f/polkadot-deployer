@@ -45,7 +45,7 @@ In order to be able to deploy remotely you will need:
 * You need to run this tool on Linux machine. (macOS may fail.)
 
 * GCP service account and credentials in the form of the environment variable
-`GOOGLE_CLOUD_KEYFILE_JSON` with the path of the json credentials file for
+`GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for
 your service account (see [here](https://cloud.google.com/iam/docs/service-accounts) for details and make sure the service account has sufficient privileges for GKE).
 
 * Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and
