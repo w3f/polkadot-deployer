@@ -12,8 +12,9 @@ describe('db', () => {
   let sandbox;
   const name = 'someName';
   const allowed = 'allowedValue';
-  const secretValue = 'secretValue'
-  const data = { name, allowed, keys: secretValue };
+  const secretKeyValue = 'secretKeyValue'
+  const secretNodeKeyValue = 'secretKeyValue'
+  const data = { name, allowed, keys: secretKeyValue, nodeKeys: secretNodeKeyValue };
 
   before(() => {
     tmp.setGracefulCleanup();
@@ -42,13 +43,24 @@ describe('db', () => {
       result.name.should.eq(name);
       result.allowed.should.eq(allowed);
       (result.keys === undefined).should.be.true;
+      (result.nodeKeys === undefined).should.be.true;
+    });
+    it('does not store the nodeKeys', async () => {
+      await subject.save(data);
+
+      const result = await subject.find(data);
+
+      result.name.should.eq(name);
+      result.allowed.should.eq(allowed);
+      (result.keys === undefined).should.be.true;
     });
   });
 
   describe('update', () => {
     it('does not store the keys', async () => {
       await subject.save(data);
-      data.keys = secretValue;
+      data.keys = secretKeyValue;
+      data.nodeKeys = secretNodeKeyValue;
       await subject.update(data);
 
       const result = await subject.find(data);
