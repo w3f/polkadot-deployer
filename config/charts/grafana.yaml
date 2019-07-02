@@ -344,7 +344,7 @@ dashboards:
               "steppedLine": false,
               "targets": [
                 {
-                  "expr": "polkadot_block_production_seconds",
+                  "expr": "rate(polkadot_block_production_seconds_sum[5m]) / rate(polkadot_block_production_seconds_count[5m])",
                   "refId": "A"
                 }
               ],
@@ -430,7 +430,7 @@ dashboards:
               "steppedLine": false,
               "targets": [
                 {
-                  "expr": "polkadot_block_propagation_seconds",
+                  "expr": "irate(polkadot_block_propagation_seconds_sum[1m]) / irate(polkadot_block_propagation_seconds_count[1m])",
                   "format": "time_series",
                   "instant": false,
                   "intervalFactor": 1,
@@ -442,7 +442,7 @@ dashboards:
               "timeFrom": null,
               "timeRegions": [],
               "timeShift": null,
-              "title": "Average block import time",
+              "title": "Average block propagation time",
               "tooltip": {
                 "shared": true,
                 "sort": 0,
