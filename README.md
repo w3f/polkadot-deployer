@@ -247,9 +247,11 @@ to true in the configuration. When enabled, polkadot-deployer will install
 a generic monitoring stack composed of prometheus, alertmanager, grafana and loki,
 and a more polkadot-specific set of tools around [substrate-telemetry](https://github.com/paritytech/substrate-telemetry).
 
-Grafana will be available at `https://grafana.<deployment_name>-0.<domain>`, and
-can be accessed with username `admin` and password controlled by the envirnment
-variable `GRAFANA_PASSWORD` (`grafanapassword` if not set).
+There will be a grafana instance deployed per cluster, and they will be accessible
+at `https://grafana.<deployment_name>-<n>.<domain>`, being `n` the order of the
+cluster in the config starting with 0, and can be accessed with username `admin`
+and password controlled by the envirnment variable `GRAFANA_PASSWORD` (`grafanapassword`
+if not set).
 
 All the nodes in the deployment will be sending operational data to a substrate-telemetry
 backend deployed on the first cluster (according to the config definition order).
