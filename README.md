@@ -82,6 +82,7 @@ or this for remote deployments:
   "type": "gcp",
   "nodes": 45,
   "remote": {
+    "monitoring": true,
     "clusters": [
       {
         "location": "europe-west1-b",
@@ -100,6 +101,8 @@ These are the fields you can use:
 * `type`: either local or remote, `local` or `gcp` allowed.
 
 * `nodes`: number of validators of the network, an integer between 2 and 20.
+
+* `remote.monitoring`: enable monitoring stack, see the [Monitoring section](#monitoring)
 
 * `remote.clusters[i].location`: region or zone to use for the deployment.
 
@@ -236,6 +239,25 @@ of a json file containing the definition of the benchmark, like this:
   ```
   The previous gnuplot command will generate a `benchmark.png` file with the
   benchmark plot on the current directory.
+
+## Monitoring
+
+You can enable monitoring for remote deployments, by setting `remote.monitoring`
+to true in the configuration. When enabled, polkadot-deployer will install
+a generic monitoring stack composed of prometheus, alertmanager, grafana and loki,
+and a more polkadot-specific set of tools around [substrate-telemetry](https://github.com/paritytech/substrate-telemetry).
+
+Grafana will be available at `https://grafana.<deployment_name>-0.<domain>`, and
+can be accessed with username `admin` and password controlled by the envirnment
+variable `GRAFANA_PASSWORD` (`grafanapassword` if not set).
+
+All the nodes in the deployment will be sending operational data to a substrate-telemetry
+backend deployed on the first cluster (according to the config definition order).
+Connected to that backend is also a frontend accessible at `https://telemetry.<deployment_name>-0.<domain>`.
+
+A prometheus exporter is also deployed as part of the substrate-telemetry pod,
+there is a grafana dashboard called `Polkadot Metrics` showing information from
+the exposed metrics.
 
 ## Troubleshooting
 
