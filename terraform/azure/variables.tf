@@ -14,7 +14,7 @@ variable "node_count" {
 }
 
 variable "machine_type" {
-  default = "Standard_DS2_v2"
+  default = "Standard_D2s_v3"
 }
 
 variable "k8s_version" {
