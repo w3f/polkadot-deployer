@@ -1,29 +1,28 @@
 {
-  "name": "testnet26",
+  "name": "testnet5",
   "type": "gcp",
   "nodes": 8,
+  "nonValidatorIndices": [0],
   "remote": {
     "monitoring": true,
+    "projectID": "polkadot-benchmarks",
+    "domain": "w3f.tech",
     "clusters": [
       {
-        "location": "europe-west1-b",
-        "projectID": "polkadot-benchmarks",
-        "domain": "w3f.tech"
+        "provider": "azure",
+        "location": "brazilsouth"
       },
       {
-        "location": "us-east1-b",
-        "projectID": "polkadot-benchmarks",
-        "domain": "w3f.tech"
+        "provider": "azure",
+        "location": "japanwest"
       },
       {
-        "location": "us-west1-a",
-        "projectID": "polkadot-benchmarks",
-        "domain": "w3f.tech"
+        "provider": "gcp",
+        "location": "europe-north1-a"
       },
       {
-        "location": "asia-northeast1-a",
-        "projectID": "polkadot-benchmarks",
-        "domain": "w3f.tech"
+        "provider": "gcp",
+        "location": "asia-east1-a"
       }
     ]
   }
