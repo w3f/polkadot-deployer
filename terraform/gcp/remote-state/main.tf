@@ -4,6 +4,6 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "imagestore" {
-  name          = "pd-gcp-tf-state-{{ deploymentName }}"
+  name          = "pd-tf-state-{{ deploymentName }}"
   force_destroy = true
 }
