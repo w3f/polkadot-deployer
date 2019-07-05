@@ -32,7 +32,7 @@ resource "azurerm_virtual_network" "polkadot-{{ clusterName }}" {
 }
 
 resource "azurerm_subnet" "polkadot-{{ clusterName }}" {
-  name                 = "polkadot-{{ clusterName }}"
+  name                 = "AzureFirewallSubnet"
   resource_group_name  = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
   virtual_network_name = "${azurerm_virtual_network.polkadot-{{ clusterName }}.name}"
   address_prefix       = "10.0.1.0/24"
