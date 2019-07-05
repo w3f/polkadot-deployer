@@ -1,8 +1,10 @@
 {
-  "name": "testnet5",
+  "name": "testnet7",
   "type": "gcp",
   "nodes": 8,
   "nonValidatorIndices": [0],
+  "environmentNodeKeys": true,
+  "environmentKeys": true,
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
