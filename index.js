@@ -3,12 +3,13 @@
 const process = require('process');
 const program = require('commander');
 
-const version = require('./lib/version');
-const list = require('./lib/actions/list');
+const benchmark = require('./lib/actions/benchmark');
 const create = require('./lib/actions/create');
 const destroy = require('./lib/actions/destroy');
+const list = require('./lib/actions/list');
+const projectCreate = require('./lib/actions/project/create');
 const redeploy = require('./lib/actions/redeploy');
-const benchmark = require('./lib/actions/benchmark');
+const version = require('./lib/version');
 
 
 program
@@ -50,11 +51,17 @@ program
   .action(benchmark.do);
 
 
+program
+  .command('project-create')
+  .description('Create a polkadot-deployer projects.')
+  .option('-p, --path [path]', 'Path to project directory.', '.')
+  .option('--verbose', 'Output extra info')
+  .action(projectCreate.do);
+
+
 program.allowUnknownOption(false);
 
-
 const parsed = program.parse(process.argv);
-if (!(parsed.args && parsed.args.length > 0 && (typeof (parsed.args[0] === 'object')))) {
-  console.log(parsed.args.length);
+if (! parsed || !(parsed.args && parsed.args.length > 0 && (typeof (parsed.args[0] === 'object')))) {
   program.outputHelp();
 }
