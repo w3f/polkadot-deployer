@@ -11,7 +11,7 @@ variable "node_count" {
 }
 
 variable "machine_type" {
-  default = "{{ if machineType }}{{ machineType}}{{ else }}n1-standard-2{{/if}}"
+  default = "{{#if machineType }}{{ machineType}}{{ else }}n1-standard-2{{/if}}"
 }
 
 variable "k8s_version" {
