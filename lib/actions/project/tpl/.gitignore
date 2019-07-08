@@ -1,0 +1,4 @@
+node_modules
+polkadot-deployer/deployments/**/values.yaml
+polkadot-deployer/deployments/**/kubeconfig
+polkadot-deployer/deployments/**/.tf-state
