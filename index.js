@@ -26,6 +26,7 @@ program
   .option('-c, --config [path]', 'Path to config file.')
   .option('-d, --data [path]', 'Path to data directory.')
   .option('--verbose', 'Output extra info.')
+  .option('--update', 'Rerun deployment actions if the cluster already exists.')
   .action(create.do);
 
 program
