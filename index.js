@@ -53,8 +53,8 @@ program
 
 program
   .command('project-create')
-  .description('Create a polkadot-deployer projects.')
-  .option('-p, --path [path]', 'Path to project directory.', '.')
+  .description('Create polkadot-deployer projects.')
+  .option('-p, --path [path]', 'Path to project directory.')
   .option('--verbose', 'Output extra info')
   .action(projectCreate.do);
 
