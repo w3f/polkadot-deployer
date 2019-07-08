@@ -13,7 +13,7 @@ variable "node_count" {
 }
 
 variable "machine_type" {
-  default = "s-4vcpu-8gb"
+  default = "{{ if machineType }}{{ machineType}}{{ else }}s-4vcpu-8gb{{/if}}"
 }
 
 variable "k8s_version" {
