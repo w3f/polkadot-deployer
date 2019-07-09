@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "npx": "10.2.0",
-    "polkadot-deployer": "^0.12.0"
+    "polkadot-deployer": "^0.12.1"
   }
 }
