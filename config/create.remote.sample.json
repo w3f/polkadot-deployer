@@ -1,7 +1,7 @@
 {
-  "name": "testnet7",
+  "name": "testnet9",
   "type": "gcp",
-  "nodes": 8,
+  "nodes": 4,
   "nonValidatorIndices": [0],
   "environmentNodeKeys": true,
   "environmentKeys": true,
@@ -10,14 +10,6 @@
     "projectID": "polkadot-benchmarks",
     "domain": "w3f.tech",
     "clusters": [
-      {
-        "provider": "azure",
-        "location": "brazilsouth"
-      },
-      {
-        "provider": "azure",
-        "location": "japanwest"
-      },
       {
         "provider": "gcp",
         "location": "europe-north1-a"
