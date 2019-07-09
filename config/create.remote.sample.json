@@ -5,6 +5,7 @@
   "nonValidatorIndices": [0],
   "environmentNodeKeys": true,
   "environmentKeys": true,
+  "keep": true,
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
