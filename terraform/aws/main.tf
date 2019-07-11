@@ -288,7 +288,7 @@ resource "aws_autoscaling_group" "polkadot" {
   max_size             = 32
   min_size             = 1
   name                 = "terraform-eks-polkadot"
-  vpc_zone_identifier  = ["${aws_subnet.polkadot.*.id}"]
+  vpc_zone_identifier  = flatten(["${aws_subnet.polkadot.*.id}"])
 
   tag {
     key                 = "Name"
