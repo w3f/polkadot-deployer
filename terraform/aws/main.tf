@@ -43,7 +43,7 @@ resource "aws_security_group" "polkadot" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "terraform-eks-polkadot"
   }
 }
@@ -54,7 +54,7 @@ resource "aws_vpc" "polkadot" {
   tags = "${
     map(
      "Name", "terraform-eks-polkadot-node",
-     "kubernetes.io/cluster/${var.cluster-name}", "shared",
+     "kubernetes.io/cluster/${var.cluster_name}", "shared",
     )
   }"
 }
@@ -69,7 +69,7 @@ resource "aws_subnet" "polkadot" {
   tags = "${
     map(
      "Name", "terraform-eks-polkadot-node",
-     "kubernetes.io/cluster/${var.cluster-name}", "shared",
+     "kubernetes.io/cluster/${var.cluster_name}", "shared",
     )
   }"
 }
@@ -116,16 +116,6 @@ resource "aws_security_group_rule" "polkadot-ingress-node-https" {
   source_security_group_id = "${aws_security_group.polkadot-node.id}"
   to_port                  = 443
   type                     = "ingress"
-}
-
-resource "aws_security_group_rule" "polkadot-ingress-workstation-https" {
-  cidr_blocks       = ["${local.workstation-external-cidr}"]
-  description       = "Allow workstation to communicate with the cluster API Server"
-  from_port         = 443
-  protocol          = "tcp"
-  security_group_id = "${aws_security_group.polkadot.id}"
-  to_port           = 443
-  type              = "ingress"
 }
 
 resource "aws_eks_cluster" "polkadot" {
@@ -255,7 +245,7 @@ resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
   from_port                = 30100
   protocol                 = "tcp"
   security_group_id        = "${aws_security_group.polkadot-node.id}"
-  source_cidr              = "0.0.0.0/0"
+  cidr_blocks              = ["0.0.0.0/0"]
   to_port                  = 31100
   type                     = "ingress"
 }
