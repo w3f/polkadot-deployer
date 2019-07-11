@@ -303,3 +303,21 @@ resource "aws_autoscaling_group" "polkadot" {
     propagate_at_launch = true
   }
 }
+
+resource "null_resource" "apply_auth_cm" {
+  provisioner "local-exec" {
+    command = <<EOT
+echo "${local.config_map_aws_auth}" | tee cm.yaml
+echo "${local.kubeconfig}" | tee kubeconfig
+kubectl apply -f ./cm.yaml
+rm -f kubeconfig
+EOT
+    environment = {
+      KUBECONFIG="./kubeconfig"
+    }
+  }
+
+  depends_on = [
+    aws_autoscaling_group.polkadot
+  ]
+}
