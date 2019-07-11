@@ -1,5 +1,9 @@
-resource "aws_iam_role" "polkadot-{{ clusterName }}" {
-  name = "terraform-eks-polkadot-{{ clusterName }}"
+data "aws_region" "current" {}
+
+data "aws_availability_zones" "available" {}
+
+resource "aws_iam_role" "polkadot" {
+  name = "terraform-eks-polkadot"
 
   assume_role_policy = <<POLICY
 {
@@ -17,18 +21,18 @@ resource "aws_iam_role" "polkadot-{{ clusterName }}" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "polkadot-{{ clusterName }}-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "polkadot-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = "${aws_iam_role.polkadot-{{ clusterName }}.name}"
+  role       = "${aws_iam_role.polkadot.name}"
 }
 
-resource "aws_iam_role_policy_attachment" "polkadot-{{ clusterName }}-AmazonEKSServicePolicy" {
+resource "aws_iam_role_policy_attachment" "polkadot-AmazonEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  role       = "${aws_iam_role.polkadot-{{ clusterName }}.name}"
+  role       = "${aws_iam_role.polkadot.name}"
 }
 
-resource "aws_security_group" "polkadot-{{ clusterName }}" {
-  name        = "terraform-eks-polkadot-{{ clusterName }}"
+resource "aws_security_group" "polkadot" {
+  name        = "terraform-eks-polkadot"
   description = "Cluster communication with worker nodes"
   vpc_id      = "${aws_vpc.polkadot.id}"
 
@@ -44,48 +48,98 @@ resource "aws_security_group" "polkadot-{{ clusterName }}" {
   }
 }
 
+resource "aws_vpc" "polkadot" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = "${
+    map(
+     "Name", "terraform-eks-polkadot-node",
+     "kubernetes.io/cluster/${var.cluster-name}", "shared",
+    )
+  }"
+}
+
+resource "aws_subnet" "polkadot" {
+  count = 2
+
+  availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
+  cidr_block        = "10.0.${count.index}.0/24"
+  vpc_id            = "${aws_vpc.polkadot.id}"
+
+  tags = "${
+    map(
+     "Name", "terraform-eks-polkadot-node",
+     "kubernetes.io/cluster/${var.cluster-name}", "shared",
+    )
+  }"
+}
+
+resource "aws_internet_gateway" "polkadot" {
+  vpc_id = "${aws_vpc.polkadot.id}"
+
+  tags = {
+    Name = "terraform-eks-polkadot"
+  }
+}
+
+resource "aws_route_table" "polkadot" {
+  vpc_id = "${aws_vpc.polkadot.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.polkadot.id}"
+  }
+}
+
+resource "aws_route_table_association" "polkadot" {
+  count = 2
+
+  subnet_id      = "${aws_subnet.polkadot.*.id[count.index]}"
+  route_table_id = "${aws_route_table.polkadot.id}"
+}
+
 resource "aws_security_group_rule" "node_ingress_cluster_https" {
   description              = "Allow incoming https connections from the EKS masters security group"
   from_port                = 443
   to_port                  = 443
   protocol                 = "tcp"
   security_group_id        = "${aws_security_group.polkadot-node.id}"
-  source_security_group_id = "${aws_security_group.polkadot-{{ clusterName }}.id}"
+  source_security_group_id = "${aws_security_group.polkadot.id}"
   type                     = "ingress"
 }
 
-resource "aws_security_group_rule" "polkadot-{{ clusterName }}-ingress-node-https" {
+resource "aws_security_group_rule" "polkadot-ingress-node-https" {
   description              = "Allow pods to communicate with the cluster API Server"
   from_port                = 443
   protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.polkadot-{{ clusterName }}.id}"
+  security_group_id        = "${aws_security_group.polkadot.id}"
   source_security_group_id = "${aws_security_group.polkadot-node.id}"
   to_port                  = 443
   type                     = "ingress"
 }
 
-resource "aws_security_group_rule" "polkadot-{{ clusterName }}-ingress-workstation-https" {
+resource "aws_security_group_rule" "polkadot-ingress-workstation-https" {
   cidr_blocks       = ["${local.workstation-external-cidr}"]
   description       = "Allow workstation to communicate with the cluster API Server"
   from_port         = 443
   protocol          = "tcp"
-  security_group_id = "${aws_security_group.polkadot-{{ clusterName }}.id}"
+  security_group_id = "${aws_security_group.polkadot.id}"
   to_port           = 443
   type              = "ingress"
 }
 
-resource "aws_eks_cluster" "polkadot-{{ clusterName }}" {
+resource "aws_eks_cluster" "polkadot" {
   name     = var.cluster_name
-  role_arn = "${aws_iam_role.polkadot-{{ clusterName }}.arn}"
+  role_arn = "${aws_iam_role.polkadot.arn}"
 
   vpc_config {
-    security_group_ids = ["${aws_security_group.polkadot-{{ clusterName }}.id}"]
+    security_group_ids = ["${aws_security_group.polkadot.id}"]
     subnet_ids         = ["${aws_subnet.polkadot.*.id}"]
   }
 
   depends_on = [
-    "aws_iam_role_policy_attachment.polkadot-{{ clusterName }}-AmazonEKSClusterPolicy",
-    "aws_iam_role_policy_attachment.polkadot-{{ clusterName }}-AmazonEKSServicePolicy",
+    "aws_iam_role_policy_attachment.polkadot-AmazonEKSClusterPolicy",
+    "aws_iam_role_policy_attachment.polkadot-AmazonEKSServicePolicy",
   ]
 }
 
@@ -191,8 +245,18 @@ resource "aws_security_group_rule" "polkadot-node-ingress-cluster" {
   from_port                = 1025
   protocol                 = "tcp"
   security_group_id        = "${aws_security_group.polkadot-node.id}"
-  source_security_group_id = "${aws_security_group.polkadot-{{ clusterName }}.id}"
+  source_security_group_id = "${aws_security_group.polkadot.id}"
   to_port                  = 65535
+  type                     = "ingress"
+}
+
+resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
+  description              = "Allow connection to p2p ports from outside the cluster"
+  from_port                = 30100
+  protocol                 = "tcp"
+  security_group_id        = "${aws_security_group.polkadot-node.id}"
+  source_cidr              = "0.0.0.0/0"
+  to_port                  = 31100
   type                     = "ingress"
 }
 
@@ -210,7 +274,7 @@ locals {
   polkadot-node-userdata = <<USERDATA
 #!/bin/bash
 set -o xtrace
-/etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.demo.polkadot-{{ clusterName }}}' --b64-cluster-ca '${aws_eks_cluster.polkadot-{{ clusterName }}.certificate_authority.0.data}' '${var.cluster_name}'
+/etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.polkadot}' --b64-cluster-ca '${aws_eks_cluster.polkadot.certificate_authority.0.data}' '${var.cluster_name}'
 USERDATA
 }
 
