@@ -75,7 +75,7 @@ resource "aws_security_group_rule" "polkadot-{{ clusterName }}-ingress-workstati
 }
 
 resource "aws_eks_cluster" "polkadot-{{ clusterName }}" {
-  name     = var.cluster-name
+  name     = var.cluster_name
   role_arn = "${aws_iam_role.polkadot-{{ clusterName }}.arn}"
 
   vpc_config {
@@ -171,7 +171,7 @@ resource "aws_security_group" "polkadot-node" {
   tags = "${
     map(
      "Name", "terraform-eks-polkadot-node",
-     "kubernetes.io/cluster/${var.cluster-name}", "owned",
+     "kubernetes.io/cluster/${var.cluster_name}", "owned",
     )
   }"
 }
@@ -206,50 +206,22 @@ data "aws_ami" "eks-worker" {
   owners      = ["602401143452"] # Amazon
 }
 
-# EKS currently documents this required userdata for EKS worker nodes to
-# properly configure Kubernetes applications on the EC2 instance.
-# We utilize a Terraform local here to simplify Base64 encoding this
-# information into the AutoScaling Launch Configuration.
-# More information: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-06-05/amazon-eks-nodegroup.yaml
 locals {
   polkadot-node-userdata = <<USERDATA
-#!/bin/bash -xe
-
-CA_CERTIFICATE_DIRECTORY=/etc/kubernetes/pki
-CA_CERTIFICATE_FILE_PATH=$CA_CERTIFICATE_DIRECTORY/ca.crt
-mkdir -p $CA_CERTIFICATE_DIRECTORY
-echo "${aws_eks_cluster.polkadot.certificate_authority.0.data}" | base64 -d >  $CA_CERTIFICATE_FILE_PATH
-INTERNAL_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
-sed -i s,MASTER_ENDPOINT,${aws_eks_cluster.polkadot.endpoint},g /var/lib/kubelet/kubeconfig
-sed -i s,CLUSTER_NAME,${var.cluster-name},g /var/lib/kubelet/kubeconfig
-sed -i s,REGION,${data.aws_region.current.name},g /etc/systemd/system/kubelet.service
-sed -i s,MAX_PODS,20,g /etc/systemd/system/kubelet.service
-sed -i s,MASTER_ENDPOINT,${aws_eks_cluster.polkadot.endpoint},g /etc/systemd/system/kubelet.service
-sed -i s,INTERNAL_IP,$INTERNAL_IP,g /etc/systemd/system/kubelet.service
-DNS_CLUSTER_IP=10.100.0.10
-if [[ $INTERNAL_IP == 10.* ]] ; then DNS_CLUSTER_IP=172.20.0.10; fi
-sed -i s,DNS_CLUSTER_IP,$DNS_CLUSTER_IP,g /etc/systemd/system/kubelet.service
-sed -i s,CERTIFICATE_AUTHORITY_FILE,$CA_CERTIFICATE_FILE_PATH,g /var/lib/kubelet/kubeconfig
-sed -i s,CLIENT_CA_FILE,$CA_CERTIFICATE_FILE_PATH,g  /etc/systemd/system/kubelet.service
-systemctl daemon-reload
-systemctl restart kubelet
+#!/bin/bash
+set -o xtrace
+/etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.demo.polkadot-{{ clusterName }}}' --b64-cluster-ca '${aws_eks_cluster.polkadot-{{ clusterName }}.certificate_authority.0.data}' '${var.cluster_name}'
 USERDATA
-}
-
-resource "aws_key_pair" "polkadot" {
-  key_name   = "polkadot-key"
-  public_key = "${var.ssh_public_key}"
 }
 
 resource "aws_launch_configuration" "polkadot" {
   associate_public_ip_address = true
   iam_instance_profile        = "${aws_iam_instance_profile.polkadot-node.name}"
   image_id                    = "${data.aws_ami.eks-worker.id}"
-  instance_type               = "m4.large"
+  instance_type               = var.machine_type
   name_prefix                 = "terraform-eks-polkadot"
   security_groups             = ["${aws_security_group.polkadot-node.id}"]
   user_data_base64            = "${base64encode(local.polkadot-node-userdata)}"
-  key_name                    = "${aws_key_pair.polkadot.key_name}"
 
   lifecycle {
     create_before_destroy = true
@@ -257,7 +229,7 @@ resource "aws_launch_configuration" "polkadot" {
 }
 
 resource "aws_autoscaling_group" "polkadot" {
-  desired_capacity     = "${var.workers}"
+  desired_capacity     = var.node_count
   launch_configuration = "${aws_launch_configuration.polkadot.id}"
   max_size             = 32
   min_size             = 1
@@ -271,7 +243,7 @@ resource "aws_autoscaling_group" "polkadot" {
   }
 
   tag {
-    key                 = "kubernetes.io/cluster/${var.cluster-name}"
+    key                 = "kubernetes.io/cluster/${var.cluster_name}"
     value               = "owned"
     propagate_at_launch = true
   }
