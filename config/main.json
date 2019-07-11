@@ -27,6 +27,10 @@
     {
       "name": "kind",
       "url": "https://w3f.github.io/polkadot-deployer/%platform%/kind"
+    },
+    {
+      "name": "aws-iam-authenticator",
+      "url": "https://w3f.github.io/polkadot-deployer/%platform%/aws-iam-authenticator"
     }
   ]
 }
