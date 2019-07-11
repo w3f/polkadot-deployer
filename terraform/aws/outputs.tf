@@ -7,7 +7,7 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: ${aws_iam_role.polkadot-node.arn}
+    - rolearn: arn:aws:iam::914416780918:role/terraform-eks-polkadot-node
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
@@ -44,6 +44,7 @@ KUBECONFIG
 
 output "config_map_aws_auth" {
   value = "${local.config_map_aws_auth}"
+  sensitive = true
 }
 
 output "kubeconfig" {
