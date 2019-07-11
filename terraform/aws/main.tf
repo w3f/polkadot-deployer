@@ -273,7 +273,7 @@ resource "aws_launch_configuration" "polkadot" {
   associate_public_ip_address = true
   iam_instance_profile        = "${aws_iam_instance_profile.polkadot-node.name}"
   image_id                    = "${data.aws_ami.eks-worker.id}"
-  instance_type               = var.machine_type
+  instance_type               = "${var.machine_type}"
   name_prefix                 = "terraform-eks-polkadot"
   security_groups             = ["${aws_security_group.polkadot-node.id}"]
   user_data_base64            = "${base64encode(local.polkadot-node-userdata)}"
