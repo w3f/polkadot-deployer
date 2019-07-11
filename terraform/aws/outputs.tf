@@ -8,7 +8,7 @@ metadata:
 data:
   mapRoles: |
     - rolearn: arn:aws:iam::914416780918:role/terraform-eks-polkadot-node
-      username: system:node:{{EC2PrivateDNSName}}
+      username: system:node:{{{{raw}}}}{{EC2PrivateDNSName}}{{{{/raw}}}}
       groups:
         - system:bootstrappers
         - system:nodes
