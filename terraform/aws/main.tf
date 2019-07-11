@@ -264,7 +264,7 @@ locals {
   polkadot-node-userdata = <<USERDATA
 #!/bin/bash
 set -o xtrace
-/etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.polkadot}' --b64-cluster-ca '${aws_eks_cluster.polkadot.certificate_authority.0.data}' '${var.cluster_name}'
+/etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.polkadot.endpoint}' --b64-cluster-ca '${aws_eks_cluster.polkadot.certificate_authority.0.data}' '${var.cluster_name}'
 USERDATA
 }
 
