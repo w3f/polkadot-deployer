@@ -124,7 +124,7 @@ resource "aws_eks_cluster" "polkadot" {
 
   vpc_config {
     security_group_ids = ["${aws_security_group.polkadot.id}"]
-    subnet_ids         = ["${aws_subnet.polkadot.*.id}"]
+    subnet_ids         = flatten(["${aws_subnet.polkadot.*.id}"])
   }
 
   depends_on = [
@@ -253,11 +253,11 @@ resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
 data "aws_ami" "eks-worker" {
   filter {
     name   = "name"
-    values = ["eks-worker-*"]
+    values = ["amazon-eks-node-v*"]
   }
 
   most_recent = true
-  owners      = ["602401143452"] # Amazon
+  owners      = ["602401143452"] # Amazon Account ID
 }
 
 locals {
