@@ -254,7 +254,7 @@ resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
 data "aws_ami" "eks-worker" {
   filter {
     name   = "name"
-    values = ["amazon-eks-node-v*"]
+    values = ["amazon-eks-node-${aws_eks_cluster.polkadot.version}-v*"]
   }
 
   most_recent = true
