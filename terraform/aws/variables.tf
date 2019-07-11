@@ -14,9 +14,9 @@ variable "node_count" {
 }
 
 variable "machine_type" {
-  default = "{{#if machineType }}{{ machineType}}{{ else }}m4-large{{/if}}"
+  default = "{{#if machineType }}{{ machineType}}{{ else }}m4-xlarge{{/if}}"
 }
 
 variable "k8s_version" {
-  default = "1.13.7"
+  default = "1.13"
 }
