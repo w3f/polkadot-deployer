@@ -60,7 +60,7 @@ resource "aws_vpc" "polkadot" {
 }
 
 resource "aws_subnet" "polkadot" {
-  availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
+  availability_zone = "${data.aws_availability_zones.available.names[0]}"
   cidr_block        = "10.0.0.0/24"
   vpc_id            = "${aws_vpc.polkadot.id}"
 
