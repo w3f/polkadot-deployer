@@ -60,10 +60,8 @@ resource "aws_vpc" "polkadot" {
 }
 
 resource "aws_subnet" "polkadot" {
-  count = 2
-
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
-  cidr_block        = "10.0.${count.index}.0/24"
+  cidr_block        = "10.0.0.0/24"
   vpc_id            = "${aws_vpc.polkadot.id}"
 
   tags = "${
@@ -92,9 +90,7 @@ resource "aws_route_table" "polkadot" {
 }
 
 resource "aws_route_table_association" "polkadot" {
-  count = 2
-
-  subnet_id      = "${aws_subnet.polkadot.*.id[count.index]}"
+  subnet_id      = "${aws_subnet.polkadot.id}"
   route_table_id = "${aws_route_table.polkadot.id}"
 }
 
@@ -125,7 +121,7 @@ resource "aws_eks_cluster" "polkadot" {
 
   vpc_config {
     security_group_ids = ["${aws_security_group.polkadot.id}"]
-    subnet_ids         = flatten(["${aws_subnet.polkadot.*.id}"])
+    subnet_ids         = ["${aws_subnet.polkadot.id}"]
   }
 
   depends_on = [
@@ -247,7 +243,7 @@ resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
   protocol                 = "tcp"
   security_group_id        = "${aws_security_group.polkadot-node.id}"
   cidr_blocks              = ["0.0.0.0/0"]
-  to_port                  = 31100
+  to_port                  = 30200
   type                     = "ingress"
 }
 
@@ -289,7 +285,7 @@ resource "aws_autoscaling_group" "polkadot" {
   max_size             = 32
   min_size             = 1
   name                 = "terraform-eks-polkadot"
-  vpc_zone_identifier  = flatten(["${aws_subnet.polkadot.*.id}"])
+  vpc_zone_identifier  = ["${aws_subnet.polkadot.id}"]
 
   tag {
     key                 = "Name"
