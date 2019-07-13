@@ -32,6 +32,7 @@ program
 program
   .command('destroy [name]')
   .description('Deletes a deployment.')
+  .option('-c, --config [path]', 'Path to config file.')
   .option('-d, --data [path]', 'Path to data directory.')
   .option('--verbose', 'Output extra info.')
   .action(destroy.do);
