@@ -243,11 +243,11 @@ resource "aws_security_group_rule" "polkadot-node-ingress-cluster" {
 
 resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
   description              = "Allow connection to p2p ports from outside the cluster"
-  from_port                = 30100
+  from_port                = 30000
   protocol                 = "tcp"
   security_group_id        = "${aws_security_group.polkadot-node.id}"
   cidr_blocks              = ["0.0.0.0/0"]
-  to_port                  = 30200
+  to_port                  = 33200
   type                     = "ingress"
 }
 
