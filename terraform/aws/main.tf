@@ -197,7 +197,7 @@ resource "aws_iam_role_policy_attachment" "polkadot-node-AmazonEC2ContainerRegis
 }
 
 resource "aws_iam_instance_profile" "polkadot-{{ clusterName }}-node" {
-  name = "terraform-eks-polkadot"
+  name = "terraform-eks-polkadot-{{ clusterName }}"
   role = "${aws_iam_role.polkadot-{{ clusterName }}-node.name}"
 }
 
