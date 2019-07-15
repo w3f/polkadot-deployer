@@ -2,4 +2,9 @@ node_modules
 polkadot-deployer/deployments/**/values/*.yaml
 polkadot-deployer/deployments/**/kubeconfig
 polkadot-deployer/deployments/**/.terraform
-polkadot-deployer/deployments/**/terraform
+polkadot-deployer/deployments/**/terraform/terraform
+polkadot-deployer/components/cache
+polkadot-deployer/components/repository
+polkadot-deployer/components/.kube
+polkadot-deployer/components/plugins
+polkadot-deployer/components/starters
