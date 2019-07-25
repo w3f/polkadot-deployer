@@ -288,12 +288,12 @@ resource "aws_autoscaling_group" "polkadot" {
   launch_configuration = "${aws_launch_configuration.polkadot.id}"
   max_size             = 32
   min_size             = 1
-  name                 = "terraform-eks-polkadot"
+  name                 = "terraform-eks-polkadot-{{ clusterName }}"
   vpc_zone_identifier  = flatten(["${aws_subnet.polkadot.*.id}"])
 
   tag {
     key                 = "Name"
-    value               = "terraform-eks-polkadot"
+    value               = "terraform-eks-polkadot-{{ clusterName }}"
     propagate_at_launch = true
   }
 
