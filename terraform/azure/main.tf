@@ -32,7 +32,7 @@ resource "azurerm_virtual_network" "polkadot-{{ clusterName }}" {
 }
 
 resource "azurerm_subnet" "polkadot-{{ clusterName }}" {
-  name                 = "AzureFirewallSubnet"
+  name                 = "polkadot-{{ clusterName }}"
   resource_group_name  = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
   virtual_network_name = "${azurerm_virtual_network.polkadot-{{ clusterName }}.name}"
   address_prefix       = "10.0.1.0/24"
@@ -78,4 +78,9 @@ resource "azurerm_network_security_rule" "p2p" {
   destination_address_prefix  = "*"
   resource_group_name         = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
   network_security_group_name = "${azurerm_network_security_group.polkadot-{{ clusterName }}.name}"
+}
+
+resource "azurerm_subnet_network_security_group_association" "polkadot-{{ clusterName }}" {
+  subnet_id                 = "${azurerm_subnet.polkadot-{{ clusterName }}.id}"
+  network_security_group_id = "${azurerm_network_security_group.polkadot-{{ clusterName }}.id}"
 }
