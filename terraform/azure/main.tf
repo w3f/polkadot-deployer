@@ -46,43 +46,36 @@ resource "azurerm_public_ip" "polkadot-{{ clusterName }}" {
   sku                 = "Standard"
 }
 
-resource "azurerm_firewall" "polkadot-{{ clusterName }}" {
+resource "azurerm_network_security_group" "polkadot-{{ clusterName }}" {
   name                = "polkadot-{{ clusterName }}"
   location            = "${azurerm_resource_group.polkadot-{{ clusterName }}.location}"
   resource_group_name = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
-
-  ip_configuration {
-    name                 = "configuration"
-    subnet_id            = "${azurerm_subnet.polkadot-{{ clusterName }}.id}"
-    public_ip_address_id = "${azurerm_public_ip.polkadot-{{ clusterName }}.id}"
-  }
 }
 
-resource "azurerm_firewall_network_rule_collection" "polkadot-{{ clusterName }}" {
-  name                = "polkadot-{{ clusterName }}"
-  azure_firewall_name = "${azurerm_firewall.polkadot-{{ clusterName }}.name}"
-  resource_group_name = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
-  priority            = 100
-  action              = "Allow"
+resource "azurerm_network_security_rule" "outbound" {
+  name                        = "outbound"
+  priority                    = 100
+  direction                   = "Outbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
+  network_security_group_name = "${azurerm_network_security_group.polkadot-{{ clusterName }}.name}"
+}
 
-  rule {
-    name = "testrule"
-
-    source_addresses = [
-      "0.0.0.0/0",
-    ]
-
-    destination_ports = [
-      "30100","30101","30102","30103"
-    ]
-
-    destination_addresses = [
-      "0.0.0.0/0",
-    ]
-
-    protocols = [
-      "TCP",
-      "UDP",
-    ]
-  }
+resource "azurerm_network_security_rule" "p2p" {
+  name                        = "p2p"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "30100-30200"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
+  network_security_group_name = "${azurerm_network_security_group.polkadot-{{ clusterName }}.name}"
 }
