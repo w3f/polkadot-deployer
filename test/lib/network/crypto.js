@@ -34,7 +34,9 @@ describe('keys', () => {
     it('should return the created keys', async () => {
       const output = await subject.create(nodes);
 
-      ['stash', 'controller', 'session'].forEach((type) => {
+      const types = subject.keyTypes();
+
+      types.forEach((type) => {
         output[type].length.should.eq(nodes);
 
         output[type].forEach((keyItem) => {
