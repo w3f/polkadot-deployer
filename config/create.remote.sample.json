@@ -1,5 +1,5 @@
 {
-  "name": "testnet2",
+  "name": "testnet7",
   "type": "gcp",
   "nodes": 12,
   "nonValidatorIndices": [0],
@@ -15,37 +15,31 @@
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
-    "domain": "kusama.network",
+    "domain": "w3f.tech",
     "clusters": [
       {
         "provider": "gcp",
-        "location": "europe-west6-a",
-        "machineType": "n1-standard-4"
+        "location": "europe-west6-a"
       },
       {
         "provider": "gcp",
-        "location": "asia-east1-a",
-        "machineType": "n1-standard-4"
+        "location": "asia-east1-a"
       },
       {
         "provider": "aws",
-        "location": "us-west-2",
-        "machineType": "m4.xlarge"
+        "location": "us-west-2"
       },
       {
         "provider": "aws",
-        "location": "eu-west-2",
-        "machineType": "m4.xlarge"
+        "location": "eu-west-2"
       },
       {
         "provider": "azure",
-        "location": "brazilsouth",
-        "machineType": "Standard_D4s_v3"
+        "location": "brazilsouth"
       },
       {
         "provider": "azure",
-        "location": "japanwest",
-        "machineType": "Standard_D4s_v3"
+        "location": "japanwest"
       }
     ]
   }
