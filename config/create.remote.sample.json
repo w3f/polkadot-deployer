@@ -6,12 +6,6 @@
   "environmentNodeKeys": true,
   "environmentKeys": true,
   "keep": true,
-  "resources": {
-    "requests": {
-      "memory": "9Gi",
-      "cpu": "1.5"
-    }
-  },
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
