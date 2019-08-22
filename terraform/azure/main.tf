@@ -36,7 +36,6 @@ resource "azurerm_subnet" "polkadot-{{ clusterName }}" {
   resource_group_name       = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
   virtual_network_name      = "${azurerm_virtual_network.polkadot-{{ clusterName }}.name}"
   address_prefix            = "10.0.1.0/24"
-  network_security_group_id = "${azurerm_network_security_group.polkadot-{{ clusterName }}.id}"
 }
 
 resource "azurerm_public_ip" "polkadot-{{ clusterName }}" {
