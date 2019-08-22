@@ -29,11 +29,13 @@
       },
       {
         "provider": "azure",
-        "location": "brazilsouth"
+        "location": "brazilsouth",
+        "validatorBootnode": true
       },
       {
         "provider": "azure",
-        "location": "japanwest"
+        "location": "japanwest",
+        "validatorBootnode": true
       }
     ]
   }
