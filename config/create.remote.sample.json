@@ -30,12 +30,16 @@
       {
         "provider": "azure",
         "location": "brazilsouth",
-        "validatorBootnode": true
+        "validatorBootnode": {
+          "clusterIndex": 5
+        }
       },
       {
         "provider": "azure",
         "location": "japanwest",
-        "validatorBootnode": true
+        "validatorBootnode": {
+          "clusterIndex": 4
+        }
       }
     ]
   }
