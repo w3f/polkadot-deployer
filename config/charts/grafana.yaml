@@ -18,7 +18,7 @@ datasources:
       url: http://loki-stack:3100/
       access: proxy
       isDefault: false
-      editable: false
+      editable: true
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
