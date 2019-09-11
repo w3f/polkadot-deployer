@@ -3,7 +3,7 @@
     "cert-manager": "v0.8.0",
     "external-dns": "1.7.8",
     "grafana": "3.5.4",
-    "loki-stack": "0.11.1",
+    "loki-stack": "0.16.2",
     "matrixbot": "v0.4.2",
     "nginx-ingress": "1.6.16",
     "polkadot": "v0.11.0",
