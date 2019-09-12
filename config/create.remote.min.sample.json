@@ -3,6 +3,10 @@
   "type": "gcp",
   "nodes": 4,
   "keep": true,
+  "image": {
+    "repo": "web3f/polkadot",
+    "tag": "kusama-v0.5.1"
+  },
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
