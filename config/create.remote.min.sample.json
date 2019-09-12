@@ -1,0 +1,23 @@
+{
+  "name": "testnet9",
+  "type": "gcp",
+  "nodes": 4,
+  "keep": true,
+  "remote": {
+    "monitoring": true,
+    "projectID": "polkadot-benchmarks",
+    "domain": "w3f.tech",
+    "clusters": [
+      {
+        "provider": "gcp",
+        "location": "europe-west6-a",
+        "machineType": "n1-standard-4"
+      },
+      {
+        "provider": "gcp",
+        "location": "asia-east1-a",
+        "machineType": "n1-standard-4"
+      }
+    ]
+  }
+}
