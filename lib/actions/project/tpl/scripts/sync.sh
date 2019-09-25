@@ -3,7 +3,8 @@
 basedir="$(dirname $0)"
 
 (
+    source "${POLKADOT_NODE_ENV_VARS}"
     cd $basedir/..
-    npm i
+    yarn
     npx polkadot-deployer create --update -d '.' -c config.json "$@"
 )
