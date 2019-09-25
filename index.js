@@ -6,6 +6,7 @@ const program = require('commander');
 const benchmark = require('./lib/actions/benchmark');
 const create = require('./lib/actions/create');
 const destroy = require('./lib/actions/destroy');
+const getConfig = require('./lib/actions/getconfig');
 const list = require('./lib/actions/list');
 const projectCreate = require('./lib/actions/project/create');
 const redeploy = require('./lib/actions/redeploy');
@@ -43,6 +44,14 @@ program
   .option('-d, --data [path]', 'Path to data directory.')
   .option('--verbose', 'Output extra info.')
   .action(redeploy.do);
+
+program
+  .command('getConfig')
+  .description('Downloads configuration files for an existing remote deployment.')
+  .option('-c, --config [path]', 'Path to config file.')
+  .option('-d, --data [path]', 'Path to data directory.')
+  .option('--verbose', 'Output extra info.')
+  .action(getConfig.do);
 
 program
   .command('benchmark')
