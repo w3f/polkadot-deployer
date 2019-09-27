@@ -3,13 +3,13 @@
     "cert-manager": "v0.8.0",
     "external-dns": "1.7.8",
     "grafana": "3.8.15",
-    "loki-stack": "0.16.2",
+    "loki-stack": "0.16.5",
     "matrixbot": "v0.4.2",
     "nginx-ingress": "1.6.16",
-    "polkadot": "v0.11.2",
+    "polkadot": "v0.11.3",
     "prometheus-node-exporter": "1.5.0",
     "prometheus-operator": "5.12.3",
-    "substrate-telemetry": "v0.5.2"
+    "substrate-telemetry": "v0.5.6"
   },
   "components": [
     {
