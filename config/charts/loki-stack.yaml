@@ -1,0 +1,17 @@
+promtail:
+  serviceMonitor:
+    enabled: true
+
+  pipelineStages:
+  - match:
+      selector: '{app=~"polkadot-node"}'
+      stages:
+      - regex:
+          expression: ".*(?P<fork>New epoch .* launching at block|Next epoch starts at slot)"
+      - metrics:
+          polkadot_forks_total:
+            type: Counter
+            description: "total count of forks"
+            source: fork
+            config:
+              action: inc
