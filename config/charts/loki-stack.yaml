@@ -1,7 +1,8 @@
 promtail:
   serviceMonitor:
     enabled: true
-
+    additionalLabels:
+      release: prometheus-operator
   pipelineStages:
   - match:
       selector: '{app=~"polkadot-node"}'
