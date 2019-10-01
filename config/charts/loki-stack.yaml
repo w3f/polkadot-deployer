@@ -8,11 +8,23 @@ promtail:
       selector: '{app=~"polkadot-node"}'
       stages:
       - regex:
-          expression: ".*(?P<fork>New epoch .* launching at block|Next epoch starts at slot)"
+          expression: ".*(?P<scheduled_epoch>Next epoch starts at slot)"
       - metrics:
-          polkadot_forks_total:
+          polkadot_epoch_scheduled_total:
             type: Counter
-            description: "total count of forks"
-            source: fork
+            description: "total count of scheduled epochs"
+            source: scheduled_epoch
+            config:
+              action: inc
+  - match:
+      selector: '{app=~"polkadot-node"}'
+      stages:
+      - regex:
+          expression: ".*(?P<started_epoch>New epoch .* launching at block)"
+      - metrics:
+          polkadot_epoch_started_total:
+            type: Counter
+            description: "total count of started epochs"
+            source: started_epoch
             config:
               action: inc
