@@ -1,16 +1,12 @@
 {
-  "name": "babetest3",
+  "name": "test3",
   "type": "gcp",
-  "nodes": 8,
+  "nodes": 4,
   "keep": true,
   "image": {
     "repo": "web3f/polkadot",
-    "tag": "kusama-substrate-babe-fixes-2"
+    "tag": "kusama-v0.6.0"
   },
-  "initImage": {
-    "repo": "web3f/polkadot-deployer",
-    "tag": "kusama-babe-fixes"
-   },
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
@@ -18,25 +14,11 @@
     "clusters": [
       {
         "provider": "gcp",
-        "location": "europe-west6-a"
-      },
-      {
-        "provider": "gcp",
         "location": "us-east1-b"
       },
       {
-        "provider": "azure",
-        "location": "brazilsouth",
-        "validatorBootnode": {
-          "clusterIndex": 3
-        }
-      },
-      {
-        "provider": "azure",
-        "location": "japanwest",
-        "validatorBootnode": {
-          "clusterIndex": 2
-        }
+        "provider": "gcp",
+        "location": "us-west1-b"
       }
     ]
   }
