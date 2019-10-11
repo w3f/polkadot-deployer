@@ -1,5 +1,5 @@
 {
   "name": "testnet4",
   "type": "local",
-  "nodes": 2
+  "nodes": 15
 }

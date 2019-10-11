@@ -64,7 +64,7 @@ describe('nodes', () => {
         {location: 'location3'}
       ]
 
-      const expected = [5, 5, 7];
+      const expected = [6, 6, 5];
       const actual = subject.partition(config);
 
       actual.length.should.eq(expected.length);
