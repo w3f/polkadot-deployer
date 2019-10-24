@@ -8,7 +8,7 @@
     "tag": "kusama-v0.6.2"
   },
   "remote": {
-    "monitoring": true,
+    "monitoring": false,
     "projectID": "polkadot-benchmarks",
     "domain": "w3f.tech",
     "clusters": [
