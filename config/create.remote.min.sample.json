@@ -1,11 +1,11 @@
 {
-  "name": "test3",
+  "name": "faucettest",
   "type": "gcp",
-  "nodes": 4,
+  "nodes": 2,
   "keep": true,
   "image": {
     "repo": "web3f/polkadot",
-    "tag": "kusama-v0.6.0"
+    "tag": "kusama-v0.6.2"
   },
   "remote": {
     "monitoring": true,
@@ -15,10 +15,6 @@
       {
         "provider": "gcp",
         "location": "us-east1-b"
-      },
-      {
-        "provider": "gcp",
-        "location": "us-west1-b"
       }
     ]
   }
