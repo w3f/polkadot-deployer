@@ -5,7 +5,7 @@
   "keep": true,
   "image": {
     "repo": "web3f/polkadot",
-    "tag": "kusama-v0.6.2"
+    "tag": "kusama-v0.6.3-tx-enabled"
   },
   "remote": {
     "monitoring": false,
