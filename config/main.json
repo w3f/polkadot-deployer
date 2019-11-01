@@ -1,7 +1,7 @@
 {
   "chartVersions": {
     "cert-manager": "v0.11.0",
-    "external-dns": "2.7.0",
+    "external-dns": "2.9.0",
     "grafana": "3.8.17",
     "loki-stack": "0.17.0",
     "matrixbot": "v0.5.0",
