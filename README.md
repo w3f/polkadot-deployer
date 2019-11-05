@@ -14,7 +14,7 @@ use the tool you will require to have installed recent versions of [node](https:
 
 ## Local deployments (TL;DR method)
 
-In order to deploy a number of polkadot nodes locally, we recommend using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind).
+In order to deploy a number of polkadot nodes locally, we recommend using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The required steps to successfully deploy polkadot validator locally are as follows:
 
 1. Download the latest polkadot deployer from git issuing the following command:  
 	```git clone git@github.com:w3f/polkadot-deployer.git```
@@ -73,7 +73,7 @@ exact errors if this condition is not met).
 * Kubernetes Engine API and billing enabled for your project, see [here](https://cloud.google.com/kubernetes-engine/docs/quickstart).
 * Read through the [usage](#troubleshooting) section.
 
-The required steps to successfully deploy polkadot validator is as follows:
+The required steps to successfully deploy polkadot validator on GCP are as follows:
 
 
 1. Download the latest polkadot deployer from git issuing the following command:  
