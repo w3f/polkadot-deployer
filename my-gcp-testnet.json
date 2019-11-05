@@ -1,0 +1,15 @@
+{
+  "name": "my-gcp-testnet",
+  "type": "gcp",
+  "nodes": 45,
+  "remote": {
+    "monitoring": true,
+    "clusters": [
+      {
+        "location": "europe-west1-b",
+        "projectID": "polkadot-benchmarks",
+        "domain": "w3f.tech"
+      }
+    ]
+  }
+}
