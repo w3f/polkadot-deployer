@@ -19,25 +19,22 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
 1. Download the latest polkadot deployer from git issuing the following command:  
 	```git clone git@github.com:w3f/polkadot-deployer.git```
     
-2. Change your working directory to that of the cloned polkadot-deployer directory  
-	```cd polkadot-deployer```
-    
-3. You can deploy the polkadot deployer either using the interactive menu or by using a config file. 
+  
+2. You can deploy the polkadot deployer either using the interactive menu or by using a config file. 
   * In order to create through the interactive menu issue the following command:  
 	```sudo node . create --verbose```
-  * In order to deploy polkadot using a preset configuration file, create a json file (eg my-testnet.json) and place the following contents: ```{"name": "my-demo-testnet", "type": "local", "nodes": 2 }```    
-	Save and close the file and issue the following command:  
-	```sudo node . create --config my-testnet.json --verbose```
+  * In order to deploy polkadot using a the preset configuration file: my-local-testnet.json and issue the following command:  
+	```sudo node . create --config my-local-testnet.json --verbose```
 	The process will start creating an instance of polkadot inside a your local kubernetes cluster. The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
 
 
-4. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-my-demo-testnet ~/.kube/kind-config-my-demo-testnet```
+3. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-my-local-testnet ~/.kube/kind-config-my-local-testnet```
 
-5. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="~/.kube/kind-config-my-demo-testnet"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```sudo node . list```
+4. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="~/.kube/kind-config-my-local-testnet"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```sudo node . list```
 
-6. At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
+5. At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
 
-7. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```sudo node . destroy my-demo-testnet```
+6. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```sudo node . destroy my-local-testnet```
 More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
 
 
@@ -81,34 +78,13 @@ The required steps to successfully deploy polkadot validator is as follows:
 
 1. Download the latest polkadot deployer from git issuing the following command:  
 ```git clone git@github.com:w3f/polkadot-deployer.git```
-    
-2. Change your working directory to that of the cloned polkadot-deployer directory  
-```cd polkadot-deployer```
-    
-3. In order to deploy polkadot using a preset configuration file, create a json file (eg my-gcp-testnet.json) and place the following contents: 
-	```
-	{
-	  "name": "my-gcp-testnet",
-	  "type": "gcp",
-	  "nodes": 45,
-	  "remote": {
-	    "monitoring": true,
-	    "clusters": [
-	      {
-	        "location": "europe-west1-b",
-	        "projectID": "polkadot-benchmarks",
-	        "domain": "w3f.tech"
-	      }
-	    ]
-	  }
-	}
-	```
+   
+2. In order to deploy polkadot using a the preset configuration file: my-gcp-testnet.json and issue the following command:  
+	```sudo node . create --config my-gcp-testnet.json --verbose```
+	The process will start creating an instance of polkadot using GCP. A second cup of coffee is recommended at this point. 
 
-4. Save and close the file and issue the following command:  
- ```sudo node . create --config my-gcp-testnet.json --verbose```  
-A second cup of coffee is recommended at this point. 
-5. If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
- ```sudo node . destroy my-demo-testnet```    
+3. If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
+ ```sudo node . destroy my-gcp-testnet```    
   
   More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
  
