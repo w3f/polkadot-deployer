@@ -29,7 +29,7 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
 	Save and close the file and issue the following command:  
 	```sudo node . create --config my-testnet.json --verbose```  
 
- The process will start creating an instance of polkadot inside a your local kubernetes cluster. The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
+   The process will start creating an instance of polkadot inside a your local kubernetes cluster. The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
 
 
 4. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-my-demo-testnet ~/.kube/kind-config-my-demo-testnet```
