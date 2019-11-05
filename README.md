@@ -2,47 +2,66 @@
 
 # polkadot-deployer
 
-General tool for deploying Polkadot nodes, aiming to make it easy to deploy a
-local or remote network of nodes. To learn more about Polkadot explore [the wiki](https://wiki.polkadot.network)
+polkadot-deployer is a general tool for deploying Polkadot nodes, aiming to make it easy to deploy a network of nodes. To learn more about Polkadot explore [the wiki](https://wiki.polkadot.network)
 or [join the conversation at Riot](https://riot.im/app/#/room/#polkadot-watercooler:matrix.org).
 
-## Requirements
+polkadot-deployer allows you to create local or remote cloud deployments of polkadot. Currently it supports local deployments using Kind and remote deployments using Google Cloud Platform for the infrastructure and Cloudflare for the DNS settings that make your network accessible through websockets RPC.
+
+## Requirements (need to discuss)
 
 The tool is meant to work on Linux and MacOS machines. In order to be able to
-use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/)
-(developed and tested with `v10.7.0` and `v10.15.1`) and [docker](https://docs.docker.com/install/)
-for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to
-[run `docker` as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user).
-See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
+use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1) and [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to [run `docker` as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
-## Installation
+## Local deployments (TL;DR method)
 
-Open a terminal and run this command:
+In order to deploy a number of polkadot nodes locally, we recommend using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind).
 
-```
-$ npm i -g polkadot-deployer
-```
-Check that all is correct:
-```
-$ polkadot-deployer --version
-```
-You can get an overview of the available actions with:
-```
-$ polkadot-deployer --help
-```
+1. Download the latest polkadot deployer from git issuing the following command:  
+	```git clone git@github.com:w3f/polkadot-deployer.git```
+    
+2. Change your working directory to that of the cloned polkadot-deployer directory  
+	```cd polkadot-deployer```
+    
+3. You can deploy the polkadot deployer either using the interactive menu or by using a config file. 
+  * In order to create through the interactive menu issue the following command:  
+	```sudo node . create --verbose```
+  * In order to deploy polkadot using a preset configuration file, create a json file (eg my-testnet.json) and place the following contents: ```{"name": "my-demo-testnet", "type": "local", "nodes": 2 }```    
+	Save and close the file and issue the following command:  
+	```sudo node . create --config my-testnet.json --verbose```  
+
+ The process will start creating an instance of polkadot inside a your local kubernetes cluster. The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
+
+
+4. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-my-demo-testnet ~/.kube/kind-config-my-demo-testnet```
+
+5. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="~/.kube/kind-config-my-demo-testnet"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```sudo node . list```
+
+6. At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
+
+7. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```sudo node . destroy my-demo-testnet```
+More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
+
+
+
+___
+
+
+
+
+
+
+
+
 Check the [Troubleshooting section](#troubleshooting) if something goes wrong with the installation.
 
 ## Remote deployments
 
-polkadot-deployer allows you to create remote cloud deployments, currently it
-supports Google Cloud Platform for the infrastructure and Cloudflare for the
-DNS settings that make your network accessible through websockets RPC.
 
-In order to be able to deploy remotely you will need:
+To perform a remote deployment of polkador to a public cloud provider we will follow the same general path. We will need to specify a number of extra attributes inside the json file with  extra information such as our credentials etc. In order to be able to deploy remotely you will need:
+
+* A Linux machine to run this tool (macOS may fail).
 
 * A project on GCP.
-
-* You need to run this tool on Linux machine. (macOS may fail.)
 
 * GCP service account and credentials in the form of the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for
@@ -56,6 +75,45 @@ for details about the API key, the email hould be the one used for registration.
 exact errors if this condition is not met).
 
 * Kubernetes Engine API and billing enabled for your project, see [here](https://cloud.google.com/kubernetes-engine/docs/quickstart).
+* Read through the [usage](#troubleshooting) section.
+
+The required steps to successfully deploy polkadot validator is as follows:
+
+
+1. Download the latest polkadot deployer from git issuing the following command:  
+```git clone git@github.com:w3f/polkadot-deployer.git```
+    
+2. Change your working directory to that of the cloned polkadot-deployer directory  
+```cd polkadot-deployer```
+    
+3. In order to deploy polkadot using a preset configuration file, create a json file (eg my-gcp-testnet.json) and place the following contents: 
+	```
+	{
+	  "name": "my-gcp-testnet",
+	  "type": "gcp",
+	  "nodes": 45,
+	  "remote": {
+	    "monitoring": true,
+	    "clusters": [
+	      {
+	        "location": "europe-west1-b",
+	        "projectID": "polkadot-benchmarks",
+	        "domain": "w3f.tech"
+	      }
+	    ]
+	  }
+	}
+	```
+
+4. Save and close the file and issue the following command:  
+ ```sudo node . create --config my-gcp-testnet.json --verbose```  
+A second cup of coffee is recommended at this point. 
+5. If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
+ ```sudo node . destroy my-demo-testnet```    
+  
+  More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
+ 
+
 
 ## Usage
 
