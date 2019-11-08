@@ -7,16 +7,16 @@ or [join the conversation at Riot](https://riot.im/app/#/room/#polkadot-watercoo
 
 polkadot-deployer allows you to create local or remote cloud deployments of polkadot. Currently it supports local deployments using Kind and remote deployments using Google Cloud Platform for the infrastructure and Cloudflare for the DNS settings that make your network accessible through websockets RPC.
 
-## Requirements (need to discuss)
+## Requirements
 
-The tool is meant to work on Linux and MacOS machines. In order to be able to
-use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1) and [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to [run `docker` as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
+The tool is meant to work on Linux and MacOS machines. In order to be able to use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1) and
+ [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to [run `docker` as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
 ## Local deployments (TL;DR method)
 
 In order to deploy a number of polkadot nodes locally, we recommend using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The required steps to successfully deploy polkadot validator locally are as follows:
 
-1. Download the latest polkadot deployer from git issuing the following command:  
+1. Download the latest polkadot deployer from git issuing the following command and change directory to polkadot-deployer:  
 	```git clone git@github.com:w3f/polkadot-deployer.git```
     
   
@@ -25,7 +25,7 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
 	```sudo node . create --verbose```
   * In order to deploy polkadot using a the preset configuration file: my-local-testnet.json and issue the following command:  
 	```sudo node . create --config my-local-testnet.json --verbose```
-	The process will start creating an instance of polkadot inside a your local kubernetes cluster. The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
+	The process will start creating an instance of polkadot inside a your local kubernetes cluster that will be created as part of the procedure using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
 
 
 3. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-my-local-testnet ~/.kube/kind-config-my-local-testnet```
@@ -36,16 +36,6 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
 
 6. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```sudo node . destroy my-local-testnet```
 More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
-
-
-
-___
-
-
-
-
-
-
 
 
 Check the [Troubleshooting section](#troubleshooting) if something goes wrong with the installation.
