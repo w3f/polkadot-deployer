@@ -17,7 +17,7 @@ The tool is meant to work on Linux and MacOS machines. In order to be able to us
 In order to deploy a number of polkadot nodes locally, we recommend using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The required steps to successfully deploy polkadot validator locally are as follows:
 
 1. Download the latest polkadot deployer from git issuing the following command and change directory to polkadot-deployer:  
-	```git clone git@github.com:w3f/polkadot-deployer.git```
+	```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```npm install```to install all requirements.
     
   
 2. You can deploy the polkadot deployer either using the interactive menu or by using a config file. 
@@ -67,7 +67,7 @@ The required steps to successfully deploy polkadot validator on GCP are as follo
 
 
 1. Download the latest polkadot deployer from git issuing the following command:  
-```git clone git@github.com:w3f/polkadot-deployer.git```
+```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```npm install```to install all requirements.
    
 2. In order to deploy polkadot using a the preset configuration file: my-gcp-testnet.json and issue the following command:  
 	```sudo node . create --config config/create.remote.sample.json --verbose```
