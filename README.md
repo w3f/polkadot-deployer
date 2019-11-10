@@ -24,17 +24,17 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
   * In order to create through the interactive menu issue the following command:  
 	```sudo node . create --verbose```
   * In order to deploy polkadot using a the preset configuration file: my-local-testnet.json and issue the following command:  
-	```sudo node . create --config my-local-testnet.json --verbose```
+	```sudo node . create --config config/create.local.sample.json --verbose```
 	The process will start creating an instance of polkadot inside a your local kubernetes cluster that will be created as part of the procedure using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
 
 
-3. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-my-local-testnet ~/.kube/kind-config-my-local-testnet```
+3. Once the local cluster is created, a kubeconfig file will be created in /root/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: /root/.kube/kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. You can archive this by issuing the following command:    ```sudo cp /root/.kube/kind-config-testnet5 ~/.kube/kind-config-testnet5```
 
-4. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="~/.kube/kind-config-my-local-testnet"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```sudo node . list```
+4. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="~/.kube/kind-config-testnet5"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```sudo node . list```
 
 5. At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
 
-6. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```sudo node . destroy my-local-testnet```
+6. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```sudo node . destroy testnet5```
 More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
 
 
@@ -70,11 +70,11 @@ The required steps to successfully deploy polkadot validator on GCP are as follo
 ```git clone git@github.com:w3f/polkadot-deployer.git```
    
 2. In order to deploy polkadot using a the preset configuration file: my-gcp-testnet.json and issue the following command:  
-	```sudo node . create --config my-gcp-testnet.json --verbose```
+	```sudo node . create --config config/create.remote.sample.json --verbose```
 	The process will start creating an instance of polkadot using GCP. A second cup of coffee is recommended at this point. 
 
 3. If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
- ```sudo node . destroy my-gcp-testnet```    
+ ```sudo node . destroy testnet9```    
   
   More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
  
