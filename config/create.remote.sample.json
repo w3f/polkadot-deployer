@@ -15,7 +15,7 @@
   "remote": {
     "monitoring": true,
     "projectID": "polkadot-benchmarks",
-    "domain": "w3f.tech",
+    "domain": "foo.bar",
     "clusters": [
       {
         "provider": "gcp",
