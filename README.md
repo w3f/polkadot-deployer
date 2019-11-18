@@ -23,7 +23,7 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
 2. You can deploy the polkadot deployer either using the interactive menu or by using a config file. 
   * In order to create through the interactive menu issue the following command:  
 	```node . create --verbose```
-  * In order to deploy polkadot using a the preset configuration file: my-local-testnet.json and issue the following command:  
+  * In order to deploy polkadot using the preset configuration file: `config/create.local.sample.json` and issue the following command:  
 	```node . create --config config/create.local.sample.json --verbose```
 	The process will start creating an instance of polkadot inside a your local kubernetes cluster that will be created as part of the procedure using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
 
