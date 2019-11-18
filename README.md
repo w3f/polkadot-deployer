@@ -103,7 +103,7 @@ or this for remote deployments:
 {
   "name": "testnet6",
   "type": "gcp",
-  "nodes": 45,
+  "nodes": 1,
   "remote": {
     "monitoring": true,
     "clusters": [
