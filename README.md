@@ -30,7 +30,7 @@ In order to deploy a number of polkadot nodes locally, we recommend using [kuber
 
 3. Once the local cluster is created, a kubeconfig file will be created in ~/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory. 
 
-4. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="~/.kube/kind-config-testnet5"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```node . list```
+4. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```node . list```
 
 5. At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
 
