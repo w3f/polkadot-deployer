@@ -110,7 +110,7 @@ or this for remote deployments:
       {
         "location": "europe-west1-b",
         "projectID": "polkadot-benchmarks",
-        "domain": "w3f.tech"
+        "domain": "foo.bar"
       }
     ]
   }
