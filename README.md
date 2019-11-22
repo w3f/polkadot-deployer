@@ -9,7 +9,7 @@ polkadot-deployer allows you to create local or remote cloud deployments of polk
 
 ## Requirements
 
-The tool is meant to work on Linux and MacOS machines. In order to be able to use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1) and 
+The tool is meant to work on Linux and MacOS machines. In order to be able to use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1`) and 
 [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to 
 [run docker as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
@@ -107,8 +107,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>AWS</summary>
 <p>
-To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION` environment variables. You can set the required values for these variables following the provided 
-[documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
+To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION` environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
 
 In order to deploy polkadot on AWS you can use a the preset configuration file: ```create.remote.sample-AWS.json``` and issue the following command: 
  
@@ -124,7 +123,8 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Azure</summary>
 <p>
-To deploy polkadot on Azure you're required to set your credentials. You can do this by following this [documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials)
+To deploy polkadot on Azure you're required to set your credentials. You can do this by following this 
+[documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials).
 
 In order to deploy polkadot on Azure you can use a the preset configuration file: ```create.remote.sample-AZURE.json``` and issue the following command:  
 
