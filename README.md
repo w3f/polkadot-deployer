@@ -112,7 +112,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Azure</summary>
 
-To deploy polkadot on Azure you're required to set  `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `TF_VAR_client_id` and `TF_VAR_client_secret` environmental variables. You can find your's by following the [documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks). 
+To deploy polkadot on Azure you're required to set  `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `TF_VAR_client_id` and `TF_VAR_client_secret` environmental variables. You can find your's by following the [documentation](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks). 
 
 In order to deploy polkadot on Azure you can use a the preset configuration file: ```create.remote.sample-AZURE.json``` and issue the following command:  
 
