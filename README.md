@@ -21,7 +21,7 @@ In order to deploy a number of polkadot nodes locally. There are two methods to 
 	```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```yarn install``` to install all requirements.
 
 ## Local deployments
-After you have succesfully installed polkadot validator using either method, you may follow the next steps to guide you through the proccess of deployng polkador validator locally on your hardware. This can be done either using the interactive menu or by using a config file.
+After you have succesfully installed polkadot validator using either method, you may follow the next steps to guide you through the proccess of deployng polkadot validator locally on your hardware. This can be done either using the interactive menu or by using a config file.
 * In order to create a validator through the interactive menu issue the following command:  
 	```node . create --verbose```  
 * In order to deploy polkadot using the preset configuration file: `config/create.local.sample.json` issue the following command:  
@@ -39,7 +39,7 @@ Check the [Troubleshooting section](#troubleshooting) if something goes wrong wi
 
 ## Remote deployments
 
-To perform a remote deployment of polkador to a public cloud provider we will follow the same general path. The process differs with each public infrastructure provider. Currently we support GCP, AWS, Azure and Digital Ocean. To successfuly deploy polkadot these infastructure providers you will first need to setup a cloudflare account and a GCP account. Cloudflare is used to provide a domain name for your deployment and the GCP for maintaining the state of your deployment. Then you will need to provide the spesific attrubutes required for your deployment in each of the supported providers. The required steps are as follows:
+To perform a remote deployment of polkadot to a public cloud provider we will follow the same general path. The process differs with each public infrastructure provider. Currently we support GCP, AWS, Azure and Digital Ocean. To successfuly deploy polkadot these infastructure providers you will first need to setup a cloudflare account and a GCP account. Cloudflare is used to provide a domain name for your deployment and the GCP for maintaining the state of your deployment. Then you will need to provide the spesific attrubutes required for your deployment in each of the supported providers. The required steps are as follows:
 
 * A Linux machine to run this tool (macOS may fail, see the [Troubleshooting section](#troubleshooting) in case you have problems running the tool).
 
