@@ -106,16 +106,18 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 <details><summary>AWS</summary>
 <p>
 To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding 
-```AWS_ACCESS_KEY_ID```
+	
+	```AWS_ACCESS_KEY_ID```
 ,
-```AWS_SECRET_ACCESS_KEY```
+	```AWS_SECRET_ACCESS_KEY```
  and
-```AWS_DEFAULT_REGION```
-environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
+	```AWS_DEFAULT_REGION```
+environment variables. You can set the required values for these variables following the provided 
+[documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
 
 In order to deploy polkadot on AWS you can use a the preset configuration file: create.remote.sample-AWS.json and issue the following command:  
 	```node . create --config config/create.remote.sample-AWS.json --verbose```  
-	The process will start creating an instance of polkadot on AWS. The process with create a 2 node cluster using ```m4.large machines``` . An IAM role and a VPC will be created that will contain the Amazon EKS for the deployment along with the required security groups and ingress rules. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/aws).
+	The process will start creating an instance of polkadot on AWS. The process with create a 2 node cluster using ```m4.large machines```. An IAM role and a VPC will be created that will contain the Amazon EKS for the deployment along with the required security groups and ingress rules. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/aws).
 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
  ```node . destroy aws-testnet```  
@@ -140,7 +142,8 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 <details><summary>Digital Ocean</summary>
 <p>
 To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the 
-```DIGITALOCEAN_ACCESS_TOKEN```
+
+	```DIGITALOCEAN_ACCESS_TOKEN```
  environment variable. You can get your access token by following the 
 [documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
