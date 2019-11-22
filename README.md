@@ -70,7 +70,7 @@ The required steps to successfully deploy polkadot validator are as follows:
 
 
 Download the latest polkadot deployer from git issuing the following command:  
-```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```npm install``` to install all requirements.
+```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```yarn install``` to install all requirements.
 
 
 <details><summary>GCP</summary>
