@@ -113,7 +113,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Azure</summary>
 <p>
-To deploy polkadot on Azure you're required to set your credentials. You can do this by following this [guide](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials)
+To deploy polkadot on Azure you're required to set your credentials. You can do this by following this [documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials)
 
 
 
@@ -128,7 +128,8 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Digital Ocean</summary>
 <p>
-To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the ```DIGITALOCEAN_ACCESS_TOKEN``` environment variable. You can get your access token by following the [guide](https://www.digitalocean.com/docs/api/create-personal-access-token/).
+To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the ```DIGITALOCEAN_ACCESS_TOKEN``` environment variable. You can get your access token by following the 
+[documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
 
 In order to deploy polkadot on Digital Ocean you can use the preset configuration file: create.remote.sample-DO.json and issue the following command:  
