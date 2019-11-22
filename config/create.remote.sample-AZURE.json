@@ -1,0 +1,30 @@
+{
+  "name": "azure-testnet",
+  "type": "azure",
+  "nodes": 1,
+  "nonValidatorIndices": [0],
+  "environmentNodeKeys": true,
+  "environmentKeys": true,
+  "keep": true,
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "remote": {
+    "monitoring": true,
+    "projectID": "polkadot-benchmarks",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "azure",
+        "location": "japanwest",
+        "machineType": "Standard_D4s_v3",
+        "validatorBootnode": {
+          "clusterIndex": 1
+        }
+      }
+    ]
+  }
+}

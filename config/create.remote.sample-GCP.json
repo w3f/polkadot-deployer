@@ -1,0 +1,27 @@
+{
+  "name": "gcp-testnet",
+  "type": "gcp",
+  "nodes": 1,
+  "nonValidatorIndices": [0],
+  "environmentNodeKeys": true,
+  "environmentKeys": true,
+  "keep": true,
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "remote": {
+    "monitoring": true,
+    "projectID": "polkadot-benchmarks",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "gcp",
+        "location": "europe-west6-a",
+        "machineType": "n1-standard-4"
+      }
+    ]
+  }
+}
