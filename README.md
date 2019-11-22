@@ -43,19 +43,12 @@ Check the [Troubleshooting section](#troubleshooting) if something goes wrong wi
 
 ## Remote deployments
 
-
-To perform a remote deployment of polkador to a public cloud provider we will follow the same general path. The process differs with each public infrastructure provider. Currently we support GCP, AWS, Azure and Digital Ocean.
-
-
-We will need to specify a number of extra attributes inside the json file with  extra information such as our credentials etc. In order to be able to deploy remotely you will need:
+To perform a remote deployment of polkador to a public cloud provider we will follow the same general path. The process differs with each public infrastructure provider. Currently we support GCP, AWS, Azure and Digital Ocean. To successfuly deploy polkadot these infastructure providers you will first need to setup a cloudflare account and a GCP account. Cloudflare is used to provide a domain name for your deployment and the GCP for maintaining the state of your deployment. Then you will need to provide the spesific attrubutes required for your deployment in each of the supported providers. The required steps are as follows:
 
 * A Linux machine to run this tool (macOS may fail, see the [Troubleshooting section](#troubleshooting) in case you have problems running the tool).
 
-
-* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and
-`CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)
+* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started))
 for details about the API key, the email hould be the one used for registration. Also, your domain name registra should be Cloudflare since this tool relies on Cloudflare for generating SSL certification).
-
 
 * GCP service account and credentials in the form of the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for your service account (see [here](https://cloud.google.com/iam/docs/service-accounts)).
@@ -83,7 +76,7 @@ Download the latest polkadot deployer from git issuing the following command:
 
 
 <details><summary>GCP</summary>
-<p>
+
 To make a deployment on GCP you are required to have the aforementioned GCP service account and project properly configured and meet the following requirements:
 
 * Make sure the service account has sufficient privileges for GKE.
@@ -102,11 +95,11 @@ By default a new cluster will be created with the name polkadot-deployer at your
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
 
  ```node . destroy gcp-testnet```
-</p>
+
 </details>
 
 <details><summary>AWS</summary>
-<p>
+
 To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION` environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
 
 In order to deploy polkadot on AWS you can use a the preset configuration file: ```create.remote.sample-AWS.json``` and issue the following command: 
@@ -118,13 +111,12 @@ The process will start creating an instance of polkadot on AWS. The process with
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
 
  ```node . destroy aws-testnet```  
-</p>
+
 </details>
 
 <details><summary>Azure</summary>
-<p>
-To deploy polkadot on Azure you're required to set your credentials. You can do this by following this 
-[documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials).
+
+To deploy polkadot on Azure you're required to set your credentials. You can do this by following the [documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials).
 
 In order to deploy polkadot on Azure you can use a the preset configuration file: ```create.remote.sample-AZURE.json``` and issue the following command:  
 
@@ -135,13 +127,12 @@ The process will start creating an instance of polkadot on Azure, deployed as a 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
 
  ```node . destroy azure-testnet```  
-</p>
+
 </details>
 
 <details><summary>Digital Ocean</summary>
-<p>
-To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the `DIGITALOCEAN_ACCESS_TOKEN` environment variable. You can get your access token by following the 
-[documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
+
+To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the `DIGITALOCEAN_ACCESS_TOKEN` environment variable. You can get your access token by following the [documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
 In order to deploy polkadot on Digital Ocean you can use the preset configuration file: ```create.remote.sample-DO.json``` and issue the following command:  
 
@@ -152,13 +143,13 @@ The process will start creating an instance of polkadot on Digital Ocean, using 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
 
  ```node . destroy do-testnet```
-</p>
+
 </details>
 
 ### Multi provider deployment
 You may also wish to run a multi AZ multi provider deployments. In order to do so you can use a the preset configuration file: create.remote.sample.json and issue the following command:  
 
-	```node . create --config config/create.remote.sample.json --verbose```  
+```node . create --config config/create.remote.sample.json --verbose```  
 
 The process will start creating an instance of polkadot on AWS, AZURE and GCP.
 
