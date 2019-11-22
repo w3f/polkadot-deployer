@@ -104,7 +104,7 @@ To make a deployment on AWS you're required to configure your AWS credentials. I
 
 In order to deploy polkadot on AWS you can use a the preset configuration file: create.remote.sample-AWS.json and issue the following command:  
 	```node . create --config config/create.remote.sample-AWS.json --verbose```  
-	The process will start creating an instance of polkadot on AWS. The process with create a 2 node cluster using ```m4.large machines``` . An IAM role and a VPC will be created that will contain the Amazon EKS for the deployment along with the required security groups and ingress rules. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/aws).
+	The process will start creating an instance of polkadot on AWS. The process with create a 2 node cluster using ```m4.large machines``` . An IAM role and a VPC will be created that will contain the Amazon EKS for the deployment along with the required security groups and ingress rules. Terraform's remote state will be kept on a google storage bucket. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/aws).
 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
  ```node . destroy aws-testnet```  
