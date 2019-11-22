@@ -43,7 +43,7 @@ Check the [Troubleshooting section](#troubleshooting) if something goes wrong wi
 ## Remote deployments
 
 
-To perform a remote deployment of polkador to a public cloud provider we will follow the same general path. We will need to specify a number of extra attributes inside the json file with  extra information such as our credentials etc. In order to be able to deploy remotely you will need:
+To perform a remote deployment of polkadot to a public cloud provider we will follow the same general path. We will need to specify a number of extra attributes inside the json file with  extra information such as our credentials etc. In order to be able to deploy remotely you will need:
 
 * A Linux machine to run this tool (macOS may fail, see the [Troubleshooting section](#troubleshooting) in case you have problems running the tool).
 
