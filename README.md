@@ -9,7 +9,7 @@ polkadot-deployer allows you to create local or remote cloud deployments of polk
 
 ## Requirements
 
-The tool is meant to work on Linux and MacOS machines. In order to be able to use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1) and
+The tool is meant to work on Linux and MacOS machines. In order to be able to use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1`) and
  [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to 
 [run docker as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
@@ -79,7 +79,10 @@ The required steps to successfully deploy polkadot validator are as follows:
 
 
 Download the latest polkadot deployer from git issuing the following command:  
-```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```npm install``` to install all requirements.
+```git clone git@github.com:w3f/polkadot-deployer.git```
+and run: 
+```npm install```
+to install all requirements.
 
 
 <details><summary>GCP</summary>
@@ -92,11 +95,11 @@ To make a deployment on GCP you are required to have the aforementioned GCP serv
 
 * Kubernetes Engine API and billing enabled for your project (see [here](https://cloud.google.com/kubernetes-engine/docs/quickstart)).
 
-In order to deploy polkadot on GCP you can use a the preset configuration file: create.remote.sample-GCP.json and issue the following command:  
+In order to deploy polkadot on GCP you can use a the preset configuration file: ```create.remote.sample-GCP.json``` and issue the following command:  
 	```node . create --config config/create.remote.sample-GCP.json --verbose```  
 	The process will start creating an instance of polkadot on GCP.
 	
-By default a new cluster will be created with the name polkadot-deployer at your default location with 2 n1-standard-2 nodes under the specified project ID. 
+By default a new cluster will be created with the name polkadot-deployer at your default location with 2 `n1-standard-2` nodes under the specified project ID. 
 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
  ```node . destroy gcp-testnet```
@@ -105,17 +108,12 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>AWS</summary>
 <p>
-To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding 
-```AWS_ACCESS_KEY_ID```
-,
-```AWS_SECRET_ACCESS_KEY```
- and
-```AWS_DEFAULT_REGION```
-environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
+To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION` environment variables. You can set the required values for these variables following the provided 
+[documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
 
-In order to deploy polkadot on AWS you can use a the preset configuration file: create.remote.sample-AWS.json and issue the following command:  
+In order to deploy polkadot on AWS you can use a the preset configuration file: ```create.remote.sample-AWS.json``` and issue the following command:  
 	```node . create --config config/create.remote.sample-AWS.json --verbose```  
-	The process will start creating an instance of polkadot on AWS. The process with create a 2 node cluster using ```m4.large machines``` . An IAM role and a VPC will be created that will contain the Amazon EKS for the deployment along with the required security groups and ingress rules. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/aws).
+	The process will start creating an instance of polkadot on AWS. The process with create a 2 node cluster using `m4.large machines`. An IAM role and a VPC will be created that will contain the Amazon EKS for the deployment along with the required security groups and ingress rules. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/aws).
 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
  ```node . destroy aws-testnet```  
@@ -128,9 +126,9 @@ To deploy polkadot on Azure you're required to set your credentials. You can do 
 
 
 
-In order to deploy polkadot on Azure you can use a the preset configuration file: create.remote.sample-AZURE.json and issue the following command:  
+In order to deploy polkadot on Azure you can use a the preset configuration file: ```create.remote.sample-AZURE.json``` and issue the following command:  
 	```node . create --config config/create.remote.sample-AZURE.json --verbose```  
-	The process will start creating an instance of polkadot on Azure, deployed as a 2 ```Standard_D2s_v3```  node kubernetes cluster on your default location connected through a virtual network. Furthermore the required security groups and inbound rules will be applied to your deployment. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/azure). 
+	The process will start creating an instance of polkadot on Azure, deployed as a 2 `Standard_D2s_v3` node kubernetes cluster on your default location connected through a virtual network. Furthermore the required security groups and inbound rules will be applied to your deployment. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/azure). 
 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
  ```node . destroy azure-testnet```  
@@ -139,15 +137,13 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Digital Ocean</summary>
 <p>
-To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the 
-```DIGITALOCEAN_ACCESS_TOKEN```
- environment variable. You can get your access token by following the 
+To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the `DIGITALOCEAN_ACCESS_TOKEN` environment variable. You can get your token by following the 
 [documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
 
-In order to deploy polkadot on Digital Ocean you can use the preset configuration file: create.remote.sample-DO.json and issue the following command:  
+In order to deploy polkadot on Digital Ocean you can use the preset configuration file: ```create.remote.sample-DO.json``` and issue the following command:  
 	```node . create --config config/create.remote.sample-DO.json --verbose```  
-	The process will start creating an instance of polkadot on Digital Ocean, using a 2 node kubernetes cluster of ```s-4vcpu-8gb``` machines. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/do).
+	The process will start creating an instance of polkadot on Digital Ocean, using a 2 node kubernetes cluster of `s-4vcpu-8gb` machines. You may review the entire process [here](https://github.com/w3f/polkadot-deployer/tree/master/terraform/do).
 
 If you wish to delete your remote deployment of polkadot, you can use the destroy [name] command:  
  ```node . destroy do-testnet```
