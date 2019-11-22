@@ -13,29 +13,25 @@ The tool is meant to work on Linux and MacOS machines. In order to be able to us
 [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to 
 [run docker as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
-## Local deployments (TL;DR method)
+## Installation
+In order to deploy a number of polkadot nodes locally. There are two methods to successfully install polkadot validator.
+* Install polkadot deployer using yarn packet manager by issuing the following command:
+    ```yarn add -g polkadot-deployer```
+* Download the latest polkadot deployer from git issuing the following command and change directory to polkadot-deployer:  
+	```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```yarn install``` to install all requirements.
 
-In order to deploy a number of polkadot nodes locally, we recommend using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The required steps to successfully deploy polkadot validator locally are as follows:
-
-1. Download the latest polkadot deployer from git issuing the following command and change directory to polkadot-deployer:  
-	```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```npm install``` to install all requirements.
-
-
-2. You can deploy the polkadot deployer either using the interactive menu or by using a config file.
-  * In order to create through the interactive menu issue the following command:  
+## Local deployments
+After you have succesfully installed polkadot validator using either method, you may follow the next steps to guide you through the proccess of deployng polkador validator locally on your hardware. This can be done either using the interactive menu or by using a config file.
+* In order to create a validator through the interactive menu issue the following command:  
 	```node . create --verbose```  
-  In order to deploy polkadot using the preset configuration file: `config/create.local.sample.json` and issue the following command:  
+* In order to deploy polkadot using the preset configuration file: `config/create.local.sample.json` issue the following command:  
 	```node . create --config config/create.local.sample.json --verbose```  
-	The process will start creating an instance of polkadot inside a your local kubernetes cluster that will be created as part of the procedure using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
 
+The process will start creating an instance of polkadot inside a your local kubernetes cluster that will be created as part of the procedure using [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind). The entire procedure will take some time, so it might be a good idea to get some coffee at this point.
+Once the procces is done you can also view all your local deployments using the command: ```node . list```
 
-3. Once the local cluster is created, a kubeconfig file will be created in ~/.kube/ with a prefix of kind-config followed by the name of the created cluster (eg: kind-config-my-demo-testnet). This file should be moved or copied to your local .kube directory.
-
-4. Attach kubectl to this kubeconfig file by issuing the command: ```export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"```  You can verify your installation by using the following commands:  ```kubectl cluster-info```  to see an overview of your local installation and ```kubectl get pods``` to see the pods running on your local cluster. You can also view all your local deployments using the command: ```node . list```
-
-5. At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
-
-6. Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```node . destroy testnet5```
+At this point you can attach to the local polkadot web socket by visiting the websockets endpoint available at ws://127.0.0.1:11000 Furthermore you at this point you will be presented with the raw seeds for the created accounts, including the nodeKey, peerId, stash address and seed etc.
+Once you are done with your local deployment of polkadot, you can delete your deployment using the destroy [name] command: ```node . destroy testnet5```
 More information on the polkadot-deployer usage commands can be found in the [usage](#usage) section.
 
 
@@ -116,7 +112,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Azure</summary>
 
-To deploy polkadot on Azure you're required to set your credentials. You can do this by following the [documentation](https://docs.microsoft.com/en-us/azure/app-service/deploy-configure-credentials).
+To deploy polkadot on Azure you're required to set  `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `TF_VAR_client_id` and `TF_VAR_client_secret` environmental variables. You can find your's by following the [documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks). 
 
 In order to deploy polkadot on Azure you can use a the preset configuration file: ```create.remote.sample-AZURE.json``` and issue the following command:  
 
@@ -147,7 +143,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 </details>
 
 ### Multi provider deployment
-You may also wish to run a multi AZ multi provider deployments. In order to do so you can use a the preset configuration file: create.remote.sample.json and issue the following command:  
+You may also wish to run a multi AZ multi-provider deployment. In order to do so, you can create a configuration file based on your requirements and create your deployment from there. Keep in mind that you can use any combination of these providers as you see fit. The configuration file: create.remote.sample.json exists only for the purpose of the tutorial and as an example of what you can do. In order to deploy using the sample configuration you need to issue the following command:  
 
 ```node . create --config config/create.remote.sample.json --verbose```  
 
