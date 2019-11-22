@@ -10,7 +10,8 @@ polkadot-deployer allows you to create local or remote cloud deployments of polk
 ## Requirements
 
 The tool is meant to work on Linux and MacOS machines. In order to be able to use the tool you will require to have installed recent versions of [node](https://nodejs.org/en/download/) (developed and tested with `v10.7.0` and `v10.15.1) and
- [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to [run `docker` as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
+ [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to 
+[run docker as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
 ## Local deployments (TL;DR method)
 
@@ -51,10 +52,15 @@ We will need to specify a number of extra attributes inside the json file with  
 * A Linux machine to run this tool (macOS may fail, see the [Troubleshooting section](#troubleshooting) in case you have problems running the tool).
 
 
-
 * Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and
 `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)
 for details about the API key, the email hould be the one used for registration. Also, your domain name registra should be Cloudflare since this tool relies on Cloudflare for generating SSL certification).
+
+* A project on GCP.
+
+* GCP service account and credentials in the form of the environment variable
+`GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for your service account (see [here](https://cloud.google.com/iam/docs/service-accounts).
+The GCP configuration is required for use by the process to keep the built state. 
 
 * Configure specific requirements that depend on your infrastructure provider. More details on this subject are described on the following section for each of the specific providers.
 
@@ -77,11 +83,9 @@ Download the latest polkadot deployer from git issuing the following command:
 
 <details><summary>GCP</summary>
 <p>
-To make a deployment on GCP the following conditions are required:
-* A project on GCP.
+To make a deployment on GCP you are required to have the aforementioned GCP service account and project properly configured and the following requirements:
 
-* GCP service account and credentials in the form of the environment variable
-`GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for your service account (see [here](https://cloud.google.com/iam/docs/service-accounts) for details and make sure the service account has sufficient privileges for GKE).
+* Make sure the service account has sufficient privileges for GKE.
 
 * Enough quota on GCP to create the required resources (terraform will show the exact errors if this condition is not met).
 
@@ -100,7 +104,13 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>AWS</summary>
 <p>
-To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding ```AWS_ACCESS_KEY_ID```, ```AWS_SECRET_ACCESS_KEY``` and ```AWS_DEFAULT_REGION``` environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
+To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding 
+```AWS_ACCESS_KEY_ID```
+,
+```AWS_SECRET_ACCESS_KEY```
+ and
+```AWS_DEFAULT_REGION```
+environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
 
 In order to deploy polkadot on AWS you can use a the preset configuration file: create.remote.sample-AWS.json and issue the following command:  
 	```node . create --config config/create.remote.sample-AWS.json --verbose```  
@@ -128,7 +138,9 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 <details><summary>Digital Ocean</summary>
 <p>
-To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the ```DIGITALOCEAN_ACCESS_TOKEN``` environment variable. You can get your access token by following the 
+To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the 
+```DIGITALOCEAN_ACCESS_TOKEN```
+ environment variable. You can get your access token by following the 
 [documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
 
