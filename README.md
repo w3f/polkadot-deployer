@@ -43,13 +43,13 @@ To perform a remote deployment of polkadot to a public cloud provider we will fo
 
 * A Linux machine to run this tool (macOS may fail, see the [Troubleshooting section](#troubleshooting) in case you have problems running the tool).
 
-* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)) for details about the API key, the email hould be the one used for registration. Also, your domain name registra should be Cloudflare since this tool relies on Cloudflare for generating SSL certification). The procces will register your deployment on Cloudflare and create the required subdomains and certificates.
+* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)) for details about the API key, the email should be the one used for registration. Also, your domain name registrar should be Cloudflare since this tool relies on Cloudflare for generating SSL certification). The process will register your deployment on Cloudflare and create the required subdomains and certificates.
 
 * GCP service account and credentials in the form of the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for your service account (see [here](https://cloud.google.com/iam/docs/service-accounts)).
 The GCP configuration is required for use by the process to keep the built state. 
 
-* A project on GCP. Keep the projectID and domain handly as your will need to edit the config files so that they contain this information. A bucket will be created under the particular projectID that will be used to store the project's terraform backend.
+* A project on GCP. Keep the projectID and domain handly as you will need to edit the config files so that they contain this information. A bucket will be created under the particular projectID that will be used to store the project's terraform backend.
 
 * Configure specific requirements that depend on your infrastructure provider. More details on this subject are described on the following section for each of the specific providers.
 
