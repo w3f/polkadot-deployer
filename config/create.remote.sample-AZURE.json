@@ -1,10 +1,7 @@
 {
   "name": "azure-testnet",
   "type": "azure",
-  "nodes": 1,
-  "nonValidatorIndices": [0],
-  "environmentNodeKeys": true,
-  "environmentKeys": true,
+  "nodes": 2,
   "keep": true,
   "resources": {
     "requests": {
@@ -13,8 +10,7 @@
     }
   },
   "remote": {
-    "monitoring": true,
-    "projectID": "polkadot-benchmarks",
+    "projectID": "my-gcp-project-id",
     "domain": "foo.bar",
     "clusters": [
       {
