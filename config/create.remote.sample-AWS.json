@@ -1,7 +1,7 @@
 {
   "name": "aws-testnet",
   "type": "aws",
-  "nodes": 1,
+  "nodes": 2,
   "keep": true,
   "resources": {
     "requests": {
