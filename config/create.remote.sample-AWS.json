@@ -10,7 +10,6 @@
     }
   },
   "remote": {
-    "monitoring": true,
     "projectID": "my-gcp-project-id",
     "domain": "foo.bar",
     "clusters": [
