@@ -43,16 +43,13 @@ To perform a remote deployment of polkadot to a public cloud provider we will fo
 
 * A Linux machine to run this tool (macOS may fail, see the [Troubleshooting section](#troubleshooting) in case you have problems running the tool).
 
-* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started))
-for details about the API key, the email hould be the one used for registration. Also, your domain name registra should be Cloudflare since this tool relies on Cloudflare for generating SSL certification).
+* Cloudflare credentials as two environment variables `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_KEY` (see [here](https://api.cloudflare.com/#getting-started)) for details about the API key, the email hould be the one used for registration. Also, your domain name registra should be Cloudflare since this tool relies on Cloudflare for generating SSL certification). The procces will register your deployment on Cloudflare and create the required subdomains and certificates.
 
 * GCP service account and credentials in the form of the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` with the path of the json credentials file for your service account (see [here](https://cloud.google.com/iam/docs/service-accounts)).
 The GCP configuration is required for use by the process to keep the built state. 
 
-* A project on GCP.
-
-* Keep the projectID and domain handly as your will need to edit the config files so that they contain this information.
+* A project on GCP. Keep the projectID and domain handly as your will need to edit the config files so that they contain this information. A bucket will be created under the particular projectID that will be used to store the project's terraform backend.
 
 * Configure specific requirements that depend on your infrastructure provider. More details on this subject are described on the following section for each of the specific providers.
 
@@ -100,7 +97,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 To make a deployment on AWS you're required to configure your AWS credentials. It's recommended to do so using the corresponding `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION` environment variables. You can set the required values for these variables following the provided [documentation](https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html).
 
-In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample-AWS.json``` so that it contains your projectID and domain. Then you can issue the following command: 
+In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample-AWS.json``` so that it contains your projectID and domain. The domain must be a domain that can be controlled by the given cloudflare account. Then you can issue the following command: 
  
  ```node . create --config config/create.remote.sample-AWS.json --verbose``` 
  
@@ -116,7 +113,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 To deploy polkadot on Azure you're required to set  `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, `TF_VAR_client_id` and `TF_VAR_client_secret` environmental variables. You can find your's by following the [documentation](https://docs.microsoft.com/en-us/azure/terraform/terraform-create-k8s-cluster-with-tf-and-aks). 
 
-In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample-AZURE.json``` so that it contains your projectID and domain. Then you can issue the following command:  
+In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample-AZURE.json``` so that it contains your projectID and domain. The domain must be a domain that can be controlled by the given cloudflare account. Then you can issue the following command:  
 
  ```node . create --config config/create.remote.sample-AZURE.json --verbose```  
 
@@ -132,7 +129,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 
 To make a deployment on Digital Ocean you're required to configure your Digital Ocean's credentials. You can do this by setting the `DIGITALOCEAN_ACCESS_TOKEN` environment variable. You can get your access token by following the [documentation](https://www.digitalocean.com/docs/api/create-personal-access-token/).
 
-In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample-DO.json``` so that it contains your projectID and domain. Then you can issue the following command: 
+In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample-DO.json``` so that it contains your projectID and domain. The domain must be a domain that can be controlled by the given cloudflare account. Then you can issue the following command: 
 
  ```node . create --config config/create.remote.sample-DO.json --verbose```  
 
@@ -145,7 +142,7 @@ If you wish to delete your remote deployment of polkadot, you can use the destro
 </details>
 
 ### Multi provider deployment
-You may also wish to run a multi AZ multi-provider deployment. In order to do so, you can create a configuration file based on your requirements and create your deployment from there. Keep in mind that you can use any combination of these providers as you see fit. The configuration file: create.remote.sample.json exists only for the purpose of the tutorial and as an example of what you can do. In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample.json``` so that it contains your projectID and domain. Then you can issue the following command: 
+You may also wish to run a multi AZ multi-provider deployment. In order to do so, you can create a configuration file based on your requirements and create your deployment from there. Keep in mind that you can use any combination of these providers as you see fit. The configuration file: create.remote.sample.json exists only for the purpose of the tutorial and as an example of what you can do. In order to deploy polkadot on GCP you need to edit the preset configuration file: ```config/create.remote.sample.json``` so that it contains your projectID and domain. The domain must be a domain that can be controlled by the given cloudflare account. Then you can issue the following command: 
 
 ```node . create --config config/create.remote.sample.json --verbose```  
 
