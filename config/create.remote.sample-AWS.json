@@ -11,7 +11,7 @@
   },
   "remote": {
     "monitoring": true,
-    "projectID": "polkadot-benchmarks",
+    "projectID": "my-gcp-project-id",
     "domain": "foo.bar",
     "clusters": [
       {
