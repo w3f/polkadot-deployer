@@ -1,0 +1,24 @@
+{
+  "name": "gcp-testnet",
+  "type": "gcp",
+  "nodes": 2,
+  "keep": true,
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "remote": {
+    "monitoring": true,
+    "projectID": "my-gcp-project-id",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "gcp",
+        "location": "europe-west6-a",
+        "machineType": "n1-standard-4"
+      }
+    ]
+  }
+}

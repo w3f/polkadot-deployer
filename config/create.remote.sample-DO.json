@@ -1,0 +1,24 @@
+{
+  "name": "do-testnet",
+  "type": "do",
+  "nodes": 2,
+  "keep": true,
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "remote": {
+    "monitoring": true,
+    "projectID": "my-gcp-project-id",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "do",
+        "location": "europe-west6-a",
+        "machineType": "n1-standard-4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "aws-testnet",
+  "type": "aws",
+  "nodes": 2,
+  "keep": true,
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "remote": {
+    "projectID": "my-gcp-project-id",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "aws",
+        "location": "us-west-2",
+        "machineType": "m4.xlarge"
+      }
+    ]
+  }
+}

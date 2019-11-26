@@ -1,0 +1,26 @@
+{
+  "name": "azure-testnet",
+  "type": "azure",
+  "nodes": 2,
+  "keep": true,
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "remote": {
+    "projectID": "my-gcp-project-id",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "azure",
+        "location": "japanwest",
+        "machineType": "Standard_D4s_v3",
+        "validatorBootnode": {
+          "clusterIndex": 1
+        }
+      }
+    ]
+  }
+}
