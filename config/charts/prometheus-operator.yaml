@@ -47,6 +47,11 @@ alertmanager:
     - name: 'webhook'
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
+    - name: opsGenie-receiver
+      opsgenie_configs:
+      - api_key: {{ env "OPSGENIE_TOKEN" }}
+        api_url: {{ env "OPSGENIE_API_URL" | default "https://api.eu.opsgenie.com/v2/alerts" }}
+
   alertmanagerSpec:
     resources:
       limits:
