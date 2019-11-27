@@ -2,7 +2,7 @@
   "name": "testnet5",
   "type": "local",
   "nodes": 4,
-    "image": {
+  "image": {
     "repo": "web3f/polkadot",
     "tag": "kusama-v0.6.5-tx-enabled"
   }
