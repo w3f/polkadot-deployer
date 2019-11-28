@@ -10,12 +10,12 @@ resource "azurerm_kubernetes_cluster" "polkadot-{{ clusterName }}" {
   dns_prefix          = "polkadot-{{ clusterName }}"
   kubernetes_version  = var.k8s_version
 
-  agent_pool_profile {
+  default_node_pool {
     name            = "default"
-    count           = var.node_count
+    node_count      = var.node_count
     vm_size         = var.machine_type
-    os_type         = "Linux"
     os_disk_size_gb = 30
+    type            = "AvailabilitySet"
   }
 
   service_principal {
