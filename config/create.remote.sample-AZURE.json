@@ -3,6 +3,7 @@
   "type": "azure",
   "nodes": 2,
   "keep": true,
+  "opsgenieEnabled": false,
   "resources": {
     "requests": {
       "memory": "9Gi",
@@ -10,6 +11,7 @@
     }
   },
   "remote": {
+    "monitoring": true,
     "projectID": "my-gcp-project-id",
     "domain": "foo.bar",
     "clusters": [

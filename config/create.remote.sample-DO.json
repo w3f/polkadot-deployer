@@ -3,6 +3,7 @@
   "type": "do",
   "nodes": 2,
   "keep": true,
+  "opsgenieEnabled": false,
   "resources": {
     "requests": {
       "memory": "9Gi",

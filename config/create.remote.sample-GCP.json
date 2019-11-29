@@ -3,6 +3,10 @@
   "type": "gcp",
   "nodes": 2,
   "keep": true,
+  "opsgenie": {
+    "enabled": true,
+    "url": "https://api.eu.opsgenie.com/v2/alerts"
+  },
   "resources": {
     "requests": {
       "memory": "9Gi",

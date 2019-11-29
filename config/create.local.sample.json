@@ -1,6 +1,10 @@
 {
   "name": "testnet5",
   "type": "local",
+  "opsgenie": {
+    "enabled": false,
+    "url": "https://api.eu.opsgenie.com/v2/alerts"
+  },
   "nodes": 4,
     "image": {
     "repo": "web3f/polkadot",

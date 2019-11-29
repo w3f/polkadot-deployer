@@ -3,6 +3,7 @@
   "type": "gcp",
   "nodes": 2,
   "keep": true,
+  "opsgenieEnabled": false,
   "image": {
     "repo": "web3f/polkadot",
     "tag": "kusama-v0.6.5-tx-enabled"
