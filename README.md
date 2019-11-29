@@ -57,7 +57,11 @@ The GCP configuration is required for use by the process to keep the built state
 
 * Read through the [usage](#troubleshooting) section.
 
+---
+**NOTE**
 
+* Optionally if you wish to use [opsgenie](https://www.atlassian.com/software/opsgenie) to receive notifications regarding alerts from your deployment, you will need to set an environmental variable `OPSGENIE_TOKEN` with your token. By default the deployment will use 'https://api.eu.opsgenie.com/v2/alerts' as the API's URL. In case you require a different API endpoint you will need to also set the environmental variable `OPSGENIE_URL` appropriately (see [here](https://docs.opsgenie.com/docs/european-service-region) for details).
+---
 ---
 **NOTE**
 
