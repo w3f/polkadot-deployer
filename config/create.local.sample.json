@@ -1,11 +1,14 @@
 {
   "name": "testnet5",
   "type": "local",
-  "opsgenie": {
-    "enabled": false,
-    "url": "https://api.eu.opsgenie.com/v2/alerts"
+  "monitoring": {
+    "enabled": true,
+    "opsgenie": {
+      "enabled": false,
+      "url": "https://api.eu.opsgenie.com/v2/alerts"
+     }
   },
-  "nodes": 4,
+  "nodes": 2,
     "image": {
     "repo": "web3f/polkadot",
     "tag": "kusama-v0.6.5-tx-enabled"

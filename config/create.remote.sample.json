@@ -6,9 +6,12 @@
   "environmentNodeKeys": true,
   "environmentKeys": true,
   "keep": true,
-  "opsgenie": {
+  "monitoring": {
     "enabled": true,
-    "url": "https://api.eu.opsgenie.com/v2/alerts"
+    "opsgenie": {
+      "enabled": false,
+      "url": "https://api.eu.opsgenie.com/v2/alerts"
+     }
   },
   "resources": {
     "requests": {
@@ -17,7 +20,6 @@
     }
   },
   "remote": {
-    "monitoring": true,
     "projectID": "polkadot-benchmarks",
     "domain": "foo.bar",
     "clusters": [
