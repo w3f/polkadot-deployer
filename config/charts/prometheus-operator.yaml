@@ -43,7 +43,7 @@ alertmanager:
       repeat_interval: 12h
       receiver: default-webhook
       routes:
-    #  {{ if .Values.opsgeniEnabled }}
+    #  {{ if .Values.opsgenie.enabled }}
       - receiver: opsGenie-receiver
         match:
           severity: critical
