@@ -43,12 +43,12 @@ alertmanager:
       repeat_interval: 12h
       receiver: default-webhook
       routes:
-    #  {{ if .Values.opsgenie.enabled }}
+    {{- if .Values.opsgenie.enabled }}
       - receiver: opsGenie-receiver
         match:
           severity: critical
         continue: true
-    #  {{ end }}
+    {{- end }}
       - receiver: watcher-webhook
         match:
           app: polkadot-watcher
@@ -61,13 +61,13 @@ alertmanager:
     - name: watcher-webhook
       webhook_configs:
       - url:  "http://watcher-matrixbot:8080/skill/alertmanager/webhook"
-  #  {{ if .Values.opsgeniEnabled }}
+  {{- if .Values.opsgenie.enabled }}
     - name: opsGenie-receiver
       opsgenie_configs:
       - send_resolved: true
-        api_key: {{ .Values.opsgenie_token }} # {{ .Values.opsgenie_token | default "opsgenie_token" }}
-        api_url: {{ .Values.opsgenie_url }} # {{ .Values.opsgenie_url | default "https://api.eu.opsgenie.com/v2/alerts" }}
-  #  {{ end }}
+        api_key: {{ .Values.opsgenie.token }} # {{ .Values.opsgenie_token | default "opsgenie_token" }}
+        api_url: {{ .Values.opsgenie.url }} # {{ .Values.opsgenie_url | default "https://api.eu.opsgenie.com/v2/alerts" }}
+  {{- end }}
   alertmanagerSpec:
     resources:
       limits:
