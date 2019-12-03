@@ -4,8 +4,9 @@
   "monitoring": {
     "enabled": true,
     "opsgenie": {
-      "enabled": false,
-      "url": "https://api.eu.opsgenie.com/v2/alerts"
+      "enabled": true,
+      "url": "https://api.eu.opsgenie.com/v2/alerts",
+      "token": "23423234243"
      }
   },
   "nodes": 2,
