@@ -2,11 +2,11 @@
   "name": "testnet5",
   "type": "local",
   "monitoring": {
-    "enabled": true,
+    "enabled": false,
     "opsgenie": {
-      "enabled": true,
-      "url": "https://api.eu.opsgenie.com/v2/alerts",
-      "token": "23423234243"
+      "enabled": false,
+      "url": "https://api.eu.opsgenie.com/",
+      "token": "aaaaaaa-bbbb-cccc-dddd-eeeeeeeee"
      }
   },
   "nodes": 2,

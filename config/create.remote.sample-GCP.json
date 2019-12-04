@@ -7,7 +7,8 @@
     "enabled": true,
     "opsgenie": {
       "enabled": false,
-      "url": "https://api.eu.opsgenie.com/v2/alerts"
+      "url": "https://api.eu.opsgenie.com/",
+      "token": "aaaaaaa-bbbb-cccc-dddd-eeeeeeeee"
      }
   },
   "resources": {

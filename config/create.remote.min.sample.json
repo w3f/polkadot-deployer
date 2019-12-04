@@ -3,10 +3,13 @@
   "type": "gcp",
   "nodes": 2,
   "keep": true,
-  "monitoring": true,
-  "opsgenie": {
-    "enabled": false,
-    "url": "https://api.eu.opsgenie.com/v2/alerts"
+  "monitoring": {
+    "enabled": true,
+    "opsgenie": {
+      "enabled": false,
+      "url": "https://api.eu.opsgenie.com/",
+      "token": "aaaaaaa-bbbb-cccc-dddd-eeeeeeeee"
+     }
   },
   "image": {
     "repo": "web3f/polkadot",

@@ -37,37 +37,62 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
+      {{#if opsgenieEnabled}}
+      opsgenie_api_url: https://api.eu.opsgenie.com/
+      opsgenie_api_key: {{ opsgenieToken }}
+      {{/if}}
     route:
-      group_by: ['alertname']
+      group_by: ['alertname', 'priority']
       group_wait: 30s
       group_interval: 5m
-      repeat_interval: 12h
-      receiver: default-webhook
+      repeat_interval: 3h
+      receiver: matrixbot
       routes:
       {{#if opsgenieEnabled}}
-      - receiver: opsgenie
-        match:
+      - match:
+          alertname: CPUThrottlingHigh
+        receiver: opsgenie
+        continue: true
+      - match:
+          alertname: NodeDiskRunningFull
+        receiver: opsgenie
+        continue: true
+      - match:
+          alertname: KubePodNotReady
+        receiver: opsgenie
+        continue: true
+      - match:
+          alertname: KubePodCrashLooping
+        receiver: opsgenie
+        continue: true
+      - match:
+          alertname: KubeMemOvercommit
+        receiver: opsgenie
+        continue: true
+      - match:
           severity: critical
+        receiver: opsgenie
         continue: true
       {{/if}}
-      - receiver: watcher-webhook
-        match:
+      - match:
           app: polkadot-watcher
+        receiver: watcher
         continue: true
-      - receiver: default-webhook
+      - receiver: watcher
+        match:
+          app:
+        continue: true
     receivers:
-    - name: default-webhook
+    - name: matrixbot
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
-    - name: watcher-webhook
+    - name: watcher
       webhook_configs:
       - url:  "http://watcher-matrixbot:8080/skill/alertmanager/webhook"
     {{#if opsgenieEnabled}}
-    - name: opsGenie-receiver
+    - name: opsgenie
       opsgenie_configs:
-      - send_resolved: true
-        api_key: {{ opsgenieToken }}
-        api_url: {{ opsgenieUrl }}
+      - api_key:
     {{/if}}
   alertmanagerSpec:
     resources:
