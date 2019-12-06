@@ -1,17 +1,5 @@
-additionalPrometheusRules:
-- name: heartbeat
-  groups:
-  - name: heartbeat
-    rules:
-    - alert: heartbeat
-      expr: vector(1)
-      labels:
-        severity: heartbeat
-      annotations:
-        message: heartbeat alert. no action required
-        summary: heartbeat alert. no action required
-        documentation: None
-        runbook_url: None
+defaultRules:
+  create: false
 kubeDns:
   enabled: false
 coreDns:
@@ -23,8 +11,6 @@ grafana:
 nodeExporter:
   enabled: false
 prometheus:
-  # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-  rule_files:
   prometheusSpec:
     ruleSelector:
       matchExpressions:
@@ -63,26 +49,6 @@ alertmanager:
       receiver: matrixbot
       routes:
       {{#if opsgenieEnabled}}
-      - match:
-          alertname: CPUThrottlingHigh
-        receiver: opsgenie
-        continue: true
-      - match:
-          alertname: NodeDiskRunningFull
-        receiver: opsgenie
-        continue: true
-      - match:
-          alertname: KubePodNotReady
-        receiver: opsgenie
-        continue: true
-      - match:
-          alertname: KubePodCrashLooping
-        receiver: opsgenie
-        continue: true
-      - match:
-          alertname: KubeMemOvercommit
-        receiver: opsgenie
-        continue: true
       - match:
           severity: critical
         receiver: opsgenie
