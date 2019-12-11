@@ -173,6 +173,37 @@ describe('Files', () => {
         fs.existsSync(terraformBinTargetPath).should.be.true;
       });
     });
+    describe('copyChartTeplates', () => {
+      it('should copy the charts template directory', async () => {
+        const tmpobj = tmp.dirSync();
+        const dataPath = tmpobj.name;
+        const st = sandbox.stub(ospath, 'data');
+        st.returns(dataPath);
+
+        const subject = new Files();
+
+        const templatesDirName = 'templates';
+        const name = 'test';
+
+        subject.copyChartTemplates(name);
+
+        const valuesPath = subject.valuesPath(name);
+        const expectedTemplatesDirPath = path.join(valuesPath, templatesDirName);
+
+        fs.existsSync(expectedTemplatesDirPath).should.be.true;
+
+        const actualFiles = await fs.readdir(expectedTemplatesDirPath);
+
+        const origin = path.join(subject.projectConfigPath(), 'charts', templatesDirName)
+        const expectedFiles = await fs.readdir(origin);
+
+        actualFiles.length.should.be.equal(expectedFiles.length);
+
+        actualFiles.forEach((file, index) => {
+          file.should.equal(expectedFiles[index]);
+        });
+      });
+    });
   });
 
   describe('readJSON', () => {
