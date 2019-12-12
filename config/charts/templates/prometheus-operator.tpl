@@ -37,8 +37,10 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
+      {{#if opsgenieEnabled}}
       opsgenie_api_url: https://api.eu.opsgenie.com/
-      opsgenie_api_key: opsgenie_token
+      opsgenie_api_key: {{ opsgenieToken }}
+      {{/if}}
     route:
       group_by: ['alertname', 'priority']
       group_wait: 30s
@@ -46,28 +48,21 @@ alertmanager:
       repeat_interval: 3h
       receiver: matrixbot
       routes:
+      {{#if opsgenieEnabled}}
       - match:
           severity: critical
         receiver: opsgenie
         continue: true
-      - match:
-          app: polkadot-watcher
-        receiver: watcher
-        continue: true
-      - receiver: watcher
-        match:
-          app:
-        continue: true
+      {{/if}}
     receivers:
     - name: matrixbot
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
-    - name: watcher
-      webhook_configs:
-      - url:  "http://watcher-matrixbot:8080/skill/alertmanager/webhook"
+    {{#if opsgenieEnabled}}
     - name: opsgenie
       opsgenie_configs:
-      - api_key:
+      - api_key: ''
+    {{/if}}
   alertmanagerSpec:
     resources:
       limits:

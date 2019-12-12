@@ -3,6 +3,13 @@
   "type": "gcp",
   "nodes": 2,
   "keep": true,
+  "monitoring": {
+    "enabled": true,
+    "opsgenie": {
+      "enabled": false,
+      "url": "https://api.eu.opsgenie.com/"
+     }
+  },
   "resources": {
     "requests": {
       "memory": "9Gi",
@@ -10,7 +17,6 @@
     }
   },
   "remote": {
-    "monitoring": true,
     "projectID": "my-gcp-project-id",
     "domain": "foo.bar",
     "clusters": [
