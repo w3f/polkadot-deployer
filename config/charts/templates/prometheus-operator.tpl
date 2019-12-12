@@ -61,7 +61,7 @@ alertmanager:
     {{#if opsgenieEnabled}}
     - name: opsgenie
       opsgenie_configs:
-      - api_key:
+      - api_key: ''
     {{/if}}
   alertmanagerSpec:
     resources:
