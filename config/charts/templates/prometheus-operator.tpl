@@ -54,10 +54,6 @@ alertmanager:
         receiver: opsgenie
         continue: true
       {{/if}}
-      - receiver: watcher
-        match:
-          app:
-        continue: true
     receivers:
     - name: matrixbot
       webhook_configs:
