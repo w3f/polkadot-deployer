@@ -54,10 +54,6 @@ alertmanager:
         receiver: opsgenie
         continue: true
       {{/if}}
-      - match:
-          app: polkadot-watcher
-        receiver: watcher
-        continue: true
       - receiver: watcher
         match:
           app:
@@ -66,9 +62,6 @@ alertmanager:
     - name: matrixbot
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
-    - name: watcher
-      webhook_configs:
-      - url:  "http://watcher-matrixbot:8080/skill/alertmanager/webhook"
     {{#if opsgenieEnabled}}
     - name: opsgenie
       opsgenie_configs:
