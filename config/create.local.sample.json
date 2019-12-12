@@ -2,9 +2,9 @@
   "name": "testnet5",
   "type": "local",
   "monitoring": {
-    "enabled": true,
+    "enabled": false,
     "opsgenie": {
-      "enabled": true,
+      "enabled": false,
       "url": "https://api.eu.opsgenie.com/"
      }
   },
