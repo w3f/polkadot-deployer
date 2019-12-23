@@ -6,7 +6,7 @@
     "loki-stack": "0.24.0",
     "matrixbot": "v0.6.0",
     "nginx-ingress": "1.26.2",
-    "polkadot": "v0.15.3",
+    "polkadot": "v0.16.0",
     "prometheus-node-exporter": "1.8.0",
     "prometheus-operator": "8.3.3",
     "substrate-telemetry": "v0.10.5"
