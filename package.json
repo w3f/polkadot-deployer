@@ -1,6 +1,6 @@
 {
   "name": "polkadot-deployer",
-  "version": "0.21.1",
+  "version": "0.22.0",
   "description": "Tool for deploying Polkadot nodes",
   "main": "index.js",
   "scripts": {
