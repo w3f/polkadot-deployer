@@ -8,6 +8,6 @@
   "nodes": 2,
     "image": {
     "repo": "web3f/polkadot",
-    "tag": "kusama-v0.7.9"
+    "tag": "kusama-v0.7.18"
   }
 }
