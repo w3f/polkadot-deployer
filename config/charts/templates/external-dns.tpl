@@ -1,3 +1,3 @@
 cloudflare:
-  apiKey: {{ cloudflareApiKey }}
-  email: {{ cloudflareEmail }}
+  apiKey: "{{ cloudflareApiKey }}"
+  email: "{{ cloudflareEmail }}"
