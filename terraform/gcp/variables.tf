@@ -15,5 +15,5 @@ variable "machine_type" {
 }
 
 variable "k8s_version" {
-  default = "1.15.7-gke.23"
+  default = "1.15.9-gke.12"
 }
