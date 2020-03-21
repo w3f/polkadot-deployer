@@ -61,7 +61,7 @@ resource "google_compute_firewall" "polkadot" {
 
   allow {
     protocol = "tcp"
-    ports    = ["30100-30200"]
+    ports    = ["30100-30101"]
   }
 
   source_ranges = ["0.0.0.0/0"]
