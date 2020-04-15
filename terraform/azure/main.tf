@@ -22,6 +22,8 @@ resource "azurerm_kubernetes_cluster" "polkadot-{{ clusterName }}" {
     client_id     = var.client_id
     client_secret = var.client_secret
   }
+
+  enable_pod_security_policy = true
 }
 
 resource "azurerm_virtual_network" "polkadot-{{ clusterName }}" {
