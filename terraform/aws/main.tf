@@ -251,6 +251,27 @@ resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
   type                     = "ingress"
 }
 
+resource "aws_network_acl" "polkadot-acl" {
+  vpc_id = "${aws_vpc.polkadot.id}"
+
+  // deny access to AWS Instance Metadata API
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "deny"
+    cidr_block = "169.254.169.254/32"
+    from_port  = 80
+    to_port    = 80
+  }
+
+  tags = "${
+    map(
+     "Name", "terraform-eks-polkadot-node",
+     "kubernetes.io/cluster/${var.cluster_name}", "owned",
+    )
+  }"
+}
+
 data "aws_ami" "eks-worker" {
   filter {
     name   = "name"
@@ -307,8 +328,9 @@ resource "aws_autoscaling_group" "polkadot" {
 resource "null_resource" "apply_auth_cm" {
   provisioner "local-exec" {
     command = <<EOT
-echo "${local.config_map_aws_auth}" | tee cm.yaml
-echo "${local.kubeconfig}" | tee kubeconfig
+sleep 10
+echo "${local.config_map_aws_auth}" > cm.yaml
+echo "${local.kubeconfig}" > kubeconfig
 kubectl apply -f ./cm.yaml
 rm -f kubeconfig
 EOT
