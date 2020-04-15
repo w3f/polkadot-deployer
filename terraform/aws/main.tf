@@ -221,6 +221,16 @@ resource "aws_security_group" "polkadot-node" {
   }"
 }
 
+resource "aws_security_group_rule" "polkadot-node-ingress-self" {
+  description              = "Allow node to communicate with each other"
+  from_port                = 0
+  protocol                 = "-1"
+  security_group_id        = "${aws_security_group.polkadot-node.id}"
+  source_security_group_id = "${aws_security_group.polkadot-node.id}"
+  to_port                  = 65535
+  type                     = "ingress"
+}
+
 resource "aws_security_group_rule" "polkadot-node-ingress-cluster" {
   description              = "Allow worker Kubelets and pods to receive communication from the cluster control plane"
   from_port                = 1025
