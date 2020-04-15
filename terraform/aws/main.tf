@@ -328,8 +328,9 @@ resource "aws_autoscaling_group" "polkadot" {
 resource "null_resource" "apply_auth_cm" {
   provisioner "local-exec" {
     command = <<EOT
-echo "${local.config_map_aws_auth}" | tee cm.yaml
-echo "${local.kubeconfig}" | tee kubeconfig
+sleep 10
+echo "${local.config_map_aws_auth}" > cm.yaml
+echo "${local.kubeconfig}" > kubeconfig
 kubectl apply -f ./cm.yaml
 rm -f kubeconfig
 EOT
