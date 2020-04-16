@@ -22,7 +22,7 @@ variable "k8s_version" {
 }
 
 variable "image_type" {
-  default = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
+  default = "ubuntu-eks/k8s_1.15/images/*"
 }
 
 variable "image_owner" {
