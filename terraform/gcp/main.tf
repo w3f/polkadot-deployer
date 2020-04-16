@@ -41,11 +41,6 @@ resource "google_container_cluster" "primary" {
 
   network = "${google_compute_network.network.self_link}"
   subnetwork = "${google_compute_subnetwork.subnetwork.self_link}"
-
-  provider = google-beta
-  pod_security_policy_config {
-    enabled = true
-  }
 }
 
 resource "google_compute_network" "network" {
