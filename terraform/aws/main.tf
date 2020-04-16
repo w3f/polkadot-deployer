@@ -272,7 +272,7 @@ resource "aws_network_acl" "polkadot-acl" {
   }"
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "eks-worker" {
   most_recent = true
 
   filter {
