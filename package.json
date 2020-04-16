@@ -23,7 +23,7 @@
     "url": "git+https://github.com/w3f/polkadot-deployer.git"
   },
   "author": "W3F Infrastructure Team <devops@web3.foundation>",
-  "license": "GPL-3.0",
+  "license": "Apache-2",
   "bugs": {
     "url": "https://github.com/w3f/polkadot-deployer/issues"
   },
