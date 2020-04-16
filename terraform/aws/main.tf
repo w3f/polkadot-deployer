@@ -272,14 +272,20 @@ resource "aws_network_acl" "polkadot-acl" {
   }"
 }
 
-data "aws_ami" "eks-worker" {
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
   filter {
     name   = "name"
-    values = ["amazon-eks-node-${aws_eks_cluster.polkadot.version}-v*"]
+    values = [var.image_type]
   }
 
-  most_recent = true
-  owners      = ["602401143452"] # Amazon Account ID
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = [var.image_owner]
 }
 
 locals {

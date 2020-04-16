@@ -20,3 +20,11 @@ variable "machine_type" {
 variable "k8s_version" {
   default = "1.15"
 }
+
+variable "image_type" {
+  default = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
+}
+
+variable "image_owner" {
+  default = "099720109477" # Canonical
+}
