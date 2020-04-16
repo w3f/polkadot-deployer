@@ -332,6 +332,7 @@ sleep 10
 echo "${local.config_map_aws_auth}" > cm.yaml
 echo "${local.kubeconfig}" > kubeconfig
 kubectl apply -f ./cm.yaml
+kubectl delete psp eks.privileged
 rm -f kubeconfig
 EOT
     environment = {
