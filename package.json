@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/w3f/polkadot-deployer.git"
   },
-  "author": "Federico Gimenez <federico@web3.foundation>",
+  "author": "W3F Infrastructure Team <devops@web3.foundation>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/w3f/polkadot-deployer/issues"
