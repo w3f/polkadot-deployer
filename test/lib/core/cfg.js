@@ -8,17 +8,17 @@ require('chai')
 
 
 describe('cfg', () => {
-
-  beforeEach(() => {
-
-  });
-
   describe('read', () => {
-    it('returns the config data if permissions are ok', async () => {
-      const tmpobj = tmp.fileSync();
-      const cfgPath = tmpobj.name;
-      const expected = `{"a":"b"}`;
+    const expected = `{"a":"b"}`;
+    let tmpobj;
+    let cfgPath;
 
+    beforeEach(() => {
+      tmpobj = tmp.fileSync();
+      cfgPath = tmpobj.name;
+    });
+
+    it('returns the config data if permissions are ok', () => {
       fs.writeFileSync(tmpobj.fd, expected);
 
       fs.chmod(cfgPath, 0o600);
@@ -28,6 +28,12 @@ describe('cfg', () => {
       actual['a'].should.eq('b');
     });
 
-    it('throws if permissions are not ok');
+    it('throws if permissions are not ok', () => {
+      fs.writeFileSync(tmpobj.fd, expected);
+
+      fs.chmod(cfgPath, 0o666);
+
+      (() => {subject.read(cfgPath)}).should.throw();
+    });
   });
 });
