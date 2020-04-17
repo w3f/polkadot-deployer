@@ -46,7 +46,7 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 3h
-      receiver: matrixbot
+      receiver: default
       routes:
       {{#if opsgenieEnabled}}
       - match:
@@ -54,8 +54,9 @@ alertmanager:
         receiver: opsgenie
         continue: true
       {{/if}}
+      - receiver: default
     receivers:
-    - name: matrixbot
+    - name: default
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
     {{#if opsgenieEnabled}}
