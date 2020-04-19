@@ -1,11 +1,3 @@
-resource "random_id" "username" {
-  byte_length = 14
-}
-
-resource "random_id" "password" {
-  byte_length = 16
-}
-
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.location
@@ -13,9 +5,6 @@ resource "google_container_cluster" "primary" {
   initial_node_count = var.node_count
 
   master_auth {
-    username = "${random_id.username.hex}"
-    password = "${random_id.password.hex}"
-
     client_certificate_config {
       issue_client_certificate = false
     }

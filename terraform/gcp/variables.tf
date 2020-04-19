@@ -21,3 +21,7 @@ variable "k8s_version" {
 variable "image_type" {
   default = "UBUNTU"
 }
+
+variable "gcloud_path" {
+  default = "/usr/bin/gcloud"
+}

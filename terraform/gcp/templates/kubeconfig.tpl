@@ -7,7 +7,7 @@ contexts:
 - context:
     cluster: ${cluster_name}
     namespace: default
-    user: ${user_name}
+    user: ${cluster_name}
   name: polkadot-deployer
 clusters:
 - cluster:
@@ -15,9 +15,12 @@ clusters:
     certificate-authority-data: ${cluster_ca}
   name: ${cluster_name}
 users:
-- name: ${user_name}
+- name: ${cluster_name}
   user:
-    password: ${user_password}
-    username: ${user_name}
-    client-certificate-data: ${client_cert}
-    client-key-data: ${client_cert_key}
+    auth-provider:
+      config:
+        cmd-args: config config-helper --format=json
+        cmd-path: ${gcloud_path}
+        expiry-key: '{.credential.token_expiry}'
+        token-key: '{.credential.access_token}'
+      name: gcp
