@@ -10,6 +10,11 @@ resource "azurerm_kubernetes_cluster" "polkadot-{{ clusterName }}" {
   dns_prefix          = "polkadot-{{ clusterName }}"
   kubernetes_version  = var.k8s_version
 
+  network_profile {
+    network_plugin = "kubenet"
+    network_policy = "calico"
+  }
+
   default_node_pool {
     name            = "default"
     node_count      = var.node_count

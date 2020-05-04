@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "polkadot-AmazonEKSServicePolicy" {
 resource "aws_security_group" "polkadot" {
   name        = "terraform-eks-polkadot"
   description = "Cluster communication with worker nodes"
-  vpc_id      = "${aws_vpc.polkadot.id}"
+  vpc_id      = aws_vpc.polkadot.id
 
   egress {
     from_port   = 0
@@ -62,9 +62,9 @@ resource "aws_vpc" "polkadot" {
 resource "aws_subnet" "polkadot" {
   count = 2
 
-  availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
+  availability_zone = data.aws_availability_zones.available.names[count.index]
   cidr_block        = "10.0.${count.index}.0/24"
-  vpc_id            = "${aws_vpc.polkadot.id}"
+  vpc_id            = aws_vpc.polkadot.id
 
   tags = "${
     map(
@@ -75,7 +75,7 @@ resource "aws_subnet" "polkadot" {
 }
 
 resource "aws_internet_gateway" "polkadot" {
-  vpc_id = "${aws_vpc.polkadot.id}"
+  vpc_id = aws_vpc.polkadot.id
 
   tags = {
     Name = "terraform-eks-polkadot"
@@ -83,19 +83,19 @@ resource "aws_internet_gateway" "polkadot" {
 }
 
 resource "aws_route_table" "polkadot" {
-  vpc_id = "${aws_vpc.polkadot.id}"
+  vpc_id = aws_vpc.polkadot.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.polkadot.id}"
+    gateway_id = aws_internet_gateway.polkadot.id
   }
 }
 
 resource "aws_route_table_association" "polkadot" {
   count = 2
 
-  subnet_id      = "${aws_subnet.polkadot.*.id[count.index]}"
-  route_table_id = "${aws_route_table.polkadot.id}"
+  subnet_id      = aws_subnet.polkadot.*.id[count.index]
+  route_table_id = aws_route_table.polkadot.id
 }
 
 resource "aws_security_group_rule" "node_ingress_cluster_https" {
@@ -103,8 +103,8 @@ resource "aws_security_group_rule" "node_ingress_cluster_https" {
   from_port                = 443
   to_port                  = 443
   protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.polkadot-node.id}"
-  source_security_group_id = "${aws_security_group.polkadot.id}"
+  security_group_id        = aws_security_group.polkadot-node.id
+  source_security_group_id = aws_security_group.polkadot.id
   type                     = "ingress"
 }
 
@@ -112,8 +112,8 @@ resource "aws_security_group_rule" "polkadot-ingress-node-https" {
   description              = "Allow pods to communicate with the cluster API Server"
   from_port                = 443
   protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.polkadot.id}"
-  source_security_group_id = "${aws_security_group.polkadot-node.id}"
+  security_group_id        = aws_security_group.polkadot.id
+  source_security_group_id = aws_security_group.polkadot-node.id
   to_port                  = 443
   type                     = "ingress"
 }
@@ -204,7 +204,7 @@ resource "aws_iam_instance_profile" "polkadot-{{ clusterName }}-node" {
 resource "aws_security_group" "polkadot-node" {
   name        = "terraform-eks-polkadot-node"
   description = "Security group for all nodes in the cluster"
-  vpc_id      = "${aws_vpc.polkadot.id}"
+  vpc_id      = aws_vpc.polkadot.id
 
   egress {
     from_port   = 0
@@ -225,8 +225,8 @@ resource "aws_security_group_rule" "polkadot-node-ingress-self" {
   description              = "Allow node to communicate with each other"
   from_port                = 0
   protocol                 = "-1"
-  security_group_id        = "${aws_security_group.polkadot-node.id}"
-  source_security_group_id = "${aws_security_group.polkadot-node.id}"
+  security_group_id        = aws_security_group.polkadot-node.id
+  source_security_group_id = aws_security_group.polkadot-node.id
   to_port                  = 65535
   type                     = "ingress"
 }
@@ -235,8 +235,8 @@ resource "aws_security_group_rule" "polkadot-node-ingress-cluster" {
   description              = "Allow worker Kubelets and pods to receive communication from the cluster control plane"
   from_port                = 1025
   protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.polkadot-node.id}"
-  source_security_group_id = "${aws_security_group.polkadot.id}"
+  security_group_id        = aws_security_group.polkadot-node.id
+  source_security_group_id = aws_security_group.polkadot.id
   to_port                  = 65535
   type                     = "ingress"
 }
@@ -245,7 +245,7 @@ resource "aws_security_group_rule" "polkadot-node-ingress-p2p" {
   description              = "Allow connection to p2p ports from outside the cluster"
   from_port                = 30100
   protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.polkadot-node.id}"
+  security_group_id        = aws_security_group.polkadot-node.id
   cidr_blocks              = ["0.0.0.0/0"]
   to_port                  = 30101
   type                     = "ingress"
@@ -293,10 +293,10 @@ USERDATA
 resource "aws_launch_configuration" "polkadot" {
   associate_public_ip_address = true
   iam_instance_profile        = "${aws_iam_instance_profile.polkadot-{{ clusterName }}-node.name}"
-  image_id                    = "${data.aws_ami.eks-worker.id}"
-  instance_type               = "${var.machine_type}"
+  image_id                    = data.aws_ami.eks-worker.id
+  instance_type               = var.machine_type
   name_prefix                 = "terraform-eks-polkadot"
-  security_groups             = ["${aws_security_group.polkadot-node.id}"]
+  security_groups             = [aws_security_group.polkadot-node.id]
   user_data_base64            = "${base64encode(local.polkadot-node-userdata)}"
 
   lifecycle {
@@ -306,7 +306,7 @@ resource "aws_launch_configuration" "polkadot" {
 
 resource "aws_autoscaling_group" "polkadot" {
   desired_capacity     = var.node_count
-  launch_configuration = "${aws_launch_configuration.polkadot.id}"
+  launch_configuration = aws_launch_configuration.polkadot.id
   max_size             = 32
   min_size             = 1
   name                 = "terraform-eks-polkadot-{{ clusterName }}"
@@ -329,10 +329,16 @@ resource "null_resource" "apply_auth_cm" {
   provisioner "local-exec" {
     command = <<EOT
 sleep 10
+
 echo "${local.config_map_aws_auth}" > cm.yaml
 echo "${local.kubeconfig}" > kubeconfig
+
 kubectl apply -f ./cm.yaml
+
 kubectl delete psp eks.privileged
+
+kubectl apply -f https://raw.githubusercontent.com/aws/amazon-vpc-cni-k8s/release-1.5/config/v1.5/calico.yaml
+
 rm -f kubeconfig
 EOT
     environment = {
