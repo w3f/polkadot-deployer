@@ -8,6 +8,6 @@
   "nodes": 2,
     "image": {
     "repo": "parity/polkadot",
-    "tag": "v0.7.32"
+    "tag": "v0.7.33"
   }
 }
