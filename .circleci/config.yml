@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: node:10.15-alpine
+      - image: node:12.16.1-alpine3.11
     steps:
       - checkout
 
@@ -16,7 +16,7 @@ jobs:
 
   publishPackage:
     docker:
-      - image: node:10.15-alpine
+      - image: node:12.16.1-alpine3.11
     steps:
       - checkout
 
