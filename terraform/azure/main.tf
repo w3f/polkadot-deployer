@@ -45,14 +45,6 @@ resource "azurerm_subnet" "polkadot-{{ clusterName }}" {
   address_prefix            = "10.0.1.0/24"
 }
 
-resource "azurerm_public_ip" "polkadot-{{ clusterName }}" {
-  name                = "polkadot-{{ clusterName }}"
-  location            = "${azurerm_resource_group.polkadot-{{ clusterName }}.location}"
-  resource_group_name = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
-
 resource "azurerm_network_security_group" "polkadot-{{ clusterName }}" {
   name                = "polkadot-{{ clusterName }}"
   location            = "${azurerm_resource_group.polkadot-{{ clusterName }}.location}"
