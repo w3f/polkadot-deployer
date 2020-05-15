@@ -4,7 +4,7 @@
     "external-dns": "2.19.2",
     "grafana": "5.0.5",
     "loki-stack": "0.32.1",
-    "matrixbot": "v1.1.0",
+    "matrixbot": "v1.1.1",
     "nginx-ingress": "1.33.4",
     "polkadot": "v0.24.0",
     "prometheus-node-exporter": "1.9.0",
