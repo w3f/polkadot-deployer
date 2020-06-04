@@ -34,7 +34,7 @@ dashboardProviders:
 dashboards:
   default:
     polkadot-metrics:
-      gnetId: 11171
+      gnetId: 12410
       revision: 1
       datasource: Prometheus
     kubernetes-pods:
