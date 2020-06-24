@@ -15,7 +15,7 @@ variable "machine_type" {
 }
 
 variable "k8s_version" {
-  default = "1.15.11-gke.11"
+  default = "1.16.9-gke.6"
 }
 
 variable "image_type" {
