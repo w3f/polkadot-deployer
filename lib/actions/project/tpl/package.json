@@ -10,6 +10,6 @@
   "license": "GPL-3.0",
   "dependencies": {
     "npx": "10.2.0",
-    "polkadot-deployer": "2.4.3"
+    "polkadot-deployer": "2.4.4"
   }
 }
