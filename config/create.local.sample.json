@@ -6,8 +6,8 @@
     "schedule": "50 * * * *"
   },
   "nodes": 2,
-    "image": {
+  "image": {
     "repo": "parity/polkadot",
-    "tag": "v0.7.33"
+    "tag": "v0.8.12"
   }
 }
