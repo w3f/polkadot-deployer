@@ -1,14 +1,14 @@
 {
   "chartVersions": {
     "cert-manager": "v0.14.3",
-    "external-dns": "2.19.2",
-    "grafana": "5.0.5",
+    "external-dns": "2.20.4",
+    "grafana": "5.4.1",
     "loki-stack": "0.32.1",
     "matrixbot": "v1.1.1",
-    "nginx-ingress": "1.33.4",
-    "polkadot": "v0.28.1",
-    "prometheus-node-exporter": "1.9.0",
-    "prometheus-operator": "8.11.1",
+    "nginx-ingress": "1.41.1",
+    "polkadot": "v0.29.0",
+    "prometheus-node-exporter": "1.11.1",
+    "prometheus-operator": "9.1.0",
     "substrate-telemetry": "v2.0.0"
   },
   "components": [
