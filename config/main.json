@@ -1,6 +1,6 @@
 {
   "chartVersions": {
-    "cert-manager": "v0.14.3",
+    "cert-manager": "v0.15.2",
     "external-dns": "2.20.4",
     "grafana": "5.4.1",
     "loki-stack": "0.32.1",
