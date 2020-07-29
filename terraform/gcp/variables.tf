@@ -15,5 +15,13 @@ variable "machine_type" {
 }
 
 variable "k8s_version" {
-  default = "1.15.9-gke.26"
+  default = "1.16.9-gke.6"
+}
+
+variable "image_type" {
+  default = "UBUNTU"
+}
+
+variable "gcloud_path" {
+  default = "/usr/bin/gcloud"
 }

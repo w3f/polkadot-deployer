@@ -3,8 +3,9 @@ provider "google" {
   version     = "~>2.16"
 }
 
-provider "random" {
-  version     = "~>2.2"
+provider "google-beta" {
+  project     = "{{ projectID }}"
+  version     = "~>2.16"
 }
 
 provider "template" {

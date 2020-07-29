@@ -10,6 +10,11 @@ resource "azurerm_kubernetes_cluster" "polkadot-{{ clusterName }}" {
   dns_prefix          = "polkadot-{{ clusterName }}"
   kubernetes_version  = var.k8s_version
 
+  network_profile {
+    network_plugin = "kubenet"
+    network_policy = "calico"
+  }
+
   default_node_pool {
     name            = "default"
     node_count      = var.node_count
@@ -22,6 +27,8 @@ resource "azurerm_kubernetes_cluster" "polkadot-{{ clusterName }}" {
     client_id     = var.client_id
     client_secret = var.client_secret
   }
+
+  enable_pod_security_policy = false
 }
 
 resource "azurerm_virtual_network" "polkadot-{{ clusterName }}" {
@@ -36,14 +43,6 @@ resource "azurerm_subnet" "polkadot-{{ clusterName }}" {
   resource_group_name       = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
   virtual_network_name      = "${azurerm_virtual_network.polkadot-{{ clusterName }}.name}"
   address_prefix            = "10.0.1.0/24"
-}
-
-resource "azurerm_public_ip" "polkadot-{{ clusterName }}" {
-  name                = "polkadot-{{ clusterName }}"
-  location            = "${azurerm_resource_group.polkadot-{{ clusterName }}.location}"
-  resource_group_name = "${azurerm_resource_group.polkadot-{{ clusterName }}.name}"
-  allocation_method   = "Static"
-  sku                 = "Standard"
 }
 
 resource "azurerm_network_security_group" "polkadot-{{ clusterName }}" {
