@@ -2,8 +2,8 @@
   "chartVersions": {
     "cert-manager": "v0.16.0",
     "external-dns": "2.20.4",
-    "grafana": "5.4.1",
-    "loki-stack": "0.32.1",
+    "grafana": "5.5.4",
+    "loki-stack": "0.38.3",
     "matrixbot": "v1.1.1",
     "nginx-ingress": "1.41.1",
     "polkadot": "v0.17.5",
