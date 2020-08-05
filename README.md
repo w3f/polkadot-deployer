@@ -409,7 +409,7 @@ stuck with a message like:
     docker system prune -a --volumes
     ```
     
-* Files from folder config need to be set with 0600 permission due to security reasons.  
+* Certain files from folder config need to be set with 0600 permission due to security reasons.  
 You may experience this error from your local deployment:  
 
   ```
