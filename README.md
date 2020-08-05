@@ -408,6 +408,21 @@ stuck with a message like:
     ```
     docker system prune -a --volumes
     ```
+    
+* Certain files from folder config need to be set with 0600 permission due to security reasons.  
+You may experience this error from your local deployment:  
+
+  ```
+  node . create --config ./config/create.local.sample.json --verbose
+  Expected file permission 600, found 644 for file ./config/create.local.sample.json
+  ```
+  
+  Fix it like this:
+  
+  ```
+  chmod 0600 ./config/create.local.sample.json
+  node . create --config ./config/create.local.sample.json --verbose
+  ```
 
 In case you are experiencing problems and any of the above solution works for
 you don't hesitate to [open an issue](https://github.com/w3f/polkadot-deployer/issues/new).
