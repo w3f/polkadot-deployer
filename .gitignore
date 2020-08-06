@@ -3,4 +3,3 @@ polkadot-deployer.benchmark*.json
 polkadot-deployer.benchmark*.gnuplot
 *.png
 terraform/**/.terraform
-.DS_Store
