@@ -408,7 +408,31 @@ stuck with a message like:
     ```
     docker system prune -a --volumes
     ```
-    
+
+* If you installed gcloud cli tool via homewbrew on mac os, you may face this issue:
+
+  ```
+  Unable to connect to the server: error executing access token command "/usr/bin/gcloud config config-helper --format=json": err=fork/exec /usr/bin/gcloud: no such file or directory output= stderr=
+  ```
+
+  Locate your gcloud installation with the following command:
+
+  ```
+  which gcloud
+  /usr/local/bin/gcloud
+  ``` 
+
+  Add this path as an optional variable in the config/create.remote.*.json
+
+  ```
+  "name": "gcp-testnet",
+  "type": "gcp",
+  "gcloudPath": "/usr/local/bin/gcloud",
+  "nodes": 2,
+  "keep": true,
+   ...
+  ``` 
+
 * Certain files from folder config need to be set with 0600 permission due to security reasons.  
 You may experience this error from your local deployment:  
 
