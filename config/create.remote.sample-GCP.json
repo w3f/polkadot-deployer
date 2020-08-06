@@ -1,6 +1,7 @@
 {
   "name": "gcp-testnet",
   "type": "gcp",
+  "gcloudPath": "/usr/local/bin/gcloud",
   "nodes": 2,
   "keep": true,
   "monitoring": {

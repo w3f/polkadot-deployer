@@ -23,5 +23,5 @@ variable "image_type" {
 }
 
 variable "gcloud_path" {
-  default = "/usr/bin/gcloud"
+  default = "{{ gcloudPath }}"
 }
