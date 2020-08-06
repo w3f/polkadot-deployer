@@ -43,8 +43,6 @@ describe('strings', () => {
       const expected = osPathWithoutSpaces;
       const actual = subject.removePathSpaces(osPathWithEscapedSpaces);
 
-      console.log(osPathWithEscapedSpaces)
-
       actual.should.eq(expected);
     });
 
