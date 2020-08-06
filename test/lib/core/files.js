@@ -4,6 +4,7 @@ const path = require('path');
 const sinon = require('sinon');
 const tmp = require('tmp');
 
+const strings = require('../../../lib/core/strings');
 const { Files } = require('../../../lib/core/files')
 
 require('chai').should()
@@ -58,7 +59,7 @@ describe('Files', () => {
 
   describe('dataPath', () => {
     it('should return the data path', () => {
-      const expected = path.join(ospath.data(), 'polkadot-deployer');
+      const expected = strings.removePathSpaces(path.join(ospath.data(), 'polkadot-deployer'));
 
       const subject = new Files();
       subject.dataPath().should.equal(expected);
@@ -67,7 +68,7 @@ describe('Files', () => {
 
   describe('componentsPath', () => {
     it('should return the components path', () => {
-      const expected = path.join(ospath.data(), 'polkadot-deployer', 'components');
+      const expected = strings.removePathSpaces(path.join(ospath.data(), 'polkadot-deployer', 'components'));
 
       const subject = new Files();
       subject.componentsPath().should.equal(expected);
@@ -76,7 +77,7 @@ describe('Files', () => {
 
   describe('deploymentsPath', () => {
     it('should return the deployments path', () => {
-      const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments');
+      const expected = strings.removePathSpaces(path.join(ospath.data(), 'polkadot-deployer', 'deployments'));
 
       const subject = new Files();
       subject.deploymentsPath().should.equal(expected);
@@ -85,7 +86,7 @@ describe('Files', () => {
 
   describe('deploymentsDBPath', () => {
     it('should return the deployments DB file path', () => {
-      const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments.db');
+      const expected = strings.removePathSpaces(path.join(ospath.data(), 'polkadot-deployer', 'deployments.db'));
 
       const subject = new Files();
       subject.deploymentsDBPath().should.equal(expected);
@@ -107,7 +108,7 @@ describe('Files', () => {
 
     describe('deploymentPath', () => {
       it('should return a deployment path by name', () => {
-        const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName);
+        const expected = strings.removePathSpaces(path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName));
 
         const subject = new Files();
         subject.deploymentPath(deploymentName).should.equal(expected);
@@ -116,7 +117,7 @@ describe('Files', () => {
 
     describe('kubeconfigPath', () => {
       it('should return the kubeconfig path for the given deployment', () => {
-        const expected = path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig');
+        const expected = strings.removePathSpaces(path.join(ospath.data(), 'polkadot-deployer', 'deployments', deploymentName, 'kubeconfig'));
 
         const subject = new Files();
         subject.kubeconfigPath(deploymentName).should.equal(expected);

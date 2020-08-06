@@ -1,33 +1,66 @@
 const subject = require('../../../lib/core/strings');
 
 require('chai')
-  .should()
+  .should();
 
+const stringWithLeadingSpaces = '   string-with-leading-spaces';
+const stringWithTrailingSpaces = 'string-with-trailing-spaces    ';
+const osPathWithSpaces = '/Users/user/Library/Application Support/polkadot-deployer/deployments/gcp-test-0/values/nginx-ingress.yaml';
+const osPathWithEscapedSpaces = '/Users/user/Library/Application\\ Support/polkadot-deployer/deployments/gcp-test-0/values/nginx-ingress.yaml';
+const osPathWithoutSpaces = '/Users/user/Library/ApplicationSupport/polkadot-deployer/deployments/gcp-test-0/values/nginx-ingress.yaml'
 
 describe('strings', () => {
   describe('removeSpaces', () => {
     it('should replace inner spaces from input string with dashes', () => {
-      const input = 'string with spaces';
-      const expected = 'string-with-spaces';
-      const actual = subject.removeSpaces(input);
+      const expected = "string-with-spaces";
+      const actual = subject.removeSpaces("string with spaces");
 
       actual.should.eq(expected);
     });
 
     it('should remove leading spaces from input string', () => {
-      const input = '   string-with-leading-spaces';
-      const expected = 'string-with-leading-spaces';
-      const actual = subject.removeSpaces(input);
+      const expected = stringWithLeadingSpaces.trim();
+      const actual = subject.removeSpaces(stringWithLeadingSpaces);
 
       actual.should.eq(expected);
     });
 
     it('should remove trailing spaces from input string', () => {
-      const input = 'string-with-trailing-spaces    ';
-      const expected = 'string-with-trailing-spaces';
-      const actual = subject.removeSpaces(input);
+      const expected = stringWithTrailingSpaces.trim();
+      const actual = subject.removeSpaces(stringWithTrailingSpaces);
 
       actual.should.eq(expected);
     });
+
+    it('should replace inner spaces from input string with empty spaces', () => {
+      const expected = osPathWithoutSpaces;
+      const actual = subject.removePathSpaces(osPathWithSpaces);
+
+      actual.should.eq(expected);
+    });
+
+    it('should replace inner escaped spaces from input string with empty spaces', () => {
+      const expected = osPathWithoutSpaces;
+      const actual = subject.removePathSpaces(osPathWithEscapedSpaces);
+
+      console.log(osPathWithEscapedSpaces)
+
+      actual.should.eq(expected);
+    });
+
+    it('should remove leading spaces from input string', () => {
+      const expected = stringWithLeadingSpaces.trim();
+      const actual = subject.removePathSpaces(stringWithLeadingSpaces);
+
+      actual.should.eq(expected);
+    });
+
+    it('should remove trailing spaces from input string', () => {
+      const expected = stringWithTrailingSpaces.trim();
+      const actual = subject.removePathSpaces(stringWithTrailingSpaces);
+
+      actual.should.eq(expected);
+    });
+
   });
 });
