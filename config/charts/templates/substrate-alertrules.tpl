@@ -1,2 +1,2 @@
 deploymentName: {{ deploymentName }}
-monitoring: true
+monitoring: {{ monitoring }}
