@@ -1,3 +1,2 @@
 
-name: {{ name }}
 deploymentName: {{ deploymentName }} 
