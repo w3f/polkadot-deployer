@@ -10,7 +10,7 @@
     "prometheus-node-exporter": "1.11.1",
     "prometheus-operator": "9.3.1",
     "substrate-telemetry": "v2.0.0",
-    "substrate-alertrules": "v0.1.0"
+    "substrate-alertrules": "v0.1.2"
   },
   "components": [
     {
