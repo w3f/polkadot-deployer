@@ -16,7 +16,7 @@ The tool is meant to work on Linux and MacOS machines. In order to be able to us
 ## Installation
 In order to deploy a number of polkadot nodes locally. There are two methods to successfully install polkadot validator.
 * Install polkadot deployer using yarn packet manager by issuing the following command:
-    ```yarn add -g polkadot-deployer```
+    ```yarn global add polkadot-deployer```
 * Download the latest polkadot deployer from git issuing the following command and change directory to polkadot-deployer:  
 	```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```yarn install``` to install all requirements.
 
