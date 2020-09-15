@@ -13,12 +13,12 @@ The tool is meant to work on Linux and MacOS machines. In order to be able to us
 [docker](https://docs.docker.com/install/) for local deployments (developed and tested with `18.09.5`). Once installed, you should also be able to
 [run docker as a regular user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). See the [Troubleshooting section](#troubleshooting) in case you have problems running the tool.
 
-## Installation
-In order to deploy a number of polkadot nodes locally. There are two methods to successfully install polkadot validator.
-* Install polkadot deployer using yarn packet manager by issuing the following command:
-    ```yarn global add polkadot-deployer```
-* Download the latest polkadot deployer from git issuing the following command and change directory to polkadot-deployer:  
-	```git clone git@github.com:w3f/polkadot-deployer.git``` and run ```yarn install``` to install all requirements.
+## Installation and execution
+There are two methods to successfully install and operate ```polkadot-deployer``` in order to deploy a number of polkadot nodes.
+* Using yarn packet manager by issuing the following commands:
+  ```yarn global add polkadot-deployer``` and ```polkadot-deployer CMD``` to run a command.
+* By downloading the latest version from git and then issuing the following commands from within the project directory:
+	```git clone git@github.com:w3f/polkadot-deployer.git```, execute ```yarn install``` to install all requirements and ```node . CMD``` to run a command.
 
 ## Local deployments
 After you have succesfully installed polkadot validator using either method, you may follow the next steps to guide you through the proccess of deployng polkadot validator locally on your hardware. This can be done either using the interactive menu or by using a config file.
@@ -320,7 +320,7 @@ of a json file containing the definition of the benchmark, like this:
   with gnuplot, that can generate a png file with a plot of the results:
 
   ```
-  $ polkadot-deployer benchmark -c ./config/benchmark.finality.sample.json
+  $ node . benchmark -c ./config/benchmark.finality.sample.json
   Initializing nodes...
   Done
   Waiting for nodes ready...
