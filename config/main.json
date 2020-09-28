@@ -7,8 +7,8 @@
     "matrixbot": "v1.1.1",
     "nginx-ingress": "1.41.2",
     "polkadot": "v0.17.5",
-    "prometheus-node-exporter": "1.9.0",
-    "prometheus-operator": "8.11.1",
+    "prometheus-node-exporter": "1.11.1",
+    "prometheus-operator": "9.3.1",
     "substrate-telemetry": "v1.1.1",
     "substrate-alertrules": "v0.1.2"
   },
