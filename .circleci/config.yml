@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: node:10.15-alpine
+      - image: web3f/node:v0.1.0
     steps:
       - checkout
 
@@ -16,13 +16,13 @@ jobs:
 
   publishPackage:
     docker:
-      - image: node:10.15-alpine
+      - image: web3f/node:v0.1.0
     steps:
       - checkout
 
       - run:
           name: Publish package
-          command: npm publish --userconfig=.npmrc-auth
+          command: npm publish --userconfig=.npmrc-auth --tag version-one
 
 workflows:
   version: 2
