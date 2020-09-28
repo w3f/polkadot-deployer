@@ -9,7 +9,7 @@
     "polkadot": "v0.17.5",
     "prometheus-node-exporter": "1.11.1",
     "prometheus-operator": "9.3.1",
-    "substrate-telemetry": "v1.1.0",
+    "substrate-telemetry": "v2.4.1",
     "substrate-alertrules": "v0.1.2"
   },
   "components": [
