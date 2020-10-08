@@ -18,5 +18,5 @@ variable "machine_type" {
 }
 
 variable "k8s_version" {
-  default = "1.17.11"
+  default = "1.15.10"
 }
