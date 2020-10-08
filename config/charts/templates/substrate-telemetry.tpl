@@ -1,3 +1,6 @@
+image:
+  tag: {{ imageTag }}
+
 exporter:
   config:
     subscribe:

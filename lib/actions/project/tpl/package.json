@@ -9,7 +9,7 @@
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
-    "npx": "10.2.0",
-    "polkadot-deployer": "1.0.4"
+    "npx": "10.2.2",
+    "polkadot-deployer": "1.5.0"
   }
 }
