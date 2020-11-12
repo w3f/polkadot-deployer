@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "gcp-pd-tf-state-{{ deploymentName }}"
+    bucket  = "pd-tf-state-{{ deploymentName }}"
     prefix  = "terraform/state/gcp-{{ deploymentName }}-{{ clusterName }}"
   }
 }

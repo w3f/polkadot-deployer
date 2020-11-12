@@ -5,7 +5,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket  = "azure-pd-tf-state-{{ deploymentName }}"
+    bucket  = "pd-tf-state-{{ deploymentName }}"
     prefix  = "terraform/state/azure-{{ deploymentName }}-{{ clusterName }}"
   }
 }
