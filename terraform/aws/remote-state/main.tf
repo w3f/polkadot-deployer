@@ -5,6 +5,6 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "imagestore" {
-  name          = "aws-pd-tf-state-{{ deploymentName }}"
+  name          = "pd-tf-state-{{ deploymentName }}"
   force_destroy = true
 }
