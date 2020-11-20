@@ -5,7 +5,7 @@
     "grafana": "5.5.7",
     "loki-stack": "0.38.3",
     "matrixbot": "v1.1.1",
-    "nginx-ingress": "1.41.3",
+    "nginx-ingress": "0.7.0",
     "polkadot": "v0.33.3",
     "prometheus-node-exporter": "1.11.2",
     "prometheus-operator": "9.3.2",
