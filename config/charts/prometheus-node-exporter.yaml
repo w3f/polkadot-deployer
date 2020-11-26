@@ -5,7 +5,7 @@ prometheus:
   monitor:
     enabled: true
     additionalLabels:
-      release: prometheus-operator
+      release: kube-prometheus-stack
 resources:
   limits:
     cpu: 200m

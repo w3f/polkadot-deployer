@@ -3,3 +3,7 @@ polkadot-deployer.benchmark*.json
 polkadot-deployer.benchmark*.gnuplot
 *.png
 terraform/**/.terraform
+config/*
+!config/*sample*
+!config/charts
+!config/main.json
