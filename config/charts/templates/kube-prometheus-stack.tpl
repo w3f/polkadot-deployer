@@ -110,3 +110,19 @@ kubeStateMetrics:
     requests:
       cpu: 10m
       memory: 16Mi
+
+additionalPrometheusRulesMap:
+  rule-name:
+    groups:
+    - name: alertmanager.rules
+      rules:
+      - alert: heartbeat
+      expr: vector(1)
+      labels:
+        severity: heartbeat
+        origin: {{ deploymentName }}
+      annotations:
+        message: Test alert. no action required
+        summary: Test alert. no action required
+        documentation: None
+        runbook_url: "https://github.com/w3f/infrastructure/wiki/heartbeat-lost"      
