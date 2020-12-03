@@ -1,3 +1,6 @@
+nameOverride: "prometheus-operator"
+fullnameOverride: "prometheus-operator"
+
 defaultRules:
   create: false
 kubeDns:
@@ -18,6 +21,7 @@ prometheus:
         operator: In
         values:
         - polkadot
+        - prometheus-operator
     resources:
       requests:
         cpu: 500m
@@ -70,12 +74,12 @@ alertmanager:
       webhook_configs:
       - http_config:
           basic_auth:
-            password: {{ env "OPSGENIE_TOKEN" | default "opsgenie_token" }}
+            password: {{ opsgenieToken }}
         url: https://api.eu.opsgenie.com/v2/heartbeats/{{ deploymentName }}/ping
     - name: opsgenie
       opsgenie_configs:
-      - api_url: {{ env "OPSGENIE_API_URL" | default "https://api.eu.opsgenie.com" }}
-        api_key: {{ env "OPSGENIE_TOKEN" | default "opsgenie_token" }}
+      - api_url: {{ opsgenieUrl }}
+        api_key: {{ opsgenieToken }}
         message: New Alert in {{ deploymentName }}
         source: {{ deploymentName }}
     {{/if}}
