@@ -16,7 +16,7 @@
       }
     },
     "opsgenie": {
-      "enabled": false,
+      "enabled": true,
       "url": "https://api.eu.opsgenie.com/"
      }
   },
