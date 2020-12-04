@@ -53,16 +53,18 @@ alertmanager:
       receiver: default
       routes:
       {{#if opsgenieEnabled}}
+      - receiver: opsgenie
+        match:
+          severity: critical
+        continue: true
+        {{#if opsgenieHearbeatEnabled}}   
       - receiver: heartbeats
         match:
           severity: heartbeat
         group_wait: 1s
         group_interval: 1m
-        repeat_interval: 50s
-      - receiver: opsgenie
-        match:
-          severity: critical
-        continue: true
+        repeat_interval: 50s 
+        {{/if}}   
       {{/if}}
       - receiver: default
     receivers:
@@ -70,18 +72,20 @@ alertmanager:
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
     {{#if opsgenieEnabled}}
-    - name: heartbeats
-      webhook_configs:
-      - http_config:
-          basic_auth:
-            password: {{ opsgenieToken }}
-        url: https://api.eu.opsgenie.com/v2/heartbeats/{{ deploymentName }}/ping
     - name: opsgenie
       opsgenie_configs:
       - api_url: {{ opsgenieUrl }}
         api_key: {{ opsgenieToken }}
         message: New Alert in {{ deploymentName }}
         source: {{ deploymentName }}
+      {{#if opsgenieHearbeatEnabled}}    
+    - name: heartbeats
+      webhook_configs:
+      - http_config:
+          basic_auth:
+            password: {{ opsgenieToken }}
+        url: https://api.eu.opsgenie.com/v2/heartbeats/{{ deploymentName }}/ping    
+      {{/if}}  
     {{/if}}
   alertmanagerSpec:
     resources:
@@ -115,6 +119,7 @@ kubeStateMetrics:
       cpu: 10m
       memory: 16Mi
 
+{{#if opsgenieHearbeatEnabled}} 
 additionalPrometheusRulesMap:
   heartbeat-rule:
     groups:
@@ -130,3 +135,4 @@ additionalPrometheusRulesMap:
           summary: Test alert. no action required
           documentation: None
           runbook_url: "https://github.com/w3f/infrastructure/wiki/heartbeat-lost"      
+{{/if}}

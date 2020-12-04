@@ -17,7 +17,8 @@
     },
     "opsgenie": {
       "enabled": true,
-      "url": "https://api.eu.opsgenie.com/"
+      "url": "https://api.eu.opsgenie.com/",
+      "heartbeatEnabled": true
      }
   },
   "chainspec": {
