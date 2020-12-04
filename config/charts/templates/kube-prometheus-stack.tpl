@@ -57,7 +57,7 @@ alertmanager:
         match:
           severity: critical
         continue: true
-        {{#if opsgenieHearbeatEnabled}}   
+        {{#if opsgenieHeartbeatEnabled}}   
       - receiver: heartbeats
         match:
           severity: heartbeat
@@ -78,7 +78,7 @@ alertmanager:
         api_key: {{ opsgenieToken }}
         message: New Alert in {{ deploymentName }}
         source: {{ deploymentName }}
-      {{#if opsgenieHearbeatEnabled}}    
+      {{#if opsgenieHeartbeatEnabled}}    
     - name: heartbeats
       webhook_configs:
       - http_config:
@@ -119,7 +119,7 @@ kubeStateMetrics:
       cpu: 10m
       memory: 16Mi
 
-{{#if opsgenieHearbeatEnabled}} 
+{{#if opsgenieHeartbeatEnabled}} 
 additionalPrometheusRulesMap:
   heartbeat-rule:
     groups:
