@@ -1,3 +1,6 @@
+nameOverride: "prometheus-operator"
+fullnameOverride: "prometheus-operator"
+
 defaultRules:
   create: false
 kubeDns:
@@ -18,6 +21,7 @@ prometheus:
         operator: In
         values:
         - polkadot
+        - prometheus-operator
     resources:
       requests:
         cpu: 500m
@@ -49,10 +53,18 @@ alertmanager:
       receiver: default
       routes:
       {{#if opsgenieEnabled}}
-      - match:
+      - receiver: opsgenie
+        match:
           severity: critical
-        receiver: opsgenie
         continue: true
+        {{#if opsgenieHeartbeatEnabled}}   
+      - receiver: heartbeats
+        match:
+          severity: heartbeat
+        group_wait: 1s
+        group_interval: 1m
+        repeat_interval: 50s 
+        {{/if}}   
       {{/if}}
       - receiver: default
     receivers:
@@ -62,7 +74,18 @@ alertmanager:
     {{#if opsgenieEnabled}}
     - name: opsgenie
       opsgenie_configs:
-      - api_key: ''
+      - api_url: {{ opsgenieUrl }}
+        api_key: {{ opsgenieToken }}
+        message: New Alert in {{ deploymentName }}
+        source: {{ deploymentName }}
+      {{#if opsgenieHeartbeatEnabled}}    
+    - name: heartbeats
+      webhook_configs:
+      - http_config:
+          basic_auth:
+            password: {{ opsgenieToken }}
+        url: https://api.eu.opsgenie.com/v2/heartbeats/{{ deploymentName }}/ping    
+      {{/if}}  
     {{/if}}
   alertmanagerSpec:
     resources:
@@ -95,3 +118,21 @@ kubeStateMetrics:
     requests:
       cpu: 10m
       memory: 16Mi
+
+{{#if opsgenieHeartbeatEnabled}} 
+additionalPrometheusRulesMap:
+  heartbeat-rule:
+    groups:
+    - name: heartbeat.rules
+      rules:
+      - alert: heartbeat
+        expr: vector(1)
+        labels:
+          severity: heartbeat
+          origin: {{ deploymentName }}
+        annotations:
+          message: Test alert. no action required
+          summary: Test alert. no action required
+          documentation: None
+          runbook_url: "https://github.com/w3f/infrastructure/wiki/heartbeat-lost"      
+{{/if}}

@@ -8,7 +8,7 @@
     "ingress-nginx": "3.12.0",
     "polkadot": "v0.33.3",
     "prometheus-node-exporter": "1.12.0",
-    "kube-prometheus-stack": "12.2.3",
+    "kube-prometheus-stack": "12.4.0",
     "substrate-telemetry": "v2.4.1",
     "substrate-alertrules": "v0.1.3"
   },
