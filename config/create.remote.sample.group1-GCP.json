@@ -32,6 +32,10 @@
       "cpu": "1.5"
     }
   },
+  "persistence": {
+    "enabled": true,
+    "dataSize": "200Gi"
+  },
   "image": {
     "repo": "parity/polkadot",
     "tag": "v0.8.26-1"
