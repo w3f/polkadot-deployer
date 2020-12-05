@@ -12,7 +12,7 @@
         "clusterIndex": 0
       },
       "submit": {
-        "networkSubdomain": "gcptest-10"
+        "submitUrl": "wss://telemetry-backend.domain.gcptest-10/submit"
       }
     },
     "opsgenie": {
@@ -42,7 +42,7 @@
   },
   "remote": {
     "projectID": "my-gcp-project-id",
-    "domain": "foo.bar",
+    "domain": "domain",
     "clusters": [
       {
         "provider": "gcp",
