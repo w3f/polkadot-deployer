@@ -11,7 +11,7 @@
         "enabled": false
       },
       "submit": {
-        "networkSubdomain": "gcptest-10"
+        "submitUrl": "wss://telemetry-backend.domain.gcptest-10/submit"
       }
     },
     "opsgenie": {
