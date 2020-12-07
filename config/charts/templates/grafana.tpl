@@ -1,7 +1,6 @@
 env:
   GF_EXPLORE_ENABLED: true
-admin:
-  existingSecret: grafanacred
+adminPassword: {{ adminPassword }}  
 datasources:
   datasources.yaml:
     apiVersion: 1
