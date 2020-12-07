@@ -21,13 +21,15 @@ defaultRules:
     kubernetesResources: true
     kubernetesStorage: true
     kubernetesSystem: true
-    kubeScheduler: true
+    kubeScheduler: false
     kubeStateMetrics: true
     network: true
     node: true
     prometheus: true
     prometheusOperator: true
     time: true
+kubeControllerManager:
+  enabled: false
 kubeDns:
   enabled: false
 coreDns:

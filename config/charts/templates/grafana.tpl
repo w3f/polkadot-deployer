@@ -1,6 +1,7 @@
 env:
   GF_EXPLORE_ENABLED: true
-adminPassword: {{ adminPassword }}  
+adminPassword: {{ adminPassword }} 
+adminUser: {{ adminUser }}
 datasources:
   datasources.yaml:
     apiVersion: 1
