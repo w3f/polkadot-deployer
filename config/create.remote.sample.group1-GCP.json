@@ -48,7 +48,10 @@
         "provider": "gcp",
         "location": "europe-west6-a",
         "machineType": "n1-standard-4",
-        "subdomain": "gcptest-10"
+        "subdomain": "gcptest-10",
+        "binaryArgs": {
+          "name": "myDisplayName"
+        }
       }
     ]
   }
