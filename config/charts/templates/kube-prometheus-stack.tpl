@@ -18,7 +18,7 @@ defaultRules:
     kubePrometheusNodeRecording: true
     kubernetesAbsent: true
     kubernetesApps: true
-    kubernetesResources: true
+    kubernetesResources: false
     kubernetesStorage: true
     kubernetesSystem: true
     kubeScheduler: false
@@ -115,13 +115,6 @@ alertmanager:
       {{/if}}  
     {{/if}}
   alertmanagerSpec:
-    resources:
-      limits:
-        cpu: 10m
-        memory: 400Mi
-      requests:
-        cpu: 10m
-        memory: 400Mi
     storage:
       volumeClaimTemplate:
         spec:

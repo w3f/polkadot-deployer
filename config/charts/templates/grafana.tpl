@@ -45,10 +45,10 @@ dashboards:
       datasource: Prometheus
 resources:
   limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 300m
+    memory: 256Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 200m
+    memory: 256Mi
 persistence:
   enabled: true
