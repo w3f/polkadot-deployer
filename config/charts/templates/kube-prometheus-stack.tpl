@@ -115,6 +115,13 @@ alertmanager:
       {{/if}}  
     {{/if}}
   alertmanagerSpec:
+    resources:
+      limits:
+        cpu: 400m
+        memory: 400Mi
+      requests:
+        cpu: 300m
+        memory: 400Mi
     storage:
       volumeClaimTemplate:
         spec:
