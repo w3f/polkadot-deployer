@@ -2,7 +2,34 @@ nameOverride: "prometheus-operator"
 fullnameOverride: "prometheus-operator"
 
 defaultRules:
-  create: false
+  create: true
+  rules:
+    alertmanager: true
+    etcd: true
+    general: true
+    k8s: true
+    kubeApiserver: true
+    kubeApiserverAvailability: true
+    kubeApiserverError: true
+    kubeApiserverSlos: true
+    kubelet: true
+    kubePrometheusGeneral: true
+    kubePrometheusNodeAlerting: true
+    kubePrometheusNodeRecording: true
+    kubernetesAbsent: true
+    kubernetesApps: true
+    kubernetesResources: false
+    kubernetesStorage: true
+    kubernetesSystem: true
+    kubeScheduler: false
+    kubeStateMetrics: true
+    network: true
+    node: true
+    prometheus: true
+    prometheusOperator: true
+    time: true
+kubeControllerManager:
+  enabled: false
 kubeDns:
   enabled: false
 coreDns:
@@ -60,7 +87,7 @@ alertmanager:
         {{#if opsgenieHeartbeatEnabled}}   
       - receiver: heartbeats
         match:
-          severity: heartbeat
+          alertname: Watchdog
         group_wait: 1s
         group_interval: 1m
         repeat_interval: 50s 
@@ -90,10 +117,10 @@ alertmanager:
   alertmanagerSpec:
     resources:
       limits:
-        cpu: 10m
+        cpu: 400m
         memory: 400Mi
       requests:
-        cpu: 10m
+        cpu: 300m
         memory: 400Mi
     storage:
       volumeClaimTemplate:
@@ -119,20 +146,3 @@ kubeStateMetrics:
       cpu: 10m
       memory: 16Mi
 
-{{#if opsgenieHeartbeatEnabled}} 
-additionalPrometheusRulesMap:
-  heartbeat-rule:
-    groups:
-    - name: heartbeat.rules
-      rules:
-      - alert: heartbeat
-        expr: vector(1)
-        labels:
-          severity: heartbeat
-          origin: {{ deploymentName }}
-        annotations:
-          message: Test alert. no action required
-          summary: Test alert. no action required
-          documentation: None
-          runbook_url: "https://github.com/w3f/infrastructure/wiki/heartbeat-lost"      
-{{/if}}

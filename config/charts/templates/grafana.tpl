@@ -1,7 +1,7 @@
 env:
   GF_EXPLORE_ENABLED: true
-admin:
-  existingSecret: grafanacred
+adminPassword: {{ adminPassword }} 
+adminUser: {{ adminUser }}
 datasources:
   datasources.yaml:
     apiVersion: 1
@@ -45,10 +45,10 @@ dashboards:
       datasource: Prometheus
 resources:
   limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 300m
+    memory: 256Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 200m
+    memory: 256Mi
 persistence:
   enabled: true
