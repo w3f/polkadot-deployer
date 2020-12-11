@@ -1,7 +1,7 @@
 env:
   GF_EXPLORE_ENABLED: true
-admin:
-  existingSecret: grafanacred
+adminPassword: {{ adminPassword }} 
+adminUser: {{ adminUser }}
 datasources:
   datasources.yaml:
     apiVersion: 1
@@ -43,12 +43,20 @@ dashboards:
       gnetId: 1860
       revision: 14
       datasource: Prometheus
+    kubernetes-pod-overview:
+      gnetId: 12842
+      revision: 2
+      datasource: Prometheus
+    kubernetes-app-metrics:
+      gnetId: 12841
+      revision: 1
+      datasource: Prometheus
 resources:
   limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 300m
+    memory: 256Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 200m
+    memory: 256Mi
 persistence:
   enabled: true

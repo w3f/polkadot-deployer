@@ -1,0 +1,63 @@
+{
+  "name": "gcptest-op1-gp2",
+  "type": "gcp",
+  "nodes": 2,
+  "keep": true,
+  "gcloudPath": "/usr/local/bin/gcloud",
+  "monitoring": {
+    "enabled": true,
+    "telemetry": {
+      "server": {
+        "enabled": false
+      },
+      "submit": {
+        "submitUrl": "wss://telemetry-backend.domain.gcptest-10/submit"
+      }
+    },
+    "opsgenie": {
+      "enabled": true,
+      "url": "https://api.eu.opsgenie.com/",
+      "heartbeatEnabled": true
+     }
+  },
+  "chainspec": {
+    "custom": false,
+    "preset": true,
+    "name": "kusama"
+  },
+  "resources": {
+    "requests": {
+      "memory": "9Gi",
+      "cpu": "1.5"
+    }
+  },
+  "persistence": {
+    "enabled": true,
+    "dataSize": "200Gi"
+  },
+  "image": {
+    "repo": "parity/polkadot",
+    "tag": "v0.8.26-1"
+  },
+  "remote": {
+    "projectID": "my-gcp-project-id",
+    "domain": "foo.bar",
+    "clusters": [
+      {
+        "provider": "gcp",
+        "location": "europe-north1-a",
+        "machineType": "n1-standard-4",
+        "subdomain": "gcptest-11"
+      },
+      {
+        "provider": "gcp",
+        "location": "europe-north1-a",
+        "machineType": "n1-standard-4",
+        "subdomain": "gcptest-12",
+        "binaryArgs": {
+          "name": "myDisplayName"
+        }
+      }
+    ]
+  }
+}

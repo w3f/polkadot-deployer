@@ -5,9 +5,9 @@ require('chai')
 
 const stringWithLeadingSpaces = '   string-with-leading-spaces';
 const stringWithTrailingSpaces = 'string-with-trailing-spaces    ';
-const osPathWithSpaces = '/Users/user/Library/Application Support/polkadot-deployer/deployments/gcp-test-0/values/nginx-ingress.yaml';
-const osPathWithEscapedSpaces = '/Users/user/Library/Application\\ Support/polkadot-deployer/deployments/gcp-test-0/values/nginx-ingress.yaml';
-const osPathWithoutSpaces = '/Users/user/Library/ApplicationSupport/polkadot-deployer/deployments/gcp-test-0/values/nginx-ingress.yaml'
+const osPathWithSpaces = '/Users/user/Library/Application Support/polkadot-deployer/deployments/gcp-test-0/values/ingress-nginx.yaml';
+const osPathWithEscapedSpaces = '/Users/user/Library/Application\\ Support/polkadot-deployer/deployments/gcp-test-0/values/ingress-nginx.yaml';
+const osPathWithoutSpaces = '/Users/user/Library/ApplicationSupport/polkadot-deployer/deployments/gcp-test-0/values/ingress-nginx.yaml'
 
 describe('strings', () => {
   describe('removeSpaces', () => {
