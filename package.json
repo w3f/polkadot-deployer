@@ -35,7 +35,7 @@
     "@polkadot/util-crypto": "0.95.0-beta.1",
     "@polkadot/wasm-crypto": "0.13.1",
     "@w3f/libp2p-crypto": "^0.16.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
     "commander": "^2.20.0",
