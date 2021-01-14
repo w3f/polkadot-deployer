@@ -80,39 +80,39 @@ alertmanager:
       receiver: default
       routes:
       {{#if opsgenieEnabled}}
-      - receiver: opsgenie
-        match:
+      - match:
           severity: critical
-        continue: true
-        {{#if opsgenieHeartbeatEnabled}}   
-      - receiver: heartbeats
-        match:
+        receiver: opsgenie  
+        continue: true 
+      {{/if}}
+      - match:
           alertname: Watchdog
+        receiver: heartbeats
         group_wait: 1s
         group_interval: 1m
-        repeat_interval: 50s 
-        {{/if}}   
-      {{/if}}
+        repeat_interval: 50s
       - receiver: default
     receivers:
     - name: default
       webhook_configs:
       - url:  "http://matrixbot:8080/skill/alertmanager/webhook"
+    - name: heartbeats
+    {{#if opsgenieHeartbeatEnabled}}
+      {{#if opsgenieEnabled}}
+        webhook_configs:
+          - http_config:
+              basic_auth:
+                password: {{ opsgenieToken }}
+            url: https://api.eu.opsgenie.com/v2/heartbeats/{{ deploymentName }}/ping    
+      {{/if}}
+    {{/if}}
     {{#if opsgenieEnabled}}
     - name: opsgenie
       opsgenie_configs:
       - api_url: {{ opsgenieUrl }}
         api_key: {{ opsgenieToken }}
         message: New Alert in {{ deploymentName }}
-        source: {{ deploymentName }}
-      {{#if opsgenieHeartbeatEnabled}}    
-    - name: heartbeats
-      webhook_configs:
-      - http_config:
-          basic_auth:
-            password: {{ opsgenieToken }}
-        url: https://api.eu.opsgenie.com/v2/heartbeats/{{ deploymentName }}/ping    
-      {{/if}}  
+        source: {{ deploymentName }} 
     {{/if}}
   alertmanagerSpec:
     resources:
