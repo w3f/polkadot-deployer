@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: web3f/node:v0.1.0
+      - image: web3f/node:v0.1.3
     steps:
       - checkout
 
@@ -16,7 +16,7 @@ jobs:
 
   publishPackage:
     docker:
-      - image: web3f/node:v0.1.0
+      - image: web3f/node:v0.1.3
     steps:
       - checkout
 
