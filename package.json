@@ -30,7 +30,6 @@
   "homepage": "https://github.com/w3f/polkadot-deployer#readme",
   "dependencies": {
     "@polkadot/api": "^4.9.2",
-    "@w3f/libp2p-crypto": "^0.16.1",
     "axios": "^0.21.1",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
@@ -39,6 +38,7 @@
     "handlebars": "^4.1.2",
     "inquirer": "^6.3.1",
     "js-yaml": "^3.13.1",
+    "libp2p-crypto": "libp2p/js-libp2p-crypto",
     "moment": "^2.24.0",
     "nedb-promises": "^3.0.3",
     "ospath": "^1.2.2",

@@ -18,20 +18,20 @@ describe('cfg', () => {
       cfgPath = tmpobj.name;
     });
 
-    it('returns the config data if permissions are ok', () => {
+    it('returns the config data if permissions are ok', async () => {
       fs.writeFileSync(tmpobj.fd, expected);
 
-      fs.chmod(cfgPath, 0o600);
+      await fs.chmod(cfgPath, 0o600);
 
       const actual = subject.read(cfgPath);
 
       actual['a'].should.eq('b');
     });
 
-    it('throws if permissions are not ok', () => {
+    it('throws if permissions are not ok', async () => {
       fs.writeFileSync(tmpobj.fd, expected);
 
-      fs.chmod(cfgPath, 0o666);
+      await fs.chmod(cfgPath, 0o666);
 
       (() => {subject.read(cfgPath)}).should.throw();
     });
