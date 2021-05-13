@@ -1,6 +1,6 @@
 {
   "name": "polkadot-deployer",
-  "version": "2.14.5",
+  "version": "2.15.0",
   "description": "Tool for deploying Polkadot nodes",
   "main": "index.js",
   "scripts": {
@@ -29,12 +29,7 @@
   },
   "homepage": "https://github.com/w3f/polkadot-deployer#readme",
   "dependencies": {
-    "@polkadot/api": "0.82.0-beta.96",
-    "@polkadot/keyring": "0.95.0-beta.1",
-    "@polkadot/util": "0.95.0-beta.1",
-    "@polkadot/util-crypto": "0.95.0-beta.1",
-    "@polkadot/wasm-crypto": "0.13.1",
-    "@w3f/libp2p-crypto": "^0.16.1",
+    "@polkadot/api": "^4.9.2",
     "axios": "^0.21.1",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
@@ -43,16 +38,16 @@
     "handlebars": "^4.1.2",
     "inquirer": "^6.3.1",
     "js-yaml": "^3.13.1",
+    "libp2p-crypto": "libp2p/js-libp2p-crypto",
     "moment": "^2.24.0",
     "nedb-promises": "^3.0.3",
     "ospath": "^1.2.2",
-    "peer-id": "^0.12.2",
     "portastic": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "mocha": "^6.1.4",
+    "eslint": "^7.26.0",
+    "mocha": "^8.4.0",
     "sinon": "^7.3.2",
     "tmp": "^0.1.0"
   }
