@@ -1732,10 +1732,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-nedb-promises@^3.0.3:
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/nedb-promises/-/nedb-promises-3.0.7.tgz#8eb4af7e4952917a96f84785ab7896c95f02a94c"
-  integrity sha512-JuE/N00fyo6h5BtPRp5disL1rPA7d+ZzRMjUGTTCuacGX2czD04V6+ftKCph5VkF3c1Tamb+/Ibk/t/Cl+AUbw==
+nedb-promises@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/nedb-promises/-/nedb-promises-4.1.3.tgz#52f57111dec27ef9aaf5e3693f39bbd241b67d07"
+  integrity sha512-9QYegoI5bxZ9G7KMSSOnE8Y+wwWmjUkXe6TLYo7+k+ywM52yer7CnKe2UcnzxI/c4XjbBtoEQv3qD5h1B8kEYg==
   dependencies:
     nedb "^1.8.0"
 
@@ -2300,10 +2300,10 @@ uint8arrays@^2.1.3, uint8arrays@^2.1.4:
   dependencies:
     multibase "^4.0.1"
 
-underscore@~1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
-  integrity sha1-YaajIBBiKvoHljvzJSA88SI51gQ=
+underscore@^1.12.1, underscore@~1.4.4:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.1.tgz#0c1c6bd2df54b6b69f2314066d65b6cde6fcf9d1"
+  integrity sha512-hzSoAVtJF+3ZtiFX0VgfFPHEDRm7Y/QPjGyNo4TVdnDTdft3tr8hEkD25a1jC+TjTuE7tkHGKkhwCgs9dgBB2g==
 
 universalify@^0.1.0:
   version "0.1.2"
