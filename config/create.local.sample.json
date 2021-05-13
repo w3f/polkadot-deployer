@@ -5,9 +5,9 @@
     "enabled": true,
     "schedule": "50 * * * *"
   },
-  "nodes": 2,
+  "nodes": 1,
   "image": {
     "repo": "parity/polkadot",
-    "tag": "v0.8.23"
+    "tag": "v0.9.0"
   }
 }
