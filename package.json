@@ -42,13 +42,12 @@
     "moment": "^2.24.0",
     "nedb-promises": "^3.0.3",
     "ospath": "^1.2.2",
-    "peer-id": "^0.12.2",
     "portastic": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "mocha": "^6.1.4",
+    "eslint": "^7.26.0",
+    "mocha": "^8.4.0",
     "sinon": "^7.3.2",
     "tmp": "^0.1.0"
   }
