@@ -1,6 +1,6 @@
 {
   "name": "polkadot-deployer",
-  "version": "2.15.1",
+  "version": "2.15.2",
   "description": "Tool for deploying Polkadot nodes",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/w3f/polkadot-deployer#readme",
   "dependencies": {
-    "@polkadot/api": "^4.10.1",
+    "@polkadot/api": "^5.5.1",
     "axios": "^0.21.1",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
